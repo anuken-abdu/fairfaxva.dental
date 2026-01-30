@@ -22,8 +22,11 @@
       --bg:#ffffff;
       --ink:#0b1324;
       --muted:#4a5568;
-      --line:rgba(11,19,36,.18);
-      --soft:rgba(11,19,36,.06);
+
+      /* рамки убраны */
+      --line:rgba(11,19,36,0);
+      --soft:rgba(11,19,36,0);
+
       --accent:#1b56ff;
       --accent2:#00a3ff;
 
@@ -34,7 +37,7 @@
       --h2:clamp(22px, 3.4vw, 34px);
       --p:clamp(15px, 1.6vw, 18px);
 
-      /* HERO background (add images/hero.webp and optional images/hero.jpg) */
+      /* HERO background */
       --hero-image-webp:url("images/hero.webp");
       --hero-image-jpg:url("images/hero.jpg");
 
@@ -68,8 +71,30 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
     .section{padding:clamp(44px, 6vw, 84px) 0}
-    .kicker{letter-spacing:.12em; text-transform:uppercase; font-size:12px; color:var(--muted)}
-    .h2{font-size:var(--h2); margin:10px 0 12px}
+
+    /* нежная подсветка заголовков блоков */
+    .section .kicker{
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--muted);
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(27,86,255,.10), rgba(0,163,255,.06));
+      box-shadow:0 10px 24px rgba(27,86,255,.12);
+    }
+    .h2{
+      font-size:var(--h2);
+      margin:10px 0 12px;
+      display:inline-block;
+      padding:10px 12px;
+      border-radius:14px;
+      background:linear-gradient(90deg, rgba(27,86,255,.09), rgba(0,163,255,.05));
+      box-shadow:0 14px 34px rgba(11,19,36,.08);
+    }
+
     .p{font-size:var(--p); color:var(--muted); margin:0}
     .grid{display:grid; gap:16px}
 
@@ -90,7 +115,6 @@
     }
     .brand img{
       width:180px; height:auto; object-fit:contain;
-      /* no border / no rounding */
     }
     .right{
       display:flex; align-items:center; gap:12px;
@@ -100,20 +124,22 @@
       font-weight:600;
       color:var(--ink);
       padding:10px 12px;
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
-      transition:transform .18s ease, background .18s ease, border-color .18s ease;
+      box-shadow:0 12px 28px rgba(11,19,36,.10);
+      transition:transform .18s ease, background .18s ease;
     }
-    .phone:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .phone:hover{transform:translateY(-1px)}
     .burger{
       width:44px; height:44px;
       display:grid; place-items:center;
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
+      box-shadow:0 12px 28px rgba(11,19,36,.10);
       cursor:pointer;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      transition:transform .18s ease, background .18s ease;
     }
-    .burger:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .burger:hover{transform:translateY(-1px)}
     .burger .lines{width:18px; height:12px; position:relative}
     .burger .lines span{
       position:absolute; left:0; right:0; height:2px; background:var(--ink);
@@ -137,6 +163,7 @@
       position:fixed; top:0; right:0; height:100vh; width:min(360px, 92vw);
       background:#fff;
       border-left:1px solid var(--line);
+      box-shadow:-22px 0 60px rgba(11,19,36,.14);
       transform:translateX(102%);
       transition:transform .22s ease;
       z-index:90;
@@ -150,25 +177,28 @@
     .drawerTitle{font-weight:800}
     .drawerClose{
       width:44px; height:44px; display:grid; place-items:center;
-      border:1px solid var(--line); background:#fff; cursor:pointer;
-      transition:transform .18s ease, border-color .18s ease;
+      border:0; background:#fff; cursor:pointer;
+      box-shadow:0 12px 28px rgba(11,19,36,.10);
+      transition:transform .18s ease;
     }
-    .drawerClose:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .drawerClose:hover{transform:translateY(-1px)}
     .drawerBody{padding:16px; display:grid; gap:12px}
     .navLink{
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 12px;
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
+      box-shadow:0 12px 28px rgba(11,19,36,.08);
       font-weight:650;
-      transition:transform .18s ease, border-color .18s ease;
+      transition:transform .18s ease;
     }
-    .navLink:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .navLink:hover{transform:translateY(-1px)}
     .navMeta{
       display:grid; gap:8px;
       padding:12px;
-      border:1px solid var(--line);
+      border:0;
       background:rgba(11,19,36,.02);
+      box-shadow:0 12px 28px rgba(11,19,36,.06);
     }
     .navMeta a{
       color:var(--ink);
@@ -189,20 +219,10 @@
       border-bottom:1px solid var(--line);
       background:
         linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.70) 55%, rgba(255,255,255,.35)),
-        /* Prefer WebP with image-set; fallback below if unsupported */
-        image-set(var(--hero-image-webp) type("image/webp"), var(--hero-image-jpg) type("image/jpeg"));
+        var(--hero-image-jpg);
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
-    }
-    @supports not (background: image-set(url("a.webp") type("image/webp"))){
-      .hero{
-        background:
-          linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.70) 55%, rgba(255,255,255,.35)),
-          var(--hero-image-jpg);
-        background-size:cover;
-        background-position:center;
-      }
     }
     .heroInner{
       padding:clamp(40px, 7vw, 92px) 0;
@@ -227,16 +247,16 @@
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 14px;
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
+      box-shadow:0 14px 34px rgba(11,19,36,.10);
       font-weight:750;
       cursor:pointer;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      transition:transform .18s ease, background .18s ease;
     }
-    .btn:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .btn:hover{transform:translateY(-1px)}
     .btnPrimary{
       background:linear-gradient(90deg, rgba(27,86,255,.12), rgba(0,163,255,.10));
-      border-color:rgba(27,86,255,.35);
     }
 
     /* Services */
@@ -245,10 +265,11 @@
       gap:14px;
     }
     .card{
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
-      overflow:hidden; /* sharp edges, no rounding */
+      overflow:hidden;
       display:grid;
+      box-shadow:0 18px 46px rgba(11,19,36,.08);
     }
     .cardMedia{
       aspect-ratio: 16 / 10;
@@ -259,51 +280,33 @@
     .cardMedia img{
       width:100%; height:100%;
       object-fit:cover;
-      /* no image frame */
     }
     .cardBody{padding:14px}
     .cardTitle{margin:0 0 6px; font-weight:850; letter-spacing:-.01em}
     .cardText{margin:0; color:var(--muted); font-size:15px}
 
-    /* About + Gallery */
+    /* About */
     .aboutGrid{
       grid-template-columns:1fr;
       gap:18px;
       align-items:start;
     }
     .aboutBox{
-      border:1px solid var(--line);
+      border:0;
       padding:16px;
       background:#fff;
+      box-shadow:0 18px 46px rgba(11,19,36,.08);
     }
     .aboutBox p{margin:0 0 12px; color:var(--muted); font-size:var(--p)}
     .aboutBox p:last-child{margin-bottom:0}
 
-    .gallery{
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .gItem{
-      border:1px solid var(--line);
-      background:#fff;
-      overflow:hidden;
-      cursor:zoom-in;
-      transition:transform .18s ease, border-color .18s ease;
-    }
-    .gItem:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
-    .gItem img{
-      width:100%;
-      height:100%;
-      aspect-ratio: 4/3;
-      object-fit:cover;
-    }
-
     /* Working hours + Contact */
     .twoCol{display:grid; gap:16px}
     .panel{
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
       padding:16px;
+      box-shadow:0 18px 46px rgba(11,19,36,.08);
     }
     .hours{
       display:grid; gap:10px; margin-top:10px;
@@ -321,36 +324,36 @@
       display:flex; align-items:center; justify-content:space-between;
       gap:12px;
       padding:12px;
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
-      transition:transform .18s ease, border-color .18s ease;
+      box-shadow:0 14px 34px rgba(11,19,36,.08);
+      transition:transform .18s ease;
     }
-    .chip:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .chip:hover{transform:translateY(-1px)}
     .chip small{color:var(--muted)}
     .map{
-      border:1px solid var(--line);
+      border:0;
       overflow:hidden;
       background:#fff;
       aspect-ratio: 16 / 10;
+      box-shadow:0 18px 46px rgba(11,19,36,.08);
     }
     .map iframe{width:100%; height:100%; border:0}
 
     /* Form */
     form{display:grid; gap:10px; margin-top:12px}
-    .field{
-      display:grid; gap:6px;
-    }
+    .field{display:grid; gap:6px}
     label{font-size:13px; color:var(--muted)}
     input,textarea{
       padding:12px 12px;
-      border:1px solid var(--line);
+      border:0;
       background:#fff;
+      box-shadow:0 12px 28px rgba(11,19,36,.08);
       outline:none;
-      transition:border-color .18s ease, box-shadow .18s ease;
+      transition:box-shadow .18s ease, transform .18s ease;
     }
     input:focus,textarea:focus{
-      border-color:rgba(27,86,255,.45);
-      box-shadow:0 0 0 3px rgba(27,86,255,.12);
+      box-shadow:0 0 0 3px rgba(27,86,255,.12), 0 12px 28px rgba(11,19,36,.08);
     }
     textarea{min-height:110px; resize:vertical}
     .hint{font-size:12px; color:var(--muted); margin:0}
@@ -361,7 +364,7 @@
       margin:0;
     }
     .hasError .errorText{display:block}
-    .hasError input,.hasError textarea{border-color:rgba(176,0,32,.55)}
+    .hasError input,.hasError textarea{box-shadow:0 0 0 3px rgba(176,0,32,.12), 0 12px 28px rgba(11,19,36,.08)}
 
     /* Footer */
     footer{
@@ -392,15 +395,16 @@
       height:min(90vh, 820px);
       max-width:95vw;
       max-height:90vh;
-      border:1px solid rgba(255,255,255,.22);
+      border:0;
       background:rgba(0,0,0,.25);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
       display:grid;
       grid-template-rows:auto 1fr;
     }
     .modalBar{
       display:flex; align-items:center; justify-content:space-between;
       padding:10px;
-      border-bottom:1px solid rgba(255,255,255,.18);
+      border-bottom:0;
       color:#fff;
       gap:12px;
     }
@@ -408,13 +412,13 @@
     .modalClose{
       width:44px; height:44px;
       display:grid; place-items:center;
-      border:1px solid rgba(255,255,255,.22);
-      background:transparent;
+      border:0;
+      background:rgba(255,255,255,.10);
       color:#fff;
       cursor:pointer;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      transition:transform .18s ease, background .18s ease;
     }
-    .modalClose:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.45); background:rgba(255,255,255,.08)}
+    .modalClose:hover{transform:translateY(-1px); background:rgba(255,255,255,.16)}
     .modalBody{
       display:grid;
       place-items:center;
@@ -425,7 +429,7 @@
       height:100%;
       max-width:95%;
       max-height:90vh;
-      object-fit:contain; /* IMPORTANT: full-view without crop */
+      object-fit:contain;
       object-position:center;
       background:transparent;
     }
@@ -438,8 +442,7 @@
     @media (min-width:720px){
       .phone{display:inline-flex}
       .servicesGrid{grid-template-columns:repeat(2, 1fr)}
-      .aboutGrid{grid-template-columns:1.1fr .9fr}
-      .gallery{grid-template-columns:repeat(3, 1fr)}
+      .aboutGrid{grid-template-columns:1fr} /* gallery удалён */
       .twoCol{grid-template-columns:1fr 1fr}
     }
     @media (min-width:1024px){
@@ -448,24 +451,21 @@
 
     /* Mobile fixes (<768px): safe side padding + footer stack */
     @media (max-width: 767.98px){
-      /* Safe Areas: минимум 20px по бокам (включая Hero) */
       .wrap{
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
       }
 
-      /* Footer: mobile stack in required order */
       .foot{
         flex-direction: column;
-        align-items: center; /* можно заменить на flex-start */
-        text-align: center;  /* можно заменить на left */
+        align-items: center;
+        text-align: center;
         gap: 10px;
       }
       .footAddress{ order:1; display:block; }
       .footEmail{ order:2; display:block; }
       .logoSmall{ order:3; flex-direction:column; justify-content:center; }
 
-      /* На мобиле строго: Address -> Email -> Copyright */
       .footPhone,
       .footSep,
       .logoSmall img{ display:none; }
@@ -545,8 +545,6 @@
         <p class="p">Tap any image to open a full-view preview without cropping.</p>
 
         <div class="grid servicesGrid" style="margin-top:16px;">
-          <!-- Helper: WebP + JPG fallback (keep both, convert to WebP for best performance) -->
-
           <article class="card">
             <div class="cardMedia">
               <picture>
@@ -710,7 +708,7 @@
       </div>
     </section>
 
-    <!-- About + Gallery -->
+    <!-- About (Gallery removed) -->
     <section class="section" id="about" aria-label="About">
       <div class="wrap aboutGrid" data-reveal>
         <div>
@@ -724,55 +722,6 @@
             <p>
               We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience and healthy, lasting results for the entire family.
             </p>
-          </div>
-        </div>
-
-        <div aria-label="Clinic photo gallery">
-          <div class="kicker">Gallery</div>
-          <h3 class="h2" style="margin-top:10px">Our clinic</h3>
-
-          <div class="gallery" style="margin-top:12px">
-            <figure class="gItem">
-              <picture>
-                <source srcset="images/clinic_exterior.webp" type="image/webp">
-                <img src="images/clinic_exterior.jpg" alt="Clinic exterior" loading="lazy" decoding="async" data-full-webp="images/clinic_exterior.webp" data-full-jpg="images/clinic_exterior.jpg">
-              </picture>
-            </figure>
-
-            <figure class="gItem">
-              <picture>
-                <source srcset="images/reception.webp" type="image/webp">
-                <img src="images/reception.jpg" alt="Reception area" loading="lazy" decoding="async" data-full-webp="images/reception.webp" data-full-jpg="images/reception.jpg">
-              </picture>
-            </figure>
-
-            <figure class="gItem">
-              <picture>
-                <source srcset="images/treatment_room.webp" type="image/webp">
-                <img src="images/treatment_room.jpg" alt="Treatment room" loading="lazy" decoding="async" data-full-webp="images/treatment_room.webp" data-full-jpg="images/treatment_room.jpg">
-              </picture>
-            </figure>
-
-            <figure class="gItem">
-              <picture>
-                <source srcset="images/medical_equipment.webp" type="image/webp">
-                <img src="images/medical_equipment.jpg" alt="Medical equipment" loading="lazy" decoding="async" data-full-webp="images/medical_equipment.webp" data-full-jpg="images/medical_equipment.jpg">
-              </picture>
-            </figure>
-
-            <figure class="gItem">
-              <picture>
-                <source srcset="images/doctors_team.webp" type="image/webp">
-                <img src="images/doctors_team.jpg" alt="Doctors team" loading="lazy" decoding="async" data-full-webp="images/doctors_team.webp" data-full-jpg="images/doctors_team.jpg">
-              </picture>
-            </figure>
-
-            <figure class="gItem">
-              <picture>
-                <source srcset="images/patient_care.webp" type="image/webp">
-                <img src="images/patient_care.jpg" alt="Patient care" loading="lazy" decoding="async" data-full-webp="images/patient_care.webp" data-full-jpg="images/patient_care.jpg">
-              </picture>
-            </figure>
           </div>
         </div>
       </div>
@@ -909,165 +858,38 @@
   </div>
 
   <script>
-    (async function(){
+    (function(){
       "use strict";
 
-      const root = document.documentElement;
-
-      /* ========= Image loading hardening (path + fallback) ========= */
-
-      function isRelativeUrl(u){
-        if(!u) return false;
-        return !(u.startsWith("http://") || u.startsWith("https://") || u.startsWith("data:") || u.startsWith("blob:"));
-      }
+      /* ========= Fix: images visible only in modal =========
+         Root cause (most common): browser supports WebP and <picture><source type="image/webp"> is selected,
+         but .webp files are missing / wrong name => images don't render in cards.
+         Solution: if WebP cannot be loaded, remove all webp <source> and all data-full-webp attributes.
+      */
 
       function canLoadImage(url){
         return new Promise((resolve) => {
           const im = new Image();
           im.onload = () => resolve(true);
           im.onerror = () => resolve(false);
-          // cache-bust just for probing (does not change real URLs)
           const sep = url.includes("?") ? "&" : "?";
           im.src = url + sep + "probe=" + Date.now();
         });
       }
 
-      async function resolveImagesBase(){
-        const candidates = ["images/", "./images/", "../images/", "/images/"];
-        for (const base of candidates){
-          if (await canLoadImage(base + "logo.jpg")) return base;
+      async function hardenPictureWebp(){
+        // probe one common webp file; if it fails, we assume webp assets are not present.
+        const probe = await canLoadImage("images/implants.webp");
+        if(!probe){
+          document.querySelectorAll('source[type="image/webp"]').forEach(s => s.remove());
+          document.querySelectorAll('[data-full-webp]').forEach(el => el.removeAttribute("data-full-webp"));
         }
-        return "images/";
       }
 
-      function rewriteSinglePath(val, base){
-        if(!val || !isRelativeUrl(val)) return val;
+      hardenPictureWebp();
 
-        // normalize common prefixes to "images/"
-        const prefixes = ["images/", "./images/", "../images/", "/images/"];
-        for(const p of prefixes){
-          if(val.startsWith(p)){
-            const rest = val.slice(p.length);
-            return base + rest;
-          }
-        }
-        return val;
-      }
-
-      function rewriteSrcset(val, base){
-        if(!val) return val;
-        // supports single or multiple candidates: "url 1x, url2 2x"
-        return val.split(",").map(part => {
-          const trimmed = part.trim();
-          if(!trimmed) return trimmed;
-          const pieces = trimmed.split(/\s+/);
-          const url = pieces[0];
-          const rewritten = rewriteSinglePath(url, base);
-          return [rewritten, ...pieces.slice(1)].join(" ");
-        }).join(", ");
-      }
-
-      function applyImagesBase(base){
-        // Hero CSS vars
-        root.style.setProperty("--hero-image-webp", `url("${base}hero.webp")`);
-        root.style.setProperty("--hero-image-jpg", `url("${base}hero.jpg")`);
-
-        // <source srcset="">
-        document.querySelectorAll('source[srcset]').forEach(srcEl => {
-          const v = srcEl.getAttribute("srcset");
-          srcEl.setAttribute("srcset", rewriteSrcset(v, base));
-        });
-
-        // <img src=""> and data-full-*
-        document.querySelectorAll("img").forEach(img => {
-          const src = img.getAttribute("src");
-          if(src) img.setAttribute("src", rewriteSinglePath(src, base));
-
-          const dWebp = img.getAttribute("data-full-webp");
-          if(dWebp) img.setAttribute("data-full-webp", rewriteSinglePath(dWebp, base));
-
-          const dJpg = img.getAttribute("data-full-jpg");
-          if(dJpg) img.setAttribute("data-full-jpg", rewriteSinglePath(dJpg, base));
-        });
-      }
-
-      function attachImgFallback(img){
-        if(img.dataset.fallbackBound === "1") return;
-        img.dataset.fallbackBound = "1";
-
-        img.addEventListener("error", () => {
-          // build candidate list (prefer explicit data-full-jpg/webp)
-          const tried = new Set((img.dataset.tried || "").split("|").filter(Boolean));
-
-          const candidates = [];
-          const dJpg = img.getAttribute("data-full-jpg");
-          const dWebp = img.getAttribute("data-full-webp");
-          if(dJpg) candidates.push(dJpg);
-          if(dWebp) candidates.push(dWebp);
-
-          // also try common extension swaps for current src
-          const cur = img.getAttribute("src") || img.src;
-          if(cur){
-            const base = cur.replace(/\?.*$/,"");
-            const m = base.match(/\.(webp|jpg|jpeg|png)$/i);
-            if(m){
-              const noExt = base.slice(0, -m[0].length);
-              candidates.push(noExt + ".jpg");
-              candidates.push(noExt + ".jpeg");
-              candidates.push(noExt + ".png");
-              candidates.push(noExt + ".webp");
-              candidates.push(noExt + ".JPG");
-              candidates.push(noExt + ".JPEG");
-              candidates.push(noExt + ".PNG");
-              candidates.push(noExt + ".WEBP");
-            }
-          }
-
-          // pick first candidate not tried and not equal to current
-          const currentSrc = (img.getAttribute("src") || "").split("?")[0];
-          for(const c of candidates){
-            const cNoQ = (c || "").split("?")[0];
-            if(!cNoQ) continue;
-            if(tried.has(cNoQ)) continue;
-            if(cNoQ === currentSrc) continue;
-
-            tried.add(cNoQ);
-            img.dataset.tried = Array.from(tried).join("|");
-            img.src = c; // attempt
-            return;
-          }
-        }, {passive:true});
-      }
-
-      function ensurePictureFallback(){
-        // If a <picture> resolves to a broken resource (e.g. wrong path/mime), force JPG fallback.
-        document.querySelectorAll("picture").forEach(pic => {
-          const img = pic.querySelector("img");
-          if(!img) return;
-
-          // quick delayed check; if failed, remove <source> and set jpg explicitly
-          setTimeout(() => {
-            if(img.complete && img.naturalWidth === 0){
-              const jpg = img.getAttribute("data-full-jpg") || img.getAttribute("src");
-              if(jpg) img.src = jpg;
-              pic.querySelectorAll("source").forEach(s => s.remove());
-            }
-          }, 900);
-        });
-      }
-
-      const imagesBase = await resolveImagesBase();
-      applyImagesBase(imagesBase);
-
-      // attach generic fallbacks (excluding logos)
-      const nonLogoImgs = Array.from(document.querySelectorAll("img"))
-        .filter(im => !im.closest(".brand") && !im.closest(".logoSmall"));
-      nonLogoImgs.forEach(attachImgFallback);
-
-      ensurePictureFallback();
-
-      /* ========= Menu ========= */
-
+      // Menu
+      const root = document.documentElement;
       const burger = document.getElementById("burger");
       const drawer = document.getElementById("drawer");
       const overlay = document.getElementById("drawerOverlay");
@@ -1097,8 +919,7 @@
         if(e.key === "Escape") closeMenu();
       });
 
-      /* ========= Reveal ========= */
-
+      // Reveal (lightweight)
       const revealEls = document.querySelectorAll("[data-reveal]");
       const io = new IntersectionObserver((entries) => {
         entries.forEach(en => {
@@ -1110,55 +931,27 @@
       }, {threshold: 0.12});
       revealEls.forEach(el => io.observe(el));
 
-      /* ========= Image modal (full-view, no crop) ========= */
-
+      // Image modal (full-view, no crop)
       const imgModal = document.getElementById("imgModal");
       const modalImg = document.getElementById("modalImg");
       const modalClose = document.getElementById("modalClose");
       const modalTitle = document.getElementById("modalTitle");
 
-      let _webpSupport = null;
-      function supportsWebP(){
-        if(_webpSupport !== null) return Promise.resolve(_webpSupport);
-        return new Promise((resolve) => {
-          try{
-            const c = document.createElement("canvas");
-            if(!c.getContext) { _webpSupport = false; return resolve(false); }
-            const ok = c.toDataURL("image/webp").indexOf("data:image/webp") === 0;
-            _webpSupport = ok;
-            resolve(ok);
-          }catch(_){
-            _webpSupport = false;
-            resolve(false);
-          }
-        });
-      }
-
-      async function openImage(img){
+      function openImage(img){
         const webp = img.getAttribute("data-full-webp");
         const jpg = img.getAttribute("data-full-jpg") || img.currentSrc || img.src;
 
-        const canWebp = webp && await supportsWebP();
-        const src = (canWebp && webp) ? webp : jpg;
+        // If webp attribute removed (or missing), jpg will be used
+        const src = webp || jpg;
 
-        modalImg.onerror = null;
         modalImg.src = src;
         modalImg.alt = img.alt || "Image preview";
         modalTitle.textContent = img.alt || "Preview";
-
-        // if we tried webp and it fails, auto-fallback to jpg
-        if(canWebp && jpg){
-          modalImg.onerror = () => {
-            modalImg.onerror = null;
-            modalImg.src = jpg;
-          };
-        }
 
         imgModal.setAttribute("aria-hidden","false");
         document.body.style.overflow = "hidden";
         modalClose.focus();
       }
-
       function closeImage(){
         imgModal.setAttribute("aria-hidden","true");
         modalImg.src = "";
@@ -1166,7 +959,10 @@
       }
 
       // Make all images clickable (except logo), as per spec
-      nonLogoImgs.forEach(im => {
+      const clickableImgs = Array.from(document.querySelectorAll("img"))
+        .filter(im => !im.closest(".brand") && !im.closest(".logoSmall"));
+
+      clickableImgs.forEach(im => {
         im.style.cursor = "zoom-in";
         im.addEventListener("click", () => openImage(im));
       });
@@ -1179,8 +975,7 @@
         if(e.key === "Escape" && imgModal.getAttribute("aria-hidden") === "false") closeImage();
       });
 
-      /* ========= Form validation + confirmation ========= */
-
+      // Form validation + confirmation
       const form = document.getElementById("contactForm");
       const status = document.getElementById("formStatus");
 
@@ -1198,19 +993,15 @@
         const phone = document.getElementById("phone");
         const msg = document.getElementById("message");
 
-        // Name
         const nameOk = name.value.trim().length >= 2;
         setError("fName", !nameOk); ok = ok && nameOk;
 
-        // Email
         const emailOk = email.checkValidity();
         setError("fEmail", !emailOk); ok = ok && emailOk;
 
-        // Phone pattern
         const phoneOk = phone.checkValidity();
         setError("fPhone", !phoneOk); ok = ok && phoneOk;
 
-        // Message
         const msgOk = msg.value.trim().length >= 10;
         setError("fMsg", !msgOk); ok = ok && msgOk;
 
@@ -1227,7 +1018,6 @@
           return;
         }
 
-        // Demo send (no backend): confirm sent
         status.textContent = "Message sent successfully. We’ll contact you shortly.";
         form.reset();
       });
