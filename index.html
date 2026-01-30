@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Fairfax Dentist | Comprehensive Dental Care</title>
-  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care." />
+  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry." />
+  
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,14 +19,18 @@
       </a>
       <div class="right">
         <a class="phone" href="tel:5715417977">571-541-7977</a>
-        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
 
   <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
-    <div class="drawerHead"><button class="drawerClose" id="drawerClose">✕</button></div>
+    <div class="drawerHead">
+      <button class="drawerClose" id="drawerClose">✕</button>
+    </div>
     <div class="drawerBody">
       <a class="navLink" href="index.html">Home</a>
       <a class="navLink" href="index.html#services">Services</a>
@@ -38,7 +43,9 @@
     <div class="wrap heroInner">
       <div class="kicker">Comprehensive • Modern • Family</div>
       <h1>Fairfax Dentist</h1>
-      <div class="sub">Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.</div>
+      <div class="sub">
+        Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.
+      </div>
       <div class="ctaRow">
         <a class="btn btnPrimary" href="#contact">Book an Appointment</a>
         <a class="btn btnSecondary" href="#services">View Services</a>
@@ -54,7 +61,7 @@
         
         <div class="grid servicesGrid" style="margin-top:40px;">
           
-          <a href="implants.html" class="card" target="_blank">
+          <a href="implants.html" class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/implants.webp" type="image/webp">
@@ -67,7 +74,7 @@
             </div>
           </a>
 
-          <a href="veneers.html" class="card" target="_blank">
+          <a href="veneers.html" class="card">
              <div class="cardMedia">
               <picture>
                 <source srcset="images/veneers.webp" type="image/webp">
@@ -80,7 +87,7 @@
             </div>
           </a>
 
-          <a href="emergency.html" class="card" target="_blank">
+          <a href="emergency.html" class="card">
              <div class="cardMedia">
               <picture>
                 <source srcset="images/dendist.webp" type="image/webp">
@@ -93,9 +100,69 @@
             </div>
           </a>
 
-          <a href="invisalign.html" class="card" target="_blank">
-             <div class="cardMedia"><img src="images/invisalign.jpg" alt="Invisalign"></div>
-             <div class="cardBody"><h3 class="cardTitle">Invisalign →</h3><p class="cardText">Clear aligners for straight teeth.</p></div>
+          <a href="invisalign.html" class="card">
+             <div class="cardMedia">
+              <picture>
+                <source srcset="images/invisalign.webp" type="image/webp">
+                <img src="images/invisalign.jpg" alt="Invisalign" loading="lazy">
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Invisalign →</h3>
+              <p class="cardText">Clear aligners for straight teeth.</p>
+            </div>
+          </a>
+
+          <a href="teeth.html" class="card">
+             <div class="cardMedia">
+              <picture>
+                <source srcset="images/teeth.webp" type="image/webp">
+                <img src="images/teeth.jpg" alt="Teeth Whitening" loading="lazy">
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Teeth Whitening →</h3>
+              <p class="cardText">Professional brightening for a radiant smile.</p>
+            </div>
+          </a>
+
+          <a href="rootcanal.html" class="card">
+             <div class="cardMedia">
+              <picture>
+                <source srcset="images/canal.webp" type="image/webp">
+                <img src="images/canal.jpg" alt="Root Canal" loading="lazy">
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Root Canal →</h3>
+              <p class="cardText">Save infected teeth and eliminate pain.</p>
+            </div>
+          </a>
+
+          <a href="aesthetic.html" class="card">
+             <div class="cardMedia">
+              <picture>
+                <source srcset="images/aesthetic.webp" type="image/webp">
+                <img src="images/aesthetic.jpg" alt="Aesthetic Dentistry" loading="lazy">
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Aesthetic Dentistry →</h3>
+              <p class="cardText">Comprehensive smile makeovers.</p>
+            </div>
+          </a>
+
+          <a href="xrays.html" class="card">
+             <div class="cardMedia">
+              <picture>
+                <source srcset="images/xrays.webp" type="image/webp">
+                <img src="images/xrays.jpg" alt="Dental X-Rays" loading="lazy">
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Dental X-Rays →</h3>
+              <p class="cardText">High-definition digital diagnostics.</p>
+            </div>
           </a>
 
         </div>
@@ -103,11 +170,14 @@
     </section>
 
     <section class="section bg-ice" id="about">
-      <div class="wrap" data-reveal>
-        <div class="kicker">The Clinic</div>
-        <h2 class="h2">Fairfax Dental Care</h2>
-        <div class="aboutBox" style="margin-top:24px;">
-          <p>Welcome to Fairfax Dental Care. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions.</p>
+      <div class="wrap aboutGrid" data-reveal>
+        <div>
+          <div class="kicker">About</div>
+          <h2 class="h2">Fairfax Dental Care</h2>
+          <div class="aboutBox" style="margin-top:24px;">
+            <p>Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions.</p>
+            <p>We specialize in everything from routine preventive exams to complex restorative procedures. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience for the entire family.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -116,21 +186,50 @@
       <div class="wrap" data-reveal>
         <div class="kicker">Contact Us</div>
         <h2 class="h2">Working hours & Location</h2>
+
         <div class="contactGrid" style="margin-top:40px;">
           <div class="panel">
-            <h3 style="margin-top:0;">Opening Hours</h3>
-            <div class="hoursRow"><span>Mon – Fri</span><b>8:00 – 17:00</b></div>
-            <div class="hoursRow"><span>Sat</span><b>9:00 – 13:00</b></div>
-            <div class="mapFrame" style="margin-top:20px;">Google Map Placeholder</div>
+            <h3 style="margin-top:0; font-size:20px;">Opening Hours</h3>
+            <div class="hours" role="list">
+              <div class="hoursRow"><span>Monday – Friday</span><b>8:00 – 17:00</b></div>
+              <div class="hoursRow"><span>Saturday</span><b>9:00 – 13:00</b></div>
+              <div class="hoursRow"><span>Sunday</span><span style="color:#dc2626;">Closed</span></div>
+            </div>
+
+            <h3 style="margin-top:40px; font-size:20px;">Find Us</h3>
+            <p class="sub" style="margin-bottom:20px;">3275 History Drive Oakton VA 22124</p>
+            <div class="mapFrame">
+               <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
+            </div>
           </div>
+
           <div class="panel">
-              <h3>Send Message</h3>
-              <form id="contactForm">
-                 <div class="field" id="fName"><input id="name" placeholder="Name" required></div>
-                 <div class="field" id="fPhone"><input id="phone" placeholder="Phone" required></div>
-                 <button class="btn btnPrimary" style="width:100%;">Send</button>
-              </form>
-           </div>
+            <h3 style="margin-top:0; font-size:20px; margin-bottom:20px;">Send a Message</h3>
+            <form id="contactForm" novalidate>
+              <div class="field" id="fName">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" required minlength="2" placeholder="Your name" />
+                <p class="errorText">Enter your name.</p>
+              </div>
+              <div class="field" id="fEmail">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
+                <p class="errorText">Enter a valid email.</p>
+              </div>
+              <div class="field" id="fPhone">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" required placeholder="571-541-7977" />
+                <p class="errorText">Enter a valid phone number.</p>
+              </div>
+              <div class="field" id="fMsg">
+                <label for="message">How can we help?</label>
+                <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
+                <p class="errorText">Please write at least 10 characters.</p>
+              </div>
+              <button class="btn btnPrimary" style="width:100%;" type="submit">Send Message</button>
+              <p class="hint" id="formStatus" aria-live="polite" style="margin-top:10px; font-size:14px; color:green;"></p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -139,7 +238,16 @@
   <footer>
     <div class="wrap foot">
       <small class="footAddress">3275 History Drive Oakton VA 22124</small>
-      <small class="footCopy">© 2006-2026 Fairfax Dentist</small>
+
+      <small class="footEmail">
+        <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a>
+        <span class="footSep"> • </span>
+        <a class="footPhone" href="tel:5715417977">571-541-7977</a>
+      </small>
+
+      <div class="logoSmall">
+        <small class="footCopy">© 2006-2026 Fairfax Dentist</small>
+      </div>
     </div>
   </footer>
 
