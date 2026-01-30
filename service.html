@@ -7,358 +7,383 @@
   <meta name="theme-color" content="#ffffff" />
 
   <title>Service | Fairfax Dentist</title>
-  <meta name="description" content="Detailed service information — Fairfax Dentist." />
-
-  <meta property="og:title" content="Fairfax Dentist Service" />
-  <meta property="og:description" content="Service details — Fairfax Dentist." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:image" content="images/logo.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Service details — Fairfax Dentist." />
 
   <style>
     :root{
-      --bg-white:#ffffff;
-      --bg-ice:#F5F7FA;
-      --bg-dark:#111827;
+      --bg-white: #ffffff;
+      --bg-ice: #F5F7FA;
+      --bg-dark: #111827;
 
-      --ink:#111827;
-      --muted:#64748B;
+      --ink: #111827;
+      --muted: #64748B;
 
-      --accent:#2563EB;
-      --btn-bg:#111827;
-      --btn-text:#ffffff;
+      --accent: #2563EB;
+      --btn-bg: #111827;
+      --btn-text: #ffffff;
 
-      --max:1200px;
-      --pad:max(24px, 5vw);
-
-      --h1:clamp(32px, 4.8vw, 56px);
-      --h2:clamp(22px, 3.2vw, 34px);
-      --p:clamp(16px, 1.1vw, 18px);
-
-      /* Service hero (will be set by JS) */
-      --service-hero-webp: url("images/hero.webp");
-      --service-hero-jpg: url("images/hero.jpg");
+      --max: 1120px;
+      --pad: max(24px, 5vw);
+      --h1: clamp(30px, 4.4vw, 52px);
+      --h2: clamp(20px, 3vw, 30px);
+      --p: clamp(16px, 1.05vw, 18px);
+      --shadow: 0 18px 45px rgba(17,24,39,0.14);
     }
 
-    *, *::before, *::after{ box-sizing:border-box; }
-    html{ height:100%; scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family:'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background:var(--bg-white);
-      color:var(--ink);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-white);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
+
+    img{ max-width:100%; display:block; height:auto; }
     a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; }
 
     .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding-left:var(--pad);
-      padding-right:var(--pad);
-      padding-left:max(var(--pad), env(safe-area-inset-left));
-      padding-right:max(var(--pad), env(safe-area-inset-right));
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+      padding-left: max(var(--pad), env(safe-area-inset-left));
+      padding-right: max(var(--pad), env(safe-area-inset-right));
     }
-    .section{ padding: clamp(60px, 8vw, 100px) 0; }
-    .bg-ice{ background:var(--bg-ice); }
-    .bg-white{ background:var(--bg-white); }
+
+    /* Unified icon style */
+    .icon{
+      width: 20px; height: 20px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
 
     header{
-      position:sticky; top:0; z-index:100;
-      background:rgba(255,255,255,.95);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(0,0,0,.05);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-    .head{ display:flex; align-items:center; justify-content:space-between; height:80px; }
-    .brand img{ height:40px; width:auto; }
-    .right{ display:flex; align-items:center; gap:20px; }
-    .phone{ display:none; font-weight:600; font-size:15px; letter-spacing:-.01em; }
+    .head{
+      height: 76px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .brand img{ height: 36px; width:auto; }
 
-    .burger{
-      width:48px; height:48px;
-      background:transparent; border:none;
-      display:flex; flex-direction:column; justify-content:center; align-items:flex-end;
-      gap:6px; cursor:pointer; padding:0;
+    .backBtn{
+      display:inline-flex; align-items:center; gap:10px;
+      height: 44px;
+      padding: 0 14px;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(17,24,39,0.08);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
     }
-    .burger span{ display:block; height:2px; background:var(--ink); transition:.3s cubic-bezier(.2,.8,.2,1); }
-    .burger span:nth-child(1){ width:24px; }
-    .burger span:nth-child(2){ width:32px; }
-    .burger span:nth-child(3){ width:18px; }
-    .burger:hover span{ width:32px; background:var(--accent); }
-
-    .drawer{
-      position:fixed; top:0; right:0; height:100%; width:300px;
-      background:#fff; z-index:200;
-      transform:translateX(100%);
-      transition:transform .3s cubic-bezier(.4,0,.2,1);
-      box-shadow:-10px 0 30px rgba(0,0,0,.1);
-      display:flex; flex-direction:column;
-    }
-    .isMenuOpen .drawer{ transform:translateX(0); }
-    .drawerOverlay{
-      position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:150;
-      opacity:0; pointer-events:none; transition:opacity .3s;
-    }
-    .isMenuOpen .drawerOverlay{ opacity:1; pointer-events:auto; }
-    .drawerHead{ padding:24px; display:flex; justify-content:flex-end; }
-    .drawerClose{ font-size:24px; background:none; border:none; cursor:pointer; padding:10px; }
-    .drawerBody{ padding:0 24px; display:flex; flex-direction:column; gap:16px; }
-    .navLink{ font-size:20px; font-weight:600; padding:10px 0; border-bottom:1px solid #f1f1f1; }
+    .backBtn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(17,24,39,0.12); }
+    .backBtn:active{ transform: translateY(0px) scale(.99); }
 
     .hero{
-      position:relative;
-      min-height:65vh;
-      display:flex; align-items:center;
-      background:var(--bg-ice);
-      overflow:hidden;
+      background: var(--bg-ice);
+      padding: clamp(28px, 5vw, 54px) 0;
+      position: relative;
+      overflow: hidden;
     }
     .hero::before{
-      content:""; position:absolute; inset:0;
-      background-image:
-        image-set(var(--service-hero-webp) type("image/webp"), var(--service-hero-jpg) type("image/jpeg"));
-      background-size:cover; background-position:center;
-      opacity:.45;
-      z-index:0;
-    }
-    @supports not (background: image-set(url("a.webp") type("image/webp"))){
-      .hero::before{ background-image: var(--service-hero-jpg); }
-    }
-    .hero::after{
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.96) 45%, rgba(255,255,255,0) 100%);
-      z-index:1;
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(60% 120% at 30% 35%, rgba(37,99,235,.18), rgba(37,99,235,0) 70%),
+                  radial-gradient(60% 120% at 70% 40%, rgba(99,102,241,.12), rgba(99,102,241,0) 70%);
+      filter: blur(18px);
+      opacity: .95;
     }
     .heroInner{
-      position:relative; z-index:2;
-      max-width:720px;
-      display:flex; flex-direction:column; gap:18px;
+      position: relative;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
     }
+
     .kicker{
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-weight:700;
-      font-size:13px;
-      color:var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeUp .75s ease both;
     }
+
     h1{
       margin:0;
-      font-size:var(--h1);
-      line-height:1.1;
-      font-weight:800;
-      letter-spacing:-.03em;
+      font-size: var(--h1);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      animation: fadeUp .85s ease .05s both;
     }
     .sub{
-      font-size:var(--p);
-      color:var(--muted);
-      max-width:92%;
+      margin:0;
+      color: var(--muted);
+      font-size: var(--p);
+      max-width: 70ch;
+      animation: fadeUp .85s ease .12s both;
     }
-    .ctaRow{ display:flex; flex-wrap:wrap; gap:14px; margin-top:6px; }
+
+    .heroCard{
+      margin-top: 10px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      animation: fadeUp .85s ease .18s both;
+    }
+    .media{
+      aspect-ratio: 16/9;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background:#fff;
+    }
+    .media img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.01);
+    }
+
+    .ctaRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:14px 26px;
-      font-weight:600;
-      font-size:16px;
-      border:1px solid transparent;
-      cursor:pointer;
-      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      height: 48px;
+      padding: 0 18px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .18s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      background:#fff;
+      box-shadow: 0 10px 26px rgba(17,24,39,0.08);
+      user-select:none;
     }
-    .btnPrimary{ background:var(--btn-bg); color:var(--btn-text); }
-    .btnPrimary:hover{ background:var(--accent); border-color:var(--accent); }
-    .btnSecondary{
-      background:transparent; border:1px solid var(--ink); color:var(--ink);
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(17,24,39,0.12); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .btnPrimary{
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      box-shadow: var(--shadow);
     }
-    .btnSecondary:hover{ background:var(--bg-ice); }
+    .btnPrimary:hover{ background: var(--accent); }
+
+    .btnSoft{
+      background: linear-gradient(180deg, rgba(37,99,235,.12), rgba(37,99,235,.05));
+      border-color: rgba(37,99,235,.18);
+    }
+
+    main{
+      padding: clamp(26px, 4vw, 46px) 0 clamp(60px, 8vw, 90px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .panel{
+      background:#fff;
+      box-shadow: 0 10px 28px rgba(17,24,39,0.06);
+      padding: 26px;
+    }
 
     .h2{
-      font-size:var(--h2);
-      font-weight:750;
-      letter-spacing:-.02em;
-      margin:0 0 14px;
-      line-height:1.2;
+      font-size: var(--h2);
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
     }
-    .lead{
-      font-size:var(--p);
-      color:var(--muted);
-      margin:0;
-      max-width:80ch;
+    .h2::before{
+      content:"";
+      position:absolute;
+      left:-14px; right:-14px;
+      top: 62%;
+      height: 1.05em;
+      transform: translateY(-50%);
+      background: radial-gradient(60% 120% at 40% 50%, rgba(37,99,235,.18), rgba(37,99,235,0) 70%),
+                  radial-gradient(60% 120% at 70% 40%, rgba(99,102,241,.12), rgba(99,102,241,0) 70%);
+      filter: blur(10px);
+      z-index: -1;
+      animation: glowPulse 6s ease-in-out infinite;
     }
 
-    .grid{ display:grid; gap:18px; }
-    .twoCol{ display:grid; gap:28px; }
-    @media (min-width: 900px){
-      .twoCol{ grid-template-columns: 1.05fr .95fr; }
-    }
-
-    .card{
-      background: #fff;
-      padding: 22px;
-      border-left: 4px solid var(--accent);
-    }
-    .card p{ margin:0; color:var(--muted); }
+    .p{ margin: 0; color: var(--muted); font-size: var(--p); }
 
     .list{
-      margin:0;
-      padding-left:18px;
-      color:var(--muted);
-    }
-    .list li{ margin: 8px 0; }
-
-    .faq{
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
       display:grid;
-      gap:12px;
+      gap: 10px;
     }
-    details{
-      background:#fff;
-      padding:16px 18px;
+    .li{
+      display:flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--ink);
     }
-    summary{
-      cursor:pointer;
-      font-weight:700;
-      list-style:none;
+    .tick{
+      width: 26px; height: 26px;
+      display:grid; place-items:center;
+      color: var(--accent);
+      background: rgba(37,99,235,.10);
+      border-radius: 12px;
+      flex: 0 0 auto;
     }
-    summary::-webkit-details-marker{ display:none; }
-    details p{
-      margin:10px 0 0;
-      color:var(--muted);
-    }
+    .tick .icon{ width: 16px; height: 16px; }
 
     footer{
-      background:var(--bg-dark);
-      color:#fff;
-      padding:50px 0 26px;
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 34px 0;
     }
-    .foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px; }
-    .foot a{ color:#fff; opacity:.85; }
-    .foot a:hover{ opacity:1; text-decoration:underline; }
-    .footAddress{ opacity:.65; }
+    footer small{ opacity:.75; }
 
-    @media (max-width: 767.98px){
-      .foot{ flex-direction:column; text-align:center; }
-      .footAddress{ order:1; }
-      .footEmail{ order:2; font-size:18px; }
-      .footCopy{ order:3; opacity:.6; font-size:12px; }
-      .footPhone, .footSep{ display:none; }
+    @media (min-width: 900px){
+      .heroInner{
+        grid-template-columns: 1.05fr .95fr;
+        gap: 26px;
+      }
+      .heroCard{ margin-top: 0; }
+      .grid{ grid-template-columns: 1fr 1fr; }
     }
 
-    @media (min-width: 768px){
-      .phone{ display:block; }
-      .burger{ display:none; }
+    /* Animations */
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(16px); }
+      to{ opacity:1; transform: translateY(0); }
     }
-
-    [data-reveal]{ opacity:0; transform:translateY(18px); transition:.6s ease; }
-    [data-reveal].is-visible{ opacity:1; transform:none; }
+    @keyframes glowPulse{
+      0%,100%{ opacity:.85; transform: translateY(-50%) scale(1); }
+      50%{ opacity:1; transform: translateY(-50%) scale(1.03); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *, *::before, *::after{ animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
-
 <body>
+
   <header>
     <div class="wrap head">
-      <a class="brand" href="index.html#home" aria-label="Fairfax Dentist Home">
-        <img src="images/logo.jpg" alt="Fairfax Dentist logo" />
+      <a class="brand" href="index.html" aria-label="Back to Home">
+        <img src="images/logo.jpg" alt="Fairfax Dentist logo">
       </a>
 
-      <div class="right">
-        <a class="phone" href="tel:5715417977">571-541-7977</a>
-        <button class="burger" id="burger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <!-- ✅ Back button (requested) -->
+      <a class="backBtn" href="index.html" aria-label="Back to main page">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6"></path>
+        </svg>
+        Back to Home
+      </a>
     </div>
   </header>
 
-  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
-  <aside class="drawer" id="drawer" aria-hidden="true">
-    <div class="drawerHead">
-      <button class="drawerClose" id="drawerClose" aria-label="Close">✕</button>
-    </div>
-    <div class="drawerBody">
-      <a class="navLink" href="index.html#home">Home</a>
-      <a class="navLink" href="index.html#services">Services</a>
-      <a class="navLink" href="index.html#about">About</a>
-      <a class="navLink" href="index.html#contact">Contact</a>
-      <div style="margin-top:20px; color:var(--muted); font-size:14px;">
-        <p style="margin:0 0 8px;">571-541-7977</p>
-        <p style="margin:0;">svvdmd@gmail.com</p>
-      </div>
-    </div>
-  </aside>
-
   <section class="hero" aria-label="Service hero">
-    <div class="wrap heroInner" data-reveal>
-      <div class="kicker" id="serviceKicker">Service</div>
-      <h1 id="serviceTitle">Service</h1>
-      <div class="sub" id="serviceSub">Service description.</div>
-      <div class="ctaRow">
-        <a class="btn btnPrimary" href="index.html#contact">Book an Appointment</a>
-        <a class="btn btnSecondary" href="index.html#services">Back to Services</a>
+    <div class="wrap heroInner">
+      <div>
+        <div class="kicker" id="svcKicker">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" id="svcKickerIcon">
+            <path d="M8 3h8"></path>
+            <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+            <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+          </svg>
+          Fairfax Dentist • Service Details
+        </div>
+
+        <h1 id="svcTitle">Service</h1>
+        <p class="sub" id="svcSubtitle">Service details page.</p>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="tel:5715417977" aria-label="Call">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2c-3.4-.4-6.6-2-9.2-4.6S6.4 11.6 6 8.2A2 2 0 0 1 8 6h3l1.1 4-2.1 1.1a15 15 0 0 0 5.9 5.9l1.1-2.1 4 1z"></path>
+            </svg>
+            Call
+          </a>
+
+          <a class="btn btnSoft" href="index.html#contact" aria-label="Book appointment">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 2v4"></path>
+              <path d="M16 2v4"></path>
+              <path d="M3 10h18"></path>
+              <path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+            </svg>
+            Book Appointment
+          </a>
+
+          <a class="btn" href="index.html" aria-label="Back to home">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 12l9-9 9 9"></path>
+              <path d="M9 21V9h6v12"></path>
+            </svg>
+            Home
+          </a>
+        </div>
       </div>
-      <div class="sub" style="margin-top:6px;">
-        <a href="tel:5715417977" style="font-weight:700;">571-541-7977</a>
-        <span style="opacity:.55;"> • </span>
-        <a href="mailto:svvdmd@gmail.com" style="font-weight:700;">svvdmd@gmail.com</a>
+
+      <div class="heroCard">
+        <div class="media">
+          <img id="svcImg" src="images/implants.jpg" alt="">
+        </div>
       </div>
     </div>
   </section>
 
-  <main id="main">
-    <section class="section bg-white" aria-label="Overview">
-      <div class="wrap twoCol" data-reveal>
-        <div>
+  <main>
+    <div class="wrap">
+      <div class="grid">
+        <section class="panel" aria-label="Overview">
           <h2 class="h2">Overview</h2>
-          <p class="lead" id="overviewText"></p>
+          <p class="p" id="svcOverview"></p>
 
-          <div style="height:18px;"></div>
+          <ul class="list" id="svcHighlights"></ul>
+        </section>
 
-          <h2 class="h2">Key Benefits</h2>
-          <ul class="list" id="benefitsList"></ul>
+        <section class="panel" aria-label="What to expect">
+          <h2 class="h2">What to expect</h2>
+          <p class="p" id="svcExpect"></p>
 
-          <p class="lead" style="margin-top:18px; font-size:14px;">
-            Note: Information on this page is general and does not replace a clinical exam. Your dentist will confirm the best plan for you.
-          </p>
-        </div>
-
-        <div class="grid">
-          <div class="card">
-            <h2 class="h2" style="margin:0 0 8px;">What to Expect</h2>
-            <ul class="list" id="stepsList" style="margin-top:6px;"></ul>
-          </div>
-
-          <div class="card">
-            <h2 class="h2" style="margin:0 0 8px;">Time & Comfort</h2>
-            <p id="timeComfortText"></p>
-          </div>
-
-          <div class="card">
-            <h2 class="h2" style="margin:0 0 8px;">Aftercare</h2>
-            <p id="aftercareText"></p>
-          </div>
-        </div>
+          <ul class="list" id="svcSteps"></ul>
+        </section>
       </div>
-    </section>
-
-    <section class="section bg-ice" aria-label="FAQ">
-      <div class="wrap" data-reveal>
-        <h2 class="h2">FAQ</h2>
-        <div class="faq" id="faqWrap"></div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer aria-label="Footer">
-    <div class="wrap foot">
-      <small class="footAddress">3275 History Drive Oakton VA 22124</small>
-
-      <small class="footEmail">
-        <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a>
-        <span class="footSep"> • </span>
-        <a class="footPhone" href="tel:5715417977">571-541-7977</a>
-      </small>
-
-      <small class="footCopy">© 2006-2026 Fairfax Dentist</small>
+    <div class="wrap">
+      <small>© 2006-2026 Fairfax Dentist • 3275 History Drive Oakton VA 22124</small>
     </div>
   </footer>
 
@@ -366,323 +391,308 @@
     (function(){
       "use strict";
 
+      function qs(name){
+        const u = new URL(window.location.href);
+        return u.searchParams.get(name);
+      }
+
+      const ICONS = {
+        implants: `
+          <path d="M8 3h8"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+          <path d="M12 12v5"></path>
+          <path d="M9.5 14.5h5"></path>
+        `,
+        veneers: `
+          <path d="M8 3h8"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+          <path d="M19 6l1 1"></path>
+          <path d="M18 8l2 2"></path>
+          <path d="M17 10l1 1"></path>
+        `,
+        emergency: `
+          <path d="M12 9v4"></path>
+          <path d="M12 17h.01"></path>
+          <path d="M10 3h4"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+        `,
+        invisalign: `
+          <path d="M7 7h10"></path>
+          <path d="M6 10h12"></path>
+          <path d="M7 13h10"></path>
+          <path d="M8 16h8"></path>
+          <path d="M9 19h6"></path>
+        `,
+        whitening: `
+          <path d="M12 3l.7 2.1L15 6l-2.3.9L12 9l-.7-2.1L9 6l2.3-.9L12 3z"></path>
+          <path d="M19 9l.6 1.8L21 12l-1.4.7L19 15l-.6-2.3L17 12l1.4-.7L19 9z"></path>
+          <path d="M8 3h8"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+        `,
+        rootcanal: `
+          <path d="M14 4l6 6"></path>
+          <path d="M16 2l6 6"></path>
+          <path d="M4 20l8-8"></path>
+          <path d="M8 21l-5-5"></path>
+          <path d="M10 3h4"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+        `,
+        aesthetic: `
+          <path d="M12 2l2.4 6.5L21 9l-5 4 1.8 7L12 16.8 6.2 20 8 13 3 9l6.6-.5L12 2z"></path>
+        `,
+        xrays: `
+          <path d="M4 6h16"></path>
+          <path d="M6 4v16"></path>
+          <path d="M18 4v16"></path>
+          <path d="M4 18h16"></path>
+          <path d="M9 9l6 6"></path>
+          <path d="M15 9l-6 6"></path>
+        `
+      };
+
       const SERVICES = {
         implants: {
           title: "Dental Implants",
-          kicker: "Restorative Dentistry",
-          sub: "Permanent, natural-looking tooth replacement designed to restore function, comfort, and confidence.",
-          heroWebp: "images/implants.webp",
-          heroJpg: "images/implants.jpg",
-          overview: "Dental implants replace missing teeth using a titanium post (implant) and a custom crown. They are stable, durable, and help preserve jawbone and facial structure compared to removable options.",
-          timeComfort: "Most patients report minimal discomfort. Treatment timeline depends on healing and may take several months from start to final crown.",
-          aftercare: "Maintain excellent oral hygiene, attend follow-up visits, and avoid smoking during healing. Long-term success depends on home care and regular professional cleanings.",
-          benefits: [
-            "Looks and feels like a natural tooth",
-            "Helps preserve jawbone and bite stability",
-            "Does not rely on adjacent teeth",
-            "Long-lasting with proper care"
+          subtitle: "Permanent tooth replacement designed to look, feel, and function like a natural tooth.",
+          image: "images/implants.jpg",
+          overview:
+            "Dental implants replace missing teeth with a biocompatible post and a custom crown. They restore chewing strength, protect bone structure, and provide long-term stability.",
+          highlights: [
+            "Natural look & feel with a custom crown",
+            "Helps preserve jawbone and facial structure",
+            "Long-lasting, stable replacement option",
+            "Improves chewing and speech confidence"
           ],
+          expect:
+            "We start with a consultation and imaging, then plan the placement. Healing time varies, followed by the final crown. We keep every step clear and comfortable.",
           steps: [
-            "Consultation + 3D imaging / planning",
-            "Implant placement (comfortable anesthesia options)",
-            "Healing + integration period",
-            "Final crown placement and bite adjustment"
-          ],
-          faq: [
-            ["Are implants painful?", "Most patients describe pressure rather than pain during the procedure. Post-op soreness is usually manageable with standard care."],
-            ["How long do implants last?", "With good hygiene and regular checkups, implants can last many years—often decades."],
-            ["Am I a candidate?", "Candidates typically have healthy gums and adequate bone. If bone is limited, grafting may be an option."]
+            "Consultation + evaluation (digital imaging)",
+            "Personalized treatment plan",
+            "Implant placement (gentle technique)",
+            "Healing + follow-up visits",
+            "Final crown placement and bite check"
           ]
         },
-
         veneers: {
           title: "Dental Veneers",
-          kicker: "Cosmetic Dentistry",
-          sub: "Custom porcelain veneers to refine color, shape, and symmetry for a natural premium smile.",
-          heroWebp: "images/veneers.webp",
-          heroJpg: "images/veneers.jpg",
-          overview: "Veneers are thin porcelain shells bonded to the front of teeth to improve aesthetics. They can address chips, uneven spacing, stains, and shape concerns with a highly polished, natural look.",
-          timeComfort: "Typically completed in 2–3 visits. Comfort is high; minor sensitivity can occur temporarily after preparation.",
-          aftercare: "Avoid biting hard objects with front teeth, use a nightguard if you grind, and keep consistent hygiene and cleanings.",
-          benefits: [
-            "Immediate cosmetic improvement",
-            "Natural translucency and color stability",
-            "Conservative approach compared to full crowns",
-            "Custom design for your facial aesthetics"
+          subtitle: "Ultra-thin porcelain shells to enhance shape, color, and overall smile aesthetics.",
+          image: "images/veneers.jpg",
+          overview:
+            "Veneers are crafted to fit precisely over the front surface of teeth. They’re ideal for improving discoloration, chips, gaps, and mild alignment issues.",
+          highlights: [
+            "Whiter, more uniform smile appearance",
+            "Conceals chips, gaps, and stains",
+            "Custom fit for natural proportions",
+            "Durable, stain-resistant porcelain"
           ],
+          expect:
+            "We design your smile, prepare teeth minimally, then place temporary veneers while the lab creates the final set. The result is a refined and natural finish.",
           steps: [
-            "Smile consultation + shade planning",
-            "Minimal preparation (if needed) + impressions",
-            "Try-in / adjustments",
-            "Bonding + polish and care guidance"
-          ],
-          faq: [
-            ["Do veneers look natural?", "Yes—porcelain can mimic natural enamel with excellent translucency and tone."],
-            ["Can veneers stain?", "Porcelain resists staining; maintaining hygiene helps keep margins clean."],
-            ["How many veneers do I need?", "Some patients choose 2–4 front teeth; others prefer 6–10 for a full smile zone."]
+            "Smile design consultation",
+            "Minimal preparation (when needed)",
+            "Impressions + temporary veneers",
+            "Final veneer placement",
+            "Polish + bite and comfort check"
           ]
         },
-
         emergency: {
           title: "Emergency Dentist",
-          kicker: "Urgent Care",
-          sub: "Fast relief for tooth pain, trauma, swelling, and urgent infections—call for same-day availability.",
-          heroWebp: "images/dendist.webp",
-          heroJpg: "images/dendist.jpg",
-          overview: "Emergency dentistry focuses on immediate diagnosis and pain control—then stabilizing the problem (infection, fracture, trauma) and planning definitive treatment.",
-          timeComfort: "First goal is relief. We prioritize comfort with appropriate anesthesia and rapid diagnostics.",
-          aftercare: "Follow your prescribed medications, avoid chewing on the affected area, and return for definitive treatment if needed.",
-          benefits: [
-            "Rapid pain relief and evaluation",
-            "Treatment for infection, swelling, trauma",
-            "Same-day stabilization when possible",
-            "Clear next steps and follow-up plan"
+          subtitle: "Fast relief for pain, trauma, swelling, or sudden dental issues — same-day options when possible.",
+          image: "images/dendist.jpg",
+          overview:
+            "Emergency dental care focuses on pain relief and treating the cause—whether it’s infection, trauma, cracked tooth, or severe sensitivity.",
+          highlights: [
+            "Rapid pain evaluation and relief",
+            "Infection control and treatment",
+            "Trauma/crack assessment",
+            "Clear plan for next steps"
           ],
+          expect:
+            "We prioritize urgent cases. You’ll get an immediate evaluation and an action plan for treatment—often the same day.",
           steps: [
-            "Urgent evaluation + x-rays if needed",
+            "Urgent assessment + X-ray if needed",
             "Pain control and stabilization",
-            "Immediate treatment or temporary repair",
-            "Follow-up plan for full resolution"
-          ],
-          faq: [
-            ["When should I call immediately?", "Severe pain, facial swelling, fever, trauma, uncontrolled bleeding, or a knocked-out tooth."],
-            ["What if I lose a tooth?", "Keep it moist (milk/saline), do not scrub the root, and call ASAP."],
-            ["Do you treat infections?", "Yes—drainage, medication, and definitive treatment planning as appropriate."]
+            "Treat cause (infection/trauma/cavity)",
+            "Follow-up plan and prevention guidance"
           ]
         },
-
         invisalign: {
           title: "Invisalign",
-          kicker: "Orthodontics",
-          sub: "Clear aligners for discreet, comfortable tooth alignment with modern digital planning.",
-          heroWebp: "images/invisalign.webp",
-          heroJpg: "images/invisalign.jpg",
-          overview: "Invisalign uses a series of clear, removable aligners to gradually move teeth. Digital scans allow precise planning and predictable progression for many alignment needs.",
-          timeComfort: "You may feel pressure after switching aligners. Most cases require months; complexity affects timeline.",
-          aftercare: "Wear aligners as prescribed (often 20–22 hours/day), clean them daily, and use retainers after treatment.",
-          benefits: [
-            "Discreet appearance",
-            "Removable for eating and brushing",
-            "Digital planning and monitoring",
-            "Often fewer office visits"
+          subtitle: "Clear aligners for discreet, comfortable orthodontic correction.",
+          image: "images/invisalign.jpg",
+          overview:
+            "Invisalign uses a series of custom aligners that gradually shift teeth. It’s removable, discreet, and fits modern lifestyles.",
+          highlights: [
+            "Clear and removable aligners",
+            "Comfortable gradual correction",
+            "Easy cleaning and hygiene",
+            "Digital planning and progress tracking"
           ],
+          expect:
+            "We scan your teeth, create a digital plan, and deliver aligners with a schedule. You’ll have check-ins to ensure progress stays on track.",
           steps: [
-            "Scan + smile simulation",
-            "Custom aligner fabrication",
-            "Regular aligner changes",
-            "Refinements + retainers"
-          ],
-          faq: [
-            ["Can I eat with aligners?", "Remove aligners for meals. Brush before reinserting."],
-            ["How often do I change aligners?", "Commonly every 1–2 weeks, depending on your plan."],
-            ["Will it affect speech?", "Some people notice mild lisp initially; it usually resolves quickly."]
+            "Digital scan + treatment plan",
+            "Aligner delivery and instructions",
+            "Regular progress check-ins",
+            "Refinements if needed",
+            "Retention phase after completion"
           ]
         },
-
         whitening: {
           title: "Teeth Whitening",
-          kicker: "Cosmetic Dentistry",
-          sub: "Professional whitening to lift deep stains and brighten your smile safely and effectively.",
-          heroWebp: "images/teeth.webp",
-          heroJpg: "images/teeth.jpg",
-          overview: "Professional whitening uses clinically formulated gels to brighten enamel and reduce stains from coffee, tea, wine, and aging—often with more predictable results than over-the-counter options.",
-          timeComfort: "Treatment can be done in-office or with professional take-home trays. Temporary sensitivity may occur.",
-          aftercare: "Avoid strongly pigmented foods for 24–48 hours after whitening; use sensitivity toothpaste if needed.",
-          benefits: [
-            "Fast visible brightness improvement",
-            "Clinically safe concentrations",
-            "Customization for sensitivity",
-            "More even results than OTC methods"
+          subtitle: "Professional-grade brightening to remove stains and restore natural radiance.",
+          image: "images/teeth.jpg",
+          overview:
+            "Whitening is a safe and effective way to brighten your smile. Our approach focuses on noticeable results with sensitivity-aware protocols.",
+          highlights: [
+            "Visible shade improvement",
+            "Professional strength systems",
+            "Sensitivity-conscious approach",
+            "Great for events and refresh"
           ],
+          expect:
+            "We assess your enamel and existing restorations, then select the best method. You’ll leave with a brighter smile and aftercare guidance.",
           steps: [
-            "Shade assessment + exam",
-            "Whitening session or tray fitting",
-            "Post-care guidance for sensitivity",
-            "Optional touch-ups as needed"
-          ],
-          faq: [
-            ["How long does whitening last?", "Typically months to a year+, depending on diet and habits."],
-            ["Does it work on crowns/veneers?", "Whitening gels do not change ceramic/restorations; we plan shade accordingly."],
-            ["Is sensitivity normal?", "Mild sensitivity can occur and usually resolves within 24–72 hours."]
+            "Shade assessment + consultation",
+            "Treatment selection and preparation",
+            "Whitening session (professional grade)",
+            "Aftercare + maintenance tips"
           ]
         },
-
         rootcanal: {
           title: "Root Canal",
-          kicker: "Endodontics",
-          sub: "Save an infected tooth by treating the inner pulp and restoring strength and comfort.",
-          heroWebp: "images/canal.webp",
-          heroJpg: "images/canal.jpg",
-          overview: "Root canal therapy removes infected or inflamed pulp tissue, cleans and seals the canals, and preserves the natural tooth. It’s often the best way to avoid extraction.",
-          timeComfort: "Modern techniques make root canals comparable to getting a filling. Some tenderness may follow for a short period.",
-          aftercare: "Avoid chewing hard foods on the treated tooth until final restoration is placed. Maintain hygiene and attend follow-ups.",
-          benefits: [
-            "Relieves infection-related pain",
-            "Preserves your natural tooth",
-            "Prevents infection spread",
-            "Restores chewing comfort"
+          subtitle: "Endodontic therapy focused on saving infected teeth and preventing further complications.",
+          image: "images/canal.jpg",
+          overview:
+            "Root canal therapy removes infected tissue inside the tooth, disinfects the canal, and seals it to prevent reinfection—relieving pain and preserving your tooth.",
+          highlights: [
+            "Relieves deep tooth pain",
+            "Stops infection progression",
+            "Preserves natural tooth structure",
+            "Comfort-focused technique"
           ],
+          expect:
+            "We numb the area, clean and disinfect the canal, and seal the tooth. A crown may be recommended depending on tooth strength.",
           steps: [
-            "Diagnosis + local anesthesia",
-            "Cleaning and shaping canals",
-            "Sealing the tooth",
-            "Final restoration (often crown) for strength"
-          ],
-          faq: [
-            ["Will I need a crown?", "Often yes, especially for back teeth, to prevent fracture."],
-            ["How do I know if I need one?", "Persistent pain, sensitivity, swelling, or x-ray findings can indicate pulp infection."],
-            ["How long does it take?", "Many cases are completed in 1–2 visits depending on complexity."]
+            "Diagnosis + imaging",
+            "Local anesthesia and isolation",
+            "Cleaning/disinfection of canals",
+            "Sealing and restoration plan",
+            "Follow-up and crown if needed"
           ]
         },
-
         aesthetic: {
           title: "Aesthetic Dentistry",
-          kicker: "Smile Design",
-          sub: "Comprehensive aesthetic planning combining restorative precision with natural beauty.",
-          heroWebp: "images/aesthetic.webp",
-          heroJpg: "images/aesthetic.jpg",
-          overview: "Aesthetic dentistry blends function and appearance. This can include bonding, contouring, veneers, crowns, whitening, and bite refinement—tailored to your face and smile goals.",
-          timeComfort: "Timeline varies by plan. We prioritize conservative options when appropriate and use comfortable anesthesia options.",
-          aftercare: "Follow personalized hygiene guidance and use protective appliances (like nightguards) if recommended.",
-          benefits: [
-            "Holistic smile design approach",
-            "Natural proportions and symmetry",
-            "Functional bite improvement",
-            "Personalized treatment plan"
+          subtitle: "Smile design combining restorative techniques with artistic precision.",
+          image: "images/aesthetic.jpg",
+          overview:
+            "Aesthetic dentistry improves smile harmony through bonding, reshaping, restorations, and tailored cosmetic planning for natural results.",
+          highlights: [
+            "Natural-looking cosmetic refinement",
+            "Smile harmony and proportion focus",
+            "Modern materials and finishing",
+            "Personalized design approach"
           ],
+          expect:
+            "We discuss your goals, evaluate smile proportions, and recommend a plan that fits your budget and timeline—with results that look refined, not artificial.",
           steps: [
-            "Consult + goals and photos",
-            "Digital planning / mock-up",
-            "Staged treatment (if needed)",
-            "Polish, refinement, and maintenance plan"
-          ],
-          faq: [
-            ["Is smile design only cosmetic?", "No—function and bite are critical to comfort and longevity."],
-            ["Do you offer conservative options?", "Yes, we evaluate minimally invasive solutions first when possible."],
-            ["Can I preview the result?", "Often yes via digital planning and/or mock-ups depending on the case."]
+            "Smile evaluation and planning",
+            "Option selection (bonding/reshaping/etc.)",
+            "Treatment execution",
+            "Finishing + polishing",
+            "Aftercare and maintenance"
           ]
         },
-
         xrays: {
           title: "Dental X-Rays",
-          kicker: "Diagnostics",
-          sub: "High-definition imaging for accurate treatment planning and early detection of issues.",
-          heroWebp: "images/xrays.webp",
-          heroJpg: "images/xrays.jpg",
-          overview: "Digital dental x-rays help detect cavities, bone changes, infections, and impacted teeth—often before symptoms appear. They guide precise diagnosis and safer treatment planning.",
-          timeComfort: "Fast and comfortable. Digital imaging uses low radiation and is completed in minutes.",
-          aftercare: "No special aftercare is needed. Results are reviewed with you and added to your clinical record.",
-          benefits: [
-            "Early detection of hidden issues",
-            "Better treatment planning accuracy",
-            "Low-dose digital technology",
-            "Supports preventive care"
+          subtitle: "High-definition digital diagnostics for precise treatment planning and early issue detection.",
+          image: "images/xrays.jpg",
+          overview:
+            "Digital X-rays allow early detection of decay, infection, bone loss, and hidden problems—supporting accurate diagnosis and safer treatment decisions.",
+          highlights: [
+            "Early detection and prevention",
+            "Digital clarity for planning",
+            "Low-dose modern imaging",
+            "Supports long-term oral health"
           ],
+          expect:
+            "We take targeted images based on your needs. Results guide treatment planning and help catch issues before they escalate.",
           steps: [
-            "Quick imaging setup",
-            "Digital capture (seconds)",
-            "Review images with your dentist",
-            "Plan next steps if needed"
-          ],
-          faq: [
-            ["Is digital x-ray safe?", "Yes—digital x-rays typically use lower radiation than traditional film."],
-            ["How often do I need x-rays?", "Depends on risk and history; your dentist recommends a tailored schedule."],
-            ["Can x-rays detect infections?", "Yes—many infections and bone changes are visible before symptoms worsen."]
+            "Targeted digital imaging",
+            "Dentist review and interpretation",
+            "Treatment plan or reassurance",
+            "Recommended follow-up schedule"
           ]
         }
       };
 
-      function $(id){ return document.getElementById(id); }
+      const id = (qs("service") || "").toLowerCase();
+      const data = SERVICES[id] || SERVICES.implants;
 
-      // Resolve service key
-      const params = new URLSearchParams(location.search);
-      const key = (params.get("service") || "implants").toLowerCase();
-      const data = SERVICES[key] || SERVICES.implants;
+      // Set page title
+      document.title = data.title + " | Fairfax Dentist";
 
-      // Set hero images via CSS vars
-      document.documentElement.style.setProperty("--service-hero-webp", `url("${data.heroWebp}")`);
-      document.documentElement.style.setProperty("--service-hero-jpg", `url("${data.heroJpg}")`);
+      // Fill content
+      document.getElementById("svcTitle").textContent = data.title;
+      document.getElementById("svcSubtitle").textContent = data.subtitle;
+      document.getElementById("svcImg").src = data.image;
+      document.getElementById("svcImg").alt = data.title;
 
-      // Set document title + meta description
-      document.title = `${data.title} | Fairfax Dentist`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if(metaDesc) metaDesc.setAttribute("content", `${data.title} — ${data.sub}`);
+      document.getElementById("svcOverview").textContent = data.overview;
+      document.getElementById("svcExpect").textContent = data.expect;
 
-      // Fill hero
-      $("serviceKicker").textContent = data.kicker;
-      $("serviceTitle").textContent = data.title;
-      $("serviceSub").textContent = data.sub;
+      // Icon in kicker
+      const kickerIcon = document.getElementById("svcKickerIcon");
+      kickerIcon.innerHTML = ICONS[id] ? ICONS[id] : ICONS.implants;
 
-      // Fill overview blocks
-      $("overviewText").textContent = data.overview;
-      $("timeComfortText").textContent = data.timeComfort;
-      $("aftercareText").textContent = data.aftercare;
-
-      // Lists
-      const benefits = $("benefitsList");
-      benefits.innerHTML = "";
-      data.benefits.forEach(t => {
+      // Highlights
+      const hl = document.getElementById("svcHighlights");
+      hl.innerHTML = "";
+      data.highlights.forEach(t => {
         const li = document.createElement("li");
-        li.textContent = t;
-        benefits.appendChild(li);
+        li.className = "li";
+        li.innerHTML = `
+          <span class="tick" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </span>
+          <span>${t}</span>
+        `;
+        hl.appendChild(li);
       });
 
-      const steps = $("stepsList");
-      steps.innerHTML = "";
+      // Steps
+      const st = document.getElementById("svcSteps");
+      st.innerHTML = "";
       data.steps.forEach(t => {
         const li = document.createElement("li");
-        li.textContent = t;
-        steps.appendChild(li);
+        li.className = "li";
+        li.innerHTML = `
+          <span class="tick" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="M4.93 4.93l1.41 1.41"></path>
+              <path d="M17.66 17.66l1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="M4.93 19.07l1.41-1.41"></path>
+              <path d="M17.66 6.34l1.41-1.41"></path>
+              <path d="M12 7l0 5 3 2"></path>
+              <path d="M12 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12z"></path>
+            </svg>
+          </span>
+          <span>${t}</span>
+        `;
+        st.appendChild(li);
       });
 
-      // FAQ
-      const faqWrap = $("faqWrap");
-      faqWrap.innerHTML = "";
-      data.faq.forEach(([q,a]) => {
-        const d = document.createElement("details");
-        const s = document.createElement("summary");
-        s.textContent = q;
-        const p = document.createElement("p");
-        p.textContent = a;
-        d.appendChild(s);
-        d.appendChild(p);
-        faqWrap.appendChild(d);
-      });
-
-      // Menu
-      const root = document.documentElement;
-      const burger = document.getElementById("burger");
-      const drawer = document.getElementById("drawer");
-      const overlay = document.getElementById("drawerOverlay");
-      const closeBtn = document.getElementById("drawerClose");
-      const menuLinks = drawer.querySelectorAll('a');
-
-      function openMenu(){
-        root.classList.add("isMenuOpen");
-        drawer.setAttribute("aria-hidden","false");
-        overlay.setAttribute("aria-hidden","false");
-      }
-      function closeMenu(){
-        root.classList.remove("isMenuOpen");
-        drawer.setAttribute("aria-hidden","true");
-        overlay.setAttribute("aria-hidden","true");
-      }
-      if(burger) burger.addEventListener("click", openMenu);
-      if(overlay) overlay.addEventListener("click", closeMenu);
-      if(closeBtn) closeBtn.addEventListener("click", closeMenu);
-      menuLinks.forEach(a => a.addEventListener("click", closeMenu));
-
-      // Reveal
-      const revealEls = document.querySelectorAll("[data-reveal]");
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => {
-          if(en.isIntersecting){
-            en.target.classList.add("is-visible");
-            io.unobserve(en.target);
-          }
-        });
-      }, {threshold: 0.1});
-      revealEls.forEach(el => io.observe(el));
     })();
   </script>
 </body>
