@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="color-scheme" content="light" />
-  <meta name="theme-color" content="#0b1324" />
+  <meta name="theme-color" content="#ffffff" />
 
   <title>Fairfax Dentist | Comprehensive Dental Care in Fairfax, VA</title>
   <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry. Implants, veneers, emergency, Invisalign, whitening, and more." />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Fairfax Dentist" />
   <meta property="og:description" content="Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry." />
   <meta property="og:type" content="website" />
@@ -19,469 +18,403 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --ink:#0b1324;
-      --muted:#4a5568;
+      /* Premium Clinical Palette */
+      --bg-white: #ffffff;
+      --bg-ice: #F5F7FA;       /* Холодный светло-серый для контраста секций */
+      --bg-dark: #111827;      /* Глубокий графит для футера/акцентов */
+      
+      --ink: #111827;          /* Основной текст - почти черный */
+      --muted: #64748B;        /* Вторичный текст - серо-голубой */
+      
+      --accent: #2563EB;       /* Медицинский синий (для ссылок/иконок) */
+      --btn-bg: #111827;       /* Кнопки - строгий графит */
+      --btn-text: #ffffff;
 
-      /* рамки убраны */
-      --line:rgba(11,19,36,0);
-      --soft:rgba(11,19,36,0);
+      /* Layout */
+      --max: 1200px;
+      /* FIX 1: Безопасные отступы минимум 24px */
+      --pad: max(24px, 5vw); 
 
-      --accent:#1b56ff;
-      --accent2:#00a3ff;
+      /* Typography */
+      --h1: clamp(36px, 5vw, 64px);
+      --h2: clamp(24px, 3.5vw, 36px);
+      --p: clamp(16px, 1.1vw, 18px);
 
-      --max:1180px;
-      --pad:clamp(16px, 3.6vw, 28px);
+      /* Radius: Sharp as requested */
+      --radius: 0px;
 
-      --h1:clamp(34px, 6vw, 66px);
-      --h2:clamp(22px, 3.4vw, 34px);
-      --p:clamp(15px, 1.6vw, 18px);
-
-      /* HERO background */
-      --hero-image-webp:url("images/hero.webp");
-      --hero-image-jpg:url("images/hero.jpg");
-
-      /* Strict sharp corners */
-      --radius:0px;
-      --radius2:0px;
+      /* Hero Backgrounds */
+      --hero-image-webp: url("images/hero.webp");
+      --hero-image-jpg: url("images/hero.jpg");
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      color:var(--ink);
-      background:var(--bg);
-      line-height:1.5;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    img{max-width:100%; display:block}
-    a{color:inherit; text-decoration:none}
-    button,input,textarea{font:inherit; color:inherit}
-
-    /* Accessibility */
-    .skip{
-      position:absolute; left:-999px; top:0;
-      background:#fff; border:1px solid var(--line);
-      padding:10px 12px; z-index:9999;
-    }
-    .skip:focus{left:12px; top:12px}
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
-    .section{padding:clamp(44px, 6vw, 84px) 0}
-
-    /* нежная подсветка заголовков блоков */
-    .section .kicker{
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:var(--muted);
-      display:inline-flex;
-      align-items:center;
-      padding:6px 10px;
-      border-radius:999px;
-      background:linear-gradient(90deg, rgba(27,86,255,.10), rgba(0,163,255,.06));
-      box-shadow:0 10px 24px rgba(27,86,255,.12);
-    }
-    .h2{
-      font-size:var(--h2);
-      margin:10px 0 12px;
-      display:inline-block;
-      padding:10px 12px;
-      border-radius:14px;
-      background:linear-gradient(90deg, rgba(27,86,255,.09), rgba(0,163,255,.05));
-      box-shadow:0 14px 34px rgba(11,19,36,.08);
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; height: 100%; }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .p{font-size:var(--p); color:var(--muted); margin:0}
-    .grid{display:grid; gap:16px}
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+    button, input, textarea { font: inherit; color: inherit; border-radius: var(--radius); }
+
+    /* Utilities */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+      padding-left: max(var(--pad), env(safe-area-inset-left));
+      padding-right: max(var(--pad), env(safe-area-inset-right));
+    }
+
+    .section {
+      padding: clamp(60px, 8vw, 100px) 0;
+    }
+    
+    /* Alternating Backgrounds for "Borderless" separation */
+    .bg-ice { background-color: var(--bg-ice); }
+    .bg-white { background-color: var(--bg-white); }
+
+    .grid { display: grid; gap: 24px; }
+    .hidden { display: none; }
+
+    /* Accessibility Skip Link */
+    .skip {
+      position: absolute; left: -999px; top: 0;
+      background: var(--btn-bg); color: #fff;
+      padding: 12px 20px; z-index: 9999;
+    }
+    .skip:focus { left: 20px; top: 20px; }
 
     /* Header */
-    header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:saturate(140%) blur(8px);
-      border-bottom:1px solid var(--line);
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05); /* Едва заметная линия */
     }
-    .head{
-      display:flex; align-items:center; justify-content:space-between;
-      min-height:68px;
+    .head {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 180px;
+    .brand img {
+      height: 40px; width: auto; /* Логотип компактнее */
     }
-    .brand img{
-      width:180px; height:auto; object-fit:contain;
-    }
-    .right{
-      display:flex; align-items:center; gap:12px;
-    }
-    .phone{
-      display:none;
-      font-weight:600;
-      color:var(--ink);
-      padding:10px 12px;
-      border:0;
-      background:#fff;
-      box-shadow:0 12px 28px rgba(11,19,36,.10);
-      transition:transform .18s ease, background .18s ease;
-    }
-    .phone:hover{transform:translateY(-1px)}
-    .burger{
-      width:44px; height:44px;
-      display:grid; place-items:center;
-      border:0;
-      background:#fff;
-      box-shadow:0 12px 28px rgba(11,19,36,.10);
-      cursor:pointer;
-      transition:transform .18s ease, background .18s ease;
-    }
-    .burger:hover{transform:translateY(-1px)}
-    .burger .lines{width:18px; height:12px; position:relative}
-    .burger .lines span{
-      position:absolute; left:0; right:0; height:2px; background:var(--ink);
-      transition:transform .18s ease, top .18s ease, opacity .18s ease;
-    }
-    .burger .lines span:nth-child(1){top:0}
-    .burger .lines span:nth-child(2){top:5px}
-    .burger .lines span:nth-child(3){top:10px}
-    .burger[aria-expanded="true"] .lines span:nth-child(1){top:5px; transform:rotate(45deg)}
-    .burger[aria-expanded="true"] .lines span:nth-child(2){opacity:0}
-    .burger[aria-expanded="true"] .lines span:nth-child(3){top:5px; transform:rotate(-45deg)}
-
-    /* Drawer menu (hamburger) */
-    .drawerOverlay{
-      position:fixed; inset:0; z-index:80;
-      background:rgba(0,0,0,.45);
-      opacity:0; pointer-events:none;
-      transition:opacity .2s ease;
-    }
-    .drawer{
-      position:fixed; top:0; right:0; height:100vh; width:min(360px, 92vw);
-      background:#fff;
-      border-left:1px solid var(--line);
-      box-shadow:-22px 0 60px rgba(11,19,36,.14);
-      transform:translateX(102%);
-      transition:transform .22s ease;
-      z-index:90;
-      display:flex; flex-direction:column;
-    }
-    .drawerHead{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:16px;
-      border-bottom:1px solid var(--line);
-    }
-    .drawerTitle{font-weight:800}
-    .drawerClose{
-      width:44px; height:44px; display:grid; place-items:center;
-      border:0; background:#fff; cursor:pointer;
-      box-shadow:0 12px 28px rgba(11,19,36,.10);
-      transition:transform .18s ease;
-    }
-    .drawerClose:hover{transform:translateY(-1px)}
-    .drawerBody{padding:16px; display:grid; gap:12px}
-    .navLink{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 12px;
-      border:0;
-      background:#fff;
-      box-shadow:0 12px 28px rgba(11,19,36,.08);
-      font-weight:650;
-      transition:transform .18s ease;
-    }
-    .navLink:hover{transform:translateY(-1px)}
-    .navMeta{
-      display:grid; gap:8px;
-      padding:12px;
-      border:0;
-      background:rgba(11,19,36,.02);
-      box-shadow:0 12px 28px rgba(11,19,36,.06);
-    }
-    .navMeta a{
-      color:var(--ink);
-      font-weight:650;
-      display:inline-flex; gap:10px; align-items:center;
-    }
-    .navMeta small{color:var(--muted)}
-    .isMenuOpen .drawerOverlay{opacity:1; pointer-events:auto}
-    .isMenuOpen .drawer{transform:translateX(0)}
-
-    /* Hero */
-    .hero{
-      min-height:calc(100vh - 68px);
-      display:grid;
-      align-items:stretch;
-      position:relative;
-      isolation:isolate;
-      border-bottom:1px solid var(--line);
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.70) 55%, rgba(255,255,255,.35)),
-        var(--hero-image-jpg);
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-    }
-    .heroInner{
-      padding:clamp(40px, 7vw, 92px) 0;
-      display:grid; gap:18px;
-      align-content:center;
-    }
-    h1{
-      font-size:var(--h1);
-      line-height:1.02;
-      margin:0;
-      letter-spacing:-.02em;
-    }
-    .sub{
-      font-size:clamp(16px, 1.9vw, 20px);
-      color:rgba(11,19,36,.78);
-      max-width:68ch;
-    }
-    .ctaRow{
-      display:flex; flex-wrap:wrap; gap:12px;
-      margin-top:10px;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px;
-      border:0;
-      background:#fff;
-      box-shadow:0 14px 34px rgba(11,19,36,.10);
-      font-weight:750;
-      cursor:pointer;
-      transition:transform .18s ease, background .18s ease;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btnPrimary{
-      background:linear-gradient(90deg, rgba(27,86,255,.12), rgba(0,163,255,.10));
+    
+    /* Navigation */
+    .right { display: flex; align-items: center; gap: 20px; }
+    
+    .phone {
+      display: none; /* Desktop only initially */
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
     }
 
-    /* Services */
-    .servicesGrid{
-      grid-template-columns:1fr;
-      gap:14px;
+    .burger {
+      width: 48px; height: 48px;
+      background: transparent; border: none;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+      gap: 6px; cursor: pointer; padding: 0;
     }
-    .card{
-      border:0;
-      background:#fff;
-      overflow:hidden;
-      display:grid;
-      box-shadow:0 18px 46px rgba(11,19,36,.08);
+    .burger span {
+      display: block; height: 2px; background: var(--ink);
+      transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-    .cardMedia{
-      aspect-ratio: 16 / 10;
-      overflow:hidden;
-      border-bottom:1px solid var(--line);
-      background:rgba(11,19,36,.03);
+    .burger span:nth-child(1) { width: 24px; }
+    .burger span:nth-child(2) { width: 32px; }
+    .burger span:nth-child(3) { width: 18px; }
+    
+    .burger:hover span { width: 32px; background: var(--accent); }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 85vh; /* Higher impact */
+      display: flex; align-items: center;
+      background: var(--bg-ice); /* Fallback */
+      overflow: hidden;
     }
-    .cardMedia img{
-      width:100%; height:100%;
-      object-fit:cover;
+    /* Background Image setup */
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: var(--hero-image-jpg);
+      background-size: cover; background-position: center;
+      opacity: 0.5; /* Fade image to ensure text readability */
+      z-index: 0;
     }
-    .cardBody{padding:14px}
-    .cardTitle{margin:0 0 6px; font-weight:850; letter-spacing:-.01em}
-    .cardText{margin:0; color:var(--muted); font-size:15px}
+    /* Gradient overlay for text contrast */
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%);
+      z-index: 1;
+    }
 
-    /* About */
-    .aboutGrid{
-      grid-template-columns:1fr;
-      gap:18px;
-      align-items:start;
+    .heroInner {
+      position: relative; z-index: 2;
+      max-width: 650px;
+      display: flex; flex-direction: column; gap: 24px;
     }
-    .aboutBox{
-      border:0;
-      padding:16px;
-      background:#fff;
-      box-shadow:0 18px 46px rgba(11,19,36,.08);
-    }
-    .aboutBox p{margin:0 0 12px; color:var(--muted); font-size:var(--p)}
-    .aboutBox p:last-child{margin-bottom:0}
 
-    /* Working hours + Contact */
-    .twoCol{display:grid; gap:16px}
-    .panel{
-      border:0;
-      background:#fff;
-      padding:16px;
-      box-shadow:0 18px 46px rgba(11,19,36,.08);
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent);
     }
-    .hours{
-      display:grid; gap:10px; margin-top:10px;
-    }
-    .row{
-      display:flex; justify-content:space-between; gap:12px;
-      border-top:1px solid var(--soft);
-      padding-top:10px;
-    }
-    .row:first-child{border-top:0; padding-top:0}
-    .row b{font-weight:850}
-    .row span{color:var(--muted)}
-    .contactLinks{display:grid; gap:10px; margin-top:10px}
-    .chip{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:12px;
-      border:0;
-      background:#fff;
-      box-shadow:0 14px 34px rgba(11,19,36,.08);
-      transition:transform .18s ease;
-    }
-    .chip:hover{transform:translateY(-1px)}
-    .chip small{color:var(--muted)}
-    .map{
-      border:0;
-      overflow:hidden;
-      background:#fff;
-      aspect-ratio: 16 / 10;
-      box-shadow:0 18px 46px rgba(11,19,36,.08);
-    }
-    .map iframe{width:100%; height:100%; border:0}
 
-    /* Form */
-    form{display:grid; gap:10px; margin-top:12px}
-    .field{display:grid; gap:6px}
-    label{font-size:13px; color:var(--muted)}
-    input,textarea{
-      padding:12px 12px;
-      border:0;
-      background:#fff;
-      box-shadow:0 12px 28px rgba(11,19,36,.08);
-      outline:none;
-      transition:box-shadow .18s ease, transform .18s ease;
+    h1 {
+      font-size: var(--h1);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--ink);
     }
-    input:focus,textarea:focus{
-      box-shadow:0 0 0 3px rgba(27,86,255,.12), 0 12px 28px rgba(11,19,36,.08);
+
+    .sub {
+      font-size: var(--p);
+      color: var(--muted);
+      max-width: 90%;
     }
-    textarea{min-height:110px; resize:vertical}
-    .hint{font-size:12px; color:var(--muted); margin:0}
-    .errorText{
-      display:none;
-      font-size:12px;
-      color:#b00020;
-      margin:0;
+
+    .ctaRow {
+      display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;
     }
-    .hasError .errorText{display:block}
-    .hasError input,.hasError textarea{box-shadow:0 0 0 3px rgba(176,0,32,.12), 0 12px 28px rgba(11,19,36,.08)}
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 16px 32px;
+      font-weight: 600;
+      font-size: 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btnPrimary {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+    }
+    .btnPrimary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btnSecondary {
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+    .btnSecondary:hover {
+      background: var(--bg-ice);
+    }
+
+    /* Titles */
+    .h2 {
+      font-size: var(--h2);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    
+    /* Services (Borderless Cards) */
+    .servicesGrid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: transparent; /* No card background */
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); }
+    
+    .cardMedia {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--bg-ice);
+    }
+    .cardMedia img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .card:hover .cardMedia img { transform: scale(1.05); }
+
+    .cardBody { padding: 0; /* Remove padding for clean look */ }
+    .cardTitle { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+    .cardText { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    /* About Section */
+    .aboutBox {
+      background: var(--bg-white);
+      padding: 40px;
+      border-left: 4px solid var(--accent); /* Minimal accent line */
+    }
+    .aboutBox p { margin-bottom: 20px; font-size: 17px; }
+
+    /* Contact & Hours */
+    .contactGrid {
+      display: grid; grid-template-columns: 1fr; gap: 40px;
+    }
+    .panel {
+      background: var(--bg-white);
+      padding: 30px;
+      height: 100%;
+    }
+    
+    .hoursRow {
+      display: flex; justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+    .hoursRow:last-child { border: none; }
+    .hoursRow b { font-weight: 600; }
+
+    /* Forms */
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-size: 16px;
+      transition: 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      background: #fff;
+    }
+    label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--muted); }
+    .field { margin-bottom: 20px; }
+    .errorText { color: #dc2626; font-size: 13px; margin-top: 6px; display: none; }
+    .hasError input { border-color: #dc2626; background: #fef2f2; }
+    .hasError .errorText { display: block; }
+
+    /* Map */
+    .mapFrame { width: 100%; height: 300px; border: none; background: #eee; }
 
     /* Footer */
-    footer{
-      border-top:1px solid var(--line);
-      padding:22px 0;
-      background:#fff;
+    footer {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 60px 0 30px;
     }
-    .foot{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      flex-wrap:wrap;
+    .foot {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
     }
-    .foot small{color:var(--muted)}
-    .foot a{font-weight:700}
-    .logoSmall{display:flex; align-items:center; gap:10px}
-    .logoSmall img{width:110px; height:auto; object-fit:contain}
-
-    /* Modal (full-view, no crop) */
-    .modalOverlay{
-      position:fixed; inset:0; z-index:120;
-      background:rgba(0,0,0,.72);
-      display:none;
-      padding:18px;
-    }
-    .modalOverlay[aria-hidden="false"]{display:grid}
-    .modal{
-      margin:auto;
-      width:min(1100px, 95vw);
-      height:min(90vh, 820px);
-      max-width:95vw;
-      max-height:90vh;
-      border:0;
-      background:rgba(0,0,0,.25);
-      box-shadow:0 30px 80px rgba(0,0,0,.35);
-      display:grid;
-      grid-template-rows:auto 1fr;
-    }
-    .modalBar{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px;
-      border-bottom:0;
-      color:#fff;
-      gap:12px;
-    }
-    .modalBar b{font-weight:850}
-    .modalClose{
-      width:44px; height:44px;
-      display:grid; place-items:center;
-      border:0;
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      cursor:pointer;
-      transition:transform .18s ease, background .18s ease;
-    }
-    .modalClose:hover{transform:translateY(-1px); background:rgba(255,255,255,.16)}
-    .modalBody{
-      display:grid;
-      place-items:center;
-      padding:10px;
-    }
-    .modalBody img{
-      width:100%;
-      height:100%;
-      max-width:95%;
-      max-height:90vh;
-      object-fit:contain;
-      object-position:center;
-      background:transparent;
-    }
-
-    /* Reveal (lightweight) */
-    [data-reveal]{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
-    [data-reveal].is-visible{opacity:1; transform:none}
-
-    /* Responsive */
-    @media (min-width:720px){
-      .phone{display:inline-flex}
-      .servicesGrid{grid-template-columns:repeat(2, 1fr)}
-      .aboutGrid{grid-template-columns:1fr} /* gallery удалён */
-      .twoCol{grid-template-columns:1fr 1fr}
-    }
-    @media (min-width:1024px){
-      .servicesGrid{grid-template-columns:repeat(4, 1fr)}
-    }
-
-    /* Mobile fixes (<768px): safe side padding + footer stack */
-    @media (max-width: 767.98px){
-      .wrap{
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
-      }
-
-      .foot{
+    .foot a { color: #fff; opacity: 0.8; }
+    .foot a:hover { opacity: 1; text-decoration: underline; }
+    .footAddress { opacity: 0.6; }
+    
+    /* FIX 3: Mobile Footer Stack */
+    @media (max-width: 767.98px) {
+      .foot {
         flex-direction: column;
-        align-items: center;
         text-align: center;
-        gap: 10px;
       }
-      .footAddress{ order:1; display:block; }
-      .footEmail{ order:2; display:block; }
-      .logoSmall{ order:3; flex-direction:column; justify-content:center; }
-
-      .footPhone,
-      .footSep,
-      .logoSmall img{ display:none; }
+      /* Order: Address (1), Email (2), Copyright (3) */
+      .footAddress { order: 1; margin-bottom: 8px; }
+      .footEmail { order: 2; margin-bottom: 20px; font-size: 18px; }
+      .logoSmall { order: 3; opacity: 0.5; font-size: 12px; }
+      
+      .footPhone, .footSep, .logoSmall img { display: none; } /* Simplify for mobile */
     }
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none !important; scroll-behavior:auto !important}
+    /* Drawer */
+    .drawer {
+      position: fixed; top: 0; right: 0; height: 100%; width: 300px;
+      background: #fff; z-index: 200;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      display: flex; flex-direction: column;
     }
+    .isMenuOpen .drawer { transform: translateX(0); }
+    .drawerOverlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 150;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .isMenuOpen .drawerOverlay { opacity: 1; pointer-events: auto; }
+    
+    .drawerHead { padding: 24px; display: flex; justify-content: flex-end; }
+    .drawerClose { font-size: 24px; background: none; border: none; cursor: pointer; padding: 10px; }
+    .drawerBody { padding: 0 24px; display: flex; flex-direction: column; gap: 16px; }
+    .navLink { font-size: 20px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #f1f1f1; }
+
+    /* Fix 2: Modal Full View */
+    .modalOverlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.95);
+      display: none; justify-content: center; align-items: center;
+      padding: 0; /* No padding to maximize space */
+    }
+    .modalOverlay[aria-hidden="false"] { display: flex; }
+    
+    .modal {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      background: transparent; box-shadow: none;
+    }
+    
+    .modalBar {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px; z-index: 10;
+      display: flex; justify-content: space-between;
+      color: #fff;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    }
+    .modalClose {
+      font-size: 32px; color: #fff; background: none; border: none; cursor: pointer;
+    }
+    
+    .modalBody {
+      flex: 1;
+      width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      padding: 0;
+    }
+    .modalBody img {
+      width: 100%; height: 100%;
+      max-width: 100%; max-height: 100%; /* Ensure full coverage */
+      object-fit: contain; /* CRITICAL FIX: No crop */
+    }
+
+    /* Media Queries */
+    @media (min-width: 768px) {
+      .phone { display: block; }
+      .contactGrid { grid-template-columns: 1fr 1fr; }
+      .servicesGrid { grid-template-columns: repeat(2, 1fr); }
+      .aboutGrid { grid-template-columns: 1fr; }
+      .burger { display: none; } /* Hide burger on large screens if desired, or keep logic */
+    }
+    @media (min-width: 1024px) {
+      .servicesGrid { grid-template-columns: repeat(4, 1fr); }
+      .burger { display: none; }
+      /* Desktop nav could go here, but using burger for all as per code structure */
+    }
+
+    /* Animations */
+    [data-reveal] { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Header -->
   <header>
     <div class="wrap head" id="home">
       <a class="brand" href="#home" aria-label="Fairfax Dentist Home">
@@ -489,74 +422,57 @@
       </a>
 
       <div class="right">
-        <a class="phone" href="tel:5715417977" aria-label="Call 571-541-7977">571-541-7977</a>
-
-        <button class="burger" id="burger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
-          <span class="lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
+        <a class="phone" href="tel:5715417977">571-541-7977</a>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Drawer Menu -->
   <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
-  <aside class="drawer" id="drawer" aria-label="Site menu" aria-hidden="true">
+  <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawerHead">
-      <div class="drawerTitle">Menu</div>
-      <button class="drawerClose" id="drawerClose" aria-label="Close menu">✕</button>
+      <button class="drawerClose" id="drawerClose">✕</button>
     </div>
     <div class="drawerBody">
-      <a class="navLink" href="#home">Home <span aria-hidden="true">→</span></a>
-      <a class="navLink" href="#services">Services <span aria-hidden="true">→</span></a>
-      <a class="navLink" href="#about">About <span aria-hidden="true">→</span></a>
-      <a class="navLink" href="#contact">Contact <span aria-hidden="true">→</span></a>
-
-      <div class="navMeta" aria-label="Contact quick info">
-        <a href="tel:5715417977"><span aria-hidden="true">☎</span> 571-541-7977</a>
-        <a href="mailto:svvdmd@gmail.com"><span aria-hidden="true">✉</span> svvdmd@gmail.com</a>
-        <small>3275 History Drive Oakton VA 22124</small>
+      <a class="navLink" href="#home">Home</a>
+      <a class="navLink" href="#services">Services</a>
+      <a class="navLink" href="#about">About</a>
+      <a class="navLink" href="#contact">Contact</a>
+      <div style="margin-top:20px; color:var(--muted); font-size:14px;">
+        <p>571-541-7977</p>
+        <p>svvdmd@gmail.com</p>
       </div>
     </div>
   </aside>
 
-  <!-- Hero -->
   <section class="hero" aria-label="Hero">
     <div class="wrap heroInner">
-      <div class="kicker">Comprehensive Care • Modern Technology • Family Dentistry</div>
+      <div class="kicker">Comprehensive • Modern • Family</div>
       <h1>Fairfax Dentist</h1>
       <div class="sub">
         Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.
       </div>
       <div class="ctaRow">
         <a class="btn btnPrimary" href="#contact">Book an Appointment</a>
-        <a class="btn" href="#services">View Services</a>
+        <a class="btn btnSecondary" href="#services">View Services</a>
       </div>
     </div>
   </section>
 
   <main id="main">
-    <!-- Services -->
-    <section class="section" id="services" aria-label="Services">
+    <section class="section bg-white" id="services" aria-label="Services">
       <div class="wrap" data-reveal>
-        <div class="kicker">Services</div>
-        <h2 class="h2">Advanced dental solutions under one roof</h2>
-        <p class="p">Tap any image to open a full-view preview without cropping.</p>
-
-        <div class="grid servicesGrid" style="margin-top:16px;">
+        <div class="kicker" style="margin-bottom:10px;">Our Expertise</div>
+        <h2 class="h2" style="max-width:600px;">Advanced dental solutions under one roof</h2>
+        
+        <div class="grid servicesGrid" style="margin-top:40px;">
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/implants.webp" type="image/webp">
-                <img
-                  src="images/implants.jpg"
-                  alt="Dental Implants"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/implants.webp"
-                  data-full-jpg="images/implants.jpg"
-                />
+                <img src="images/implants.jpg" alt="Dental Implants" loading="lazy" decoding="async" data-full-webp="images/implants.webp" data-full-jpg="images/implants.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -564,19 +480,11 @@
               <p class="cardText">Permanent and natural-looking solutions to restore missing teeth and oral functionality.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/veneers.webp" type="image/webp">
-                <img
-                  src="images/veneers.jpg"
-                  alt="Dental Veneers"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/veneers.webp"
-                  data-full-jpg="images/veneers.jpg"
-                />
+                <img src="images/veneers.jpg" alt="Dental Veneers" loading="lazy" decoding="async" data-full-webp="images/veneers.webp" data-full-jpg="images/veneers.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -584,19 +492,11 @@
               <p class="cardText">Custom-crafted porcelain shells designed to enhance the color, shape, and overall aesthetics of your smile.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/dendist.webp" type="image/webp">
-                <img
-                  src="images/dendist.jpg"
-                  alt="Emergency Dentist"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/dendist.webp"
-                  data-full-jpg="images/dendist.jpg"
-                />
+                <img src="images/dendist.jpg" alt="Emergency Dentist" loading="lazy" decoding="async" data-full-webp="images/dendist.webp" data-full-jpg="images/dendist.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -604,19 +504,11 @@
               <p class="cardText">Urgent dental intervention for pain relief, trauma, and acute infections with same-day availability.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/invisalign.webp" type="image/webp">
-                <img
-                  src="images/invisalign.jpg"
-                  alt="Invisalign"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/invisalign.webp"
-                  data-full-jpg="images/invisalign.jpg"
-                />
+                <img src="images/invisalign.jpg" alt="Invisalign" loading="lazy" decoding="async" data-full-webp="images/invisalign.webp" data-full-jpg="images/invisalign.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -624,19 +516,11 @@
               <p class="cardText">Advanced orthodontic treatment using clear, removable aligners for a discreet and comfortable smile correction.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/teeth.webp" type="image/webp">
-                <img
-                  src="images/teeth.jpg"
-                  alt="Teeth Whitening"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/teeth.webp"
-                  data-full-jpg="images/teeth.jpg"
-                />
+                <img src="images/teeth.jpg" alt="Teeth Whitening" loading="lazy" decoding="async" data-full-webp="images/teeth.webp" data-full-jpg="images/teeth.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -644,19 +528,11 @@
               <p class="cardText">Professional-grade brightening treatments to effectively remove deep stains and restore natural radiance.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/canal.webp" type="image/webp">
-                <img
-                  src="images/canal.jpg"
-                  alt="Root Canal"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/canal.webp"
-                  data-full-jpg="images/canal.jpg"
-                />
+                <img src="images/canal.jpg" alt="Root Canal" loading="lazy" decoding="async" data-full-webp="images/canal.webp" data-full-jpg="images/canal.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -664,19 +540,11 @@
               <p class="cardText">Specialized endodontic therapy focused on saving infected teeth and preventing further complications.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/aesthetic.webp" type="image/webp">
-                <img
-                  src="images/aesthetic.jpg"
-                  alt="Aesthetic Dentistry"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/aesthetic.webp"
-                  data-full-jpg="images/aesthetic.jpg"
-                />
+                <img src="images/aesthetic.jpg" alt="Aesthetic Dentistry" loading="lazy" decoding="async" data-full-webp="images/aesthetic.webp" data-full-jpg="images/aesthetic.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -684,19 +552,11 @@
               <p class="cardText">A comprehensive approach to smile design, merging restorative techniques with artistic precision.</p>
             </div>
           </article>
-
           <article class="card">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/xrays.webp" type="image/webp">
-                <img
-                  src="images/xrays.jpg"
-                  alt="Dental X-Rays"
-                  loading="lazy"
-                  decoding="async"
-                  data-full-webp="images/xrays.webp"
-                  data-full-jpg="images/xrays.jpg"
-                />
+                <img src="images/xrays.jpg" alt="Dental X-Rays" loading="lazy" decoding="async" data-full-webp="images/xrays.webp" data-full-jpg="images/xrays.jpg" />
               </picture>
             </div>
             <div class="cardBody">
@@ -708,117 +568,67 @@
       </div>
     </section>
 
-    <!-- About (Gallery removed) -->
-    <section class="section" id="about" aria-label="About">
-      <div class="wrap aboutGrid" data-reveal>
-        <div>
-          <div class="kicker">About</div>
-          <h2 class="h2">Fairfax Dental Care</h2>
-
-          <div class="aboutBox">
-            <p>
-              Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions. Led by Dr. Vladimir Soyfer, Dr. Mazda Mansouri, and Dr. Alex, our team combines clinical expertise with genuine compassion.
-            </p>
-            <p>
-              We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience and healthy, lasting results for the entire family.
-            </p>
-          </div>
+    <section class="section bg-ice" id="about" aria-label="About">
+      <div class="wrap" data-reveal>
+        <div class="kicker">The Clinic</div>
+        <h2 class="h2">Fairfax Dental Care</h2>
+        <div class="aboutBox" style="margin-top:24px;">
+          <p>Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions. Led by Dr. Vladimir Soyfer, Dr. Mazda Mansouri, and Dr. Alex, our team combines clinical expertise with genuine compassion.</p>
+          <p style="margin-bottom:0;">We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience and healthy, lasting results for the entire family.</p>
         </div>
       </div>
     </section>
 
-    <!-- Hours + Contact -->
-    <section class="section" id="contact" aria-label="Contact">
+    <section class="section bg-white" id="contact" aria-label="Contact">
       <div class="wrap" data-reveal>
-        <div class="kicker">Contact</div>
-        <h2 class="h2">Working hours & how to reach us</h2>
+        <div class="kicker">Contact Us</div>
+        <h2 class="h2">Working hours & Location</h2>
 
-        <div class="twoCol" style="margin-top:16px;">
-          <div class="panel" aria-label="Working hours">
-            <b style="font-weight:850;">Working Hours</b>
-            <div class="hours" role="list">
-              <div class="row" role="listitem"><b>Monday – Friday</b><span>8:00 – 17:00</span></div>
-              <div class="row" role="listitem"><b>Saturday</b><span>9:00 – 13:00</span></div>
-              <div class="row" role="listitem"><b>Sunday</b><span>Closed</span></div>
-            </div>
+        <div class="contactGrid" style="margin-top:40px;">
+          <div>
+            <div class="panel">
+              <h3 style="margin-top:0; font-size:20px;">Opening Hours</h3>
+              <div class="hours" role="list">
+                <div class="hoursRow"><span>Monday – Friday</span><b>8:00 – 17:00</b></div>
+                <div class="hoursRow"><span>Saturday</span><b>9:00 – 13:00</b></div>
+                <div class="hoursRow"><span>Sunday</span><span style="color:#dc2626;">Closed</span></div>
+              </div>
 
-            <div class="contactLinks" style="margin-top:16px;">
-              <a class="chip" href="tel:5715417977" aria-label="Call 571-541-7977">
-                <div>
-                  <div style="font-weight:850;">Phone</div>
-                  <small>571-541-7977</small>
-                </div>
-                <span aria-hidden="true">→</span>
-              </a>
-
-              <a class="chip" href="mailto:svvdmd@gmail.com" aria-label="Email svvdmd@gmail.com">
-                <div>
-                  <div style="font-weight:850;">Email</div>
-                  <small>svvdmd@gmail.com</small>
-                </div>
-                <span aria-hidden="true">→</span>
-              </a>
-
-              <div class="chip" aria-label="Address">
-                <div>
-                  <div style="font-weight:850;">Address</div>
-                  <small>3275 History Drive Oakton VA 22124</small>
-                </div>
-                <span aria-hidden="true">📍</span>
+              <h3 style="margin-top:40px; font-size:20px;">Find Us</h3>
+              <p class="sub" style="margin-bottom:20px;">3275 History Drive Oakton VA 22124</p>
+              <div class="mapFrame">
+                 <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
               </div>
             </div>
-
-            <form id="contactForm" novalidate aria-label="Contact form">
-              <div class="field" id="fName">
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Your name" />
-                <p class="errorText">Please enter your name (at least 2 characters).</p>
-              </div>
-
-              <div class="field" id="fEmail">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
-                <p class="errorText">Please enter a valid email address.</p>
-              </div>
-
-              <div class="field" id="fPhone">
-                <label for="phone">Phone</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  autocomplete="tel"
-                  required
-                  inputmode="tel"
-                  placeholder="571-541-7977"
-                  pattern="^(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$"
-                />
-                <p class="hint">Format: 571-541-7977</p>
-                <p class="errorText">Please enter a valid US phone number.</p>
-              </div>
-
-              <div class="field" id="fMsg">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required minlength="10" placeholder="How can we help?"></textarea>
-                <p class="errorText">Please enter at least 10 characters.</p>
-              </div>
-
-              <button class="btn btnPrimary" type="submit">Send Message</button>
-              <p class="hint" id="formStatus" aria-live="polite"></p>
-            </form>
           </div>
 
-          <div class="panel" aria-label="Google map">
-            <b style="font-weight:850;">Map</b>
-            <p class="p" style="margin-top:8px;">Interactive Google Maps widget</p>
-
-            <div class="map" style="margin-top:12px;">
-              <iframe
-                title="Google Maps - 3275 History Drive Oakton VA 22124"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed">
-              </iframe>
+          <div>
+            <div class="panel">
+              <h3 style="margin-top:0; font-size:20px; margin-bottom:20px;">Send a Message</h3>
+              <form id="contactForm" novalidate>
+                <div class="field" id="fName">
+                  <label for="name">Full Name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="John Doe" />
+                  <p class="errorText">Enter your name.</p>
+                </div>
+                <div class="field" id="fEmail">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+                  <p class="errorText">Enter a valid email.</p>
+                </div>
+                <div class="field" id="fPhone">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="571-541-7977" />
+                  <p class="errorText">Enter a valid phone number.</p>
+                </div>
+                <div class="field" id="fMsg">
+                  <label for="message">How can we help?</label>
+                  <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
+                  <p class="errorText">Please write at least 10 characters.</p>
+                </div>
+                <button class="btn btnPrimary" style="width:100%;" type="submit">Send Message</button>
+                <p class="hint" id="formStatus" aria-live="polite" style="margin-top:10px; font-size:14px; color:green;"></p>
+              </form>
             </div>
           </div>
         </div>
@@ -826,30 +636,27 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer aria-label="Footer">
     <div class="wrap foot">
       <small class="footAddress">3275 History Drive Oakton VA 22124</small>
 
       <small class="footEmail">
         <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a>
-        <span class="footSep" aria-hidden="true"> • </span>
+        <span class="footSep"> • </span>
         <a class="footPhone" href="tel:5715417977">571-541-7977</a>
       </small>
 
       <div class="logoSmall">
-        <img src="images/logo.jpg" alt="Fairfax Dentist logo" />
         <small class="footCopy">© 2006-2026 Fairfax Dentist</small>
       </div>
     </div>
   </footer>
 
-  <!-- Image Modal (Full-view) -->
-  <div class="modalOverlay" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview modal">
+  <div class="modalOverlay" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal" role="document">
       <div class="modalBar">
-        <b id="modalTitle">Preview</b>
-        <button class="modalClose" id="modalClose" aria-label="Close preview">✕</button>
+        <b id="modalTitle"></b>
+        <button class="modalClose" id="modalClose">✕</button>
       </div>
       <div class="modalBody">
         <img id="modalImg" alt="" />
@@ -861,12 +668,7 @@
     (function(){
       "use strict";
 
-      /* ========= Fix: images visible only in modal =========
-         Root cause (most common): browser supports WebP and <picture><source type="image/webp"> is selected,
-         but .webp files are missing / wrong name => images don't render in cards.
-         Solution: if WebP cannot be loaded, remove all webp <source> and all data-full-webp attributes.
-      */
-
+      /* WebP Logic */
       function canLoadImage(url){
         return new Promise((resolve) => {
           const im = new Image();
@@ -876,19 +678,16 @@
           im.src = url + sep + "probe=" + Date.now();
         });
       }
-
       async function hardenPictureWebp(){
-        // probe one common webp file; if it fails, we assume webp assets are not present.
         const probe = await canLoadImage("images/implants.webp");
         if(!probe){
           document.querySelectorAll('source[type="image/webp"]').forEach(s => s.remove());
           document.querySelectorAll('[data-full-webp]').forEach(el => el.removeAttribute("data-full-webp"));
         }
       }
-
       hardenPictureWebp();
 
-      // Menu
+      /* Menu */
       const root = document.documentElement;
       const burger = document.getElementById("burger");
       const drawer = document.getElementById("drawer");
@@ -898,28 +697,20 @@
 
       function openMenu(){
         root.classList.add("isMenuOpen");
-        burger.setAttribute("aria-expanded","true");
         drawer.setAttribute("aria-hidden","false");
         overlay.setAttribute("aria-hidden","false");
       }
       function closeMenu(){
         root.classList.remove("isMenuOpen");
-        burger.setAttribute("aria-expanded","false");
         drawer.setAttribute("aria-hidden","true");
         overlay.setAttribute("aria-hidden","true");
       }
-      burger.addEventListener("click", () => {
-        const expanded = burger.getAttribute("aria-expanded")==="true";
-        expanded ? closeMenu() : openMenu();
-      });
+      burger.addEventListener("click", openMenu);
       overlay.addEventListener("click", closeMenu);
       closeBtn.addEventListener("click", closeMenu);
       menuLinks.forEach(a => a.addEventListener("click", closeMenu));
-      document.addEventListener("keydown", (e) => {
-        if(e.key === "Escape") closeMenu();
-      });
 
-      // Reveal (lightweight)
+      /* Reveal */
       const revealEls = document.querySelectorAll("[data-reveal]");
       const io = new IntersectionObserver((entries) => {
         entries.forEach(en => {
@@ -928,10 +719,10 @@
             io.unobserve(en.target);
           }
         });
-      }, {threshold: 0.12});
+      }, {threshold: 0.1});
       revealEls.forEach(el => io.observe(el));
 
-      // Image modal (full-view, no crop)
+      /* Modal (Full View) */
       const imgModal = document.getElementById("imgModal");
       const modalImg = document.getElementById("modalImg");
       const modalClose = document.getElementById("modalClose");
@@ -940,17 +731,11 @@
       function openImage(img){
         const webp = img.getAttribute("data-full-webp");
         const jpg = img.getAttribute("data-full-jpg") || img.currentSrc || img.src;
-
-        // If webp attribute removed (or missing), jpg will be used
-        const src = webp || jpg;
-
-        modalImg.src = src;
-        modalImg.alt = img.alt || "Image preview";
-        modalTitle.textContent = img.alt || "Preview";
-
+        modalImg.src = webp || jpg;
+        modalImg.alt = img.alt || "";
+        modalTitle.textContent = img.alt || "";
         imgModal.setAttribute("aria-hidden","false");
         document.body.style.overflow = "hidden";
-        modalClose.focus();
       }
       function closeImage(){
         imgModal.setAttribute("aria-hidden","true");
@@ -958,7 +743,6 @@
         document.body.style.overflow = "";
       }
 
-      // Make all images clickable (except logo), as per spec
       const clickableImgs = Array.from(document.querySelectorAll("img"))
         .filter(im => !im.closest(".brand") && !im.closest(".logoSmall"));
 
@@ -971,55 +755,35 @@
         if(e.target === imgModal) closeImage();
       });
       modalClose.addEventListener("click", closeImage);
-      document.addEventListener("keydown", (e) => {
-        if(e.key === "Escape" && imgModal.getAttribute("aria-hidden") === "false") closeImage();
-      });
 
-      // Form validation + confirmation
+      /* Form */
       const form = document.getElementById("contactForm");
       const status = document.getElementById("formStatus");
 
       function setError(fieldId, on){
         const el = document.getElementById(fieldId);
-        if(!el) return;
-        on ? el.classList.add("hasError") : el.classList.remove("hasError");
+        if(el) on ? el.classList.add("hasError") : el.classList.remove("hasError");
       }
 
-      function validate(){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
         let ok = true;
-
         const name = document.getElementById("name");
         const email = document.getElementById("email");
         const phone = document.getElementById("phone");
         const msg = document.getElementById("message");
 
-        const nameOk = name.value.trim().length >= 2;
-        setError("fName", !nameOk); ok = ok && nameOk;
+        if(name.value.trim().length < 2) { setError("fName", true); ok=false; } else setError("fName", false);
+        if(!email.checkValidity()) { setError("fEmail", true); ok=false; } else setError("fEmail", false);
+        if(!phone.value) { setError("fPhone", true); ok=false; } else setError("fPhone", false);
+        if(msg.value.trim().length < 10) { setError("fMsg", true); ok=false; } else setError("fMsg", false);
 
-        const emailOk = email.checkValidity();
-        setError("fEmail", !emailOk); ok = ok && emailOk;
-
-        const phoneOk = phone.checkValidity();
-        setError("fPhone", !phoneOk); ok = ok && phoneOk;
-
-        const msgOk = msg.value.trim().length >= 10;
-        setError("fMsg", !msgOk); ok = ok && msgOk;
-
-        return ok;
-      }
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        status.textContent = "";
-
-        const ok = validate();
-        if(!ok){
-          status.textContent = "Please fix the highlighted fields and try again.";
-          return;
+        if(ok){
+          status.textContent = "Message sent successfully!";
+          form.reset();
+        } else {
+          status.textContent = "";
         }
-
-        status.textContent = "Message sent successfully. We’ll contact you shortly.";
-        form.reset();
       });
 
     })();
