@@ -1,1620 +1,757 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="color-scheme" content="light" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0F4C81" />
 
-  <title>Fairfax Dantist | Dentist in Fairfax, VA</title>
-  <meta name="description" content="Fairfax Dantist — modern, comfort-first dental care in Fairfax, VA. Book online, patient forms, or tap to call." />
-
-  <meta property="og:title" content="Fairfax Dantist | Dentist in Fairfax, VA" />
-  <meta property="og:description" content="Comfort-first dentistry. Book online, patient forms, and tap-to-call on mobile." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:image" content="images/logo.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Fairfax Dental Care | Dentist in Fairfax, VA</title>
+  <meta name="description" content="Fairfax Dental Care — modern general & cosmetic dentistry serving Fairfax, VA for over 20 years. Implants, veneers, Invisalign, whitening, emergency care." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- LocalBusiness schema (EDIT placeholders if needed) -->
+  <!-- Tailwind CDN (single-file friendly). For max performance later replace with compiled CSS file. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: "#0F4C81",
+              secondary: "#F0F9FF",
+              gold: "#D4AF37",
+              emergency: "#EF4444",
+            },
+          },
+          boxShadow: {
+            soft: "0 18px 50px rgba(2, 6, 23, 0.10)",
+          },
+          borderRadius: {
+            "2xl": "1.25rem",
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    :focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
+  </style>
+
+  <!-- LocalBusiness / Dentist JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Dentist",
-    "name":"Fairfax Dantist",
-    "image":"images/logo.jpg",
-    "url":"https://example.com",
-    "telephone":"+1-555-123-4567",
+    "name":"Fairfax Dental Care",
+    "telephone":"+1-571-541-7977",
     "address":{
       "@type":"PostalAddress",
-      "streetAddress":"123 Main St",
-      "addressLocality":"Fairfax",
+      "streetAddress":"3275 History Drive",
+      "addressLocality":"Oakton",
       "addressRegion":"VA",
-      "postalCode":"22030",
+      "postalCode":"22124",
       "addressCountry":"US"
     },
-    "openingHoursSpecification":[
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"09:00","closes":"17:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:00","closes":"15:00"}
-    ]
+    "openingHours":["Mo-Fr 08:00-17:00","Sa 09:00-13:00"]
   }
   </script>
-
-  <style>
-    :root{
-      --ink:#0b1220;
-      --ink2:#0f172a;
-      --paper:#f8fafc;
-      --paper2:#eef2ff;
-
-      --text: rgba(11,18,32,.92);
-      --muted: rgba(11,18,32,.68);
-      --muted2: rgba(11,18,32,.54);
-
-      --line: rgba(15,23,42,.14);
-      --line2: rgba(99,102,241,.22);
-
-      --a:#6366f1;      /* indigo */
-      --a2:#22c55e;     /* green */
-      --a3:#06b6d4;     /* cyan */
-      --warm:#f59e0b;   /* amber */
-
-      --shadow: 0 24px 80px rgba(2,6,23,.14);
-      --shadow2: 0 14px 40px rgba(2,6,23,.10);
-
-      --r: 22px;
-      --r2: 18px;
-
-      --max: 1160px;
-      --pad: clamp(16px, 3.6vw, 44px);
-
-      --ease: cubic-bezier(.2,.9,.2,1);
-      --dur: 240ms;
-
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-    }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(900px 500px at 10% -10%, rgba(99,102,241,.18), transparent 58%),
-        radial-gradient(900px 500px at 100% 0%, rgba(6,182,212,.16), transparent 58%),
-        radial-gradient(900px 500px at 50% 110%, rgba(34,197,94,.12), transparent 58%),
-        linear-gradient(180deg, var(--paper), var(--paper2));
-      overflow-x:hidden;
-      padding-bottom: 0;
-    }
-    a{ color:inherit; text-decoration:none; }
-    img{ display:block; max-width:100%; }
-
-    .container{
-      width: min(var(--max), 100% - (var(--pad) * 2));
-      margin: 0 auto;
-    }
-
-    /* animated backdrop */
-    .bg{
-      position: fixed;
-      inset: 0;
-      pointer-events:none;
-      z-index:-1;
-      overflow:hidden;
-    }
-    .bg .mesh{
-      position:absolute;
-      inset:-20%;
-      background:
-        radial-gradient(closest-side at 18% 25%, rgba(99,102,241,.22), transparent 60%),
-        radial-gradient(closest-side at 72% 18%, rgba(6,182,212,.18), transparent 60%),
-        radial-gradient(closest-side at 48% 85%, rgba(34,197,94,.14), transparent 60%);
-      filter: blur(26px);
-      opacity:.85;
-      transform: translateZ(0);
-      animation: mesh 16s var(--ease) infinite alternate;
-    }
-    @keyframes mesh{
-      0%{ transform: translate3d(-1.2%, -1.0%, 0) scale(1.02) rotate(-1.2deg); }
-      100%{ transform: translate3d(1.2%, 1.0%, 0) scale(1.05) rotate(1.2deg); }
-    }
-    .bg .lines{
-      position:absolute;
-      inset:0;
-      background:
-        repeating-linear-gradient(135deg,
-          rgba(2,6,23,.028) 0px,
-          rgba(2,6,23,.028) 1px,
-          transparent 1px,
-          transparent 9px
-        );
-      opacity:.22;
-      mix-blend-mode:multiply;
-    }
-
-    /* top strip (NOT sticky) */
-    .topStrip{
-      padding: 10px 0 0;
-    }
-    .stripRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.62);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 10px 26px rgba(2,6,23,.08);
-    }
-    .stripGroup{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.55);
-      color: rgba(11,18,32,.76);
-      font-weight: 700;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-    .chip svg{ width: 16px; height:16px; opacity:.92; }
-    .chip:hover{ border-color: rgba(99,102,241,.26); }
-
-    /* header */
-    header{
-      position: relative;
-      z-index: 10;
-      padding: 10px 0 0;
-    }
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 14px 0 8px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 240px;
-    }
-    .brand img{
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: none;
-      box-shadow:none;
-      background: transparent;
-    }
-    .brand .name{
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height:1.05;
-      color: rgba(11,18,32,.94);
-      font-size: 18px;
-    }
-    .brand .sub{
-      color: var(--muted2);
-      font-size: 13px;
-      margin-top: 2px;
-      font-weight: 600;
-    }
-
-    .navlinks{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .navlinks a{
-      font-size: 14px;
-      font-weight: 700;
-      color: rgba(11,18,32,.72);
-      padding: 10px 12px;
-      border-radius: 14px;
-      transition: transform var(--dur) var(--ease), background var(--dur) var(--ease);
-    }
-    .navlinks a:hover{
-      transform: translateY(-1px);
-      background: rgba(99,102,241,.10);
-    }
-
-    .actions{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 240px;
-      justify-content:flex-end;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.62);
-      box-shadow: 0 10px 26px rgba(2,6,23,.08);
-      font-weight: 800;
-      font-size: 14px;
-      cursor:pointer;
-      transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), background var(--dur) var(--ease);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      user-select:none;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(99,102,241,.28);
-      background: rgba(255,255,255,.76);
-    }
-    .btn:active{ transform: translateY(0); }
-    .btn svg{ width: 18px; height: 18px; }
-
-    .btn.primary{
-      border-color: rgba(99,102,241,.42);
-      background: linear-gradient(135deg, rgba(15,23,42,.98), rgba(2,6,23,.94));
-      color: rgba(255,255,255,.94);
-      box-shadow: 0 18px 54px rgba(2,6,23,.22);
-    }
-    .btn.primary:hover{
-      border-color: rgba(6,182,212,.40);
-      background: linear-gradient(135deg, rgba(15,23,42,1), rgba(2,6,23,.98));
-    }
-    .btn.ghost{
-      background: rgba(255,255,255,.42);
-      box-shadow:none;
-    }
-
-    .menuBtn{ display:none; padding: 12px 12px; }
-    .menuPanel{
-      display:none;
-      margin: 8px 0 0;
-      padding: 12px;
-      border-radius: var(--r);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.66);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: var(--shadow2);
-    }
-    .menuPanel a{
-      display:flex;
-      padding: 12px 12px;
-      border-radius: 14px;
-      font-weight: 800;
-      color: rgba(11,18,32,.76);
-    }
-    .menuPanel a:hover{ background: rgba(6,182,212,.10); }
-
-    /* HERO */
-    .hero{
-      padding: clamp(18px, 5vw, 52px) 0 clamp(24px, 6vw, 62px);
-      position: relative;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: clamp(16px, 4vw, 44px);
-      align-items: center;
-    }
-
-    .panel{
-      position:relative;
-      border-radius: var(--r);
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(15,23,42,.12);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      padding: 1px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(99,102,241,.40), rgba(6,182,212,.26), rgba(34,197,94,.18), rgba(245,158,11,.16));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events:none;
-      opacity: .95;
-    }
-    .panel .glow{
-      position:absolute;
-      inset:-60%;
-      background:
-        radial-gradient(closest-side at 40% 30%, rgba(99,102,241,.22), transparent 65%),
-        radial-gradient(closest-side at 70% 40%, rgba(6,182,212,.18), transparent 68%),
-        radial-gradient(closest-side at 50% 80%, rgba(34,197,94,.14), transparent 68%);
-      filter: blur(30px);
-      opacity:.9;
-      transform: translateZ(0);
-      animation: glow 12s var(--ease) infinite alternate;
-      pointer-events:none;
-    }
-    @keyframes glow{
-      0%{ transform: translate3d(-1%, -1%, 0) scale(1.02); }
-      100%{ transform: translate3d(1%, 1%, 0) scale(1.06); }
-    }
-
-    .heroCard{
-      padding: clamp(18px, 3.6vw, 34px);
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.55);
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      color: rgba(11,18,32,.72);
-      width: fit-content;
-    }
-    .kicker b{ color: rgba(11,18,32,.92); letter-spacing:.06em; }
-
-    h1{
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      letter-spacing: -0.04em;
-      margin: 14px 0 10px;
-      font-size: clamp(30px, 4.2vw, 56px);
-      line-height: 1.03;
-    }
-    .lead{
-      margin: 0 0 18px;
-      color: rgba(11,18,32,.70);
-      font-size: clamp(15px, 1.35vw, 18px);
-      line-height: 1.7;
-      max-width: 62ch;
-    }
-
-    .heroActions{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .subRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.52);
-      color: rgba(11,18,32,.74);
-      font-weight: 800;
-      font-size: 13px;
-    }
-    .tag svg{ width: 16px; height: 16px; opacity:.92; }
-
-    /* hero media */
-    .heroMedia{
-      padding: 14px;
-    }
-    .mediaGrid{
-      display:grid;
-      gap: 12px;
-    }
-    .mediaTop{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .photo{
-      position:relative;
-      border-radius: var(--r2);
-      overflow:hidden;
-      min-height: 210px;
-      border: 1px solid rgba(15,23,42,.12);
-      box-shadow: var(--shadow2);
-      background:
-        radial-gradient(800px 360px at 20% 0%, rgba(99,102,241,.18), transparent 56%),
-        radial-gradient(700px 360px at 100% 20%, rgba(6,182,212,.14), transparent 58%),
-        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.40)),
-        var(--img);
-      background-size: cover;
-      background-position: center;
-    }
-    .photo::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(2,6,23,.00), rgba(2,6,23,.14));
-      opacity:.55;
-      pointer-events:none;
-    }
-    .photo .label{
-      position:absolute;
-      left: 12px;
-      bottom: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.70);
-      border: 1px solid rgba(15,23,42,.12);
-      color: rgba(11,18,32,.76);
-      font-size: 12px;
-      font-weight: 900;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .photo.wide{ min-height: 280px; }
-
-    /* sections */
-    section{ padding: clamp(26px, 5.2vw, 62px) 0; }
-    .head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    .head h2{
-      margin:0;
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      letter-spacing:-0.03em;
-      font-size: clamp(22px, 2.2vw, 32px);
-      line-height:1.15;
-    }
-    .head p{
-      margin:0;
-      color: rgba(11,18,32,.68);
-      max-width: 64ch;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .grid{ display:grid; gap: 14px; }
-    .grid.services{ grid-template-columns: repeat(3, 1fr); }
-    .grid.two{ grid-template-columns: 1fr 1fr; }
-    .grid.cards{ grid-template-columns: repeat(3, 1fr); }
-
-    .card{
-      position:relative;
-      border-radius: var(--r);
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(15,23,42,.12);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      padding: 18px;
-      transition: transform var(--dur) var(--ease);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      padding: 1px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(99,102,241,.28), rgba(15,23,42,.10), rgba(6,182,212,.22));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events:none;
-      opacity: .95;
-    }
-    .card:hover{ transform: translateY(-2px); }
-
-    .ico{
-      width: 46px; height: 46px;
-      border-radius: 16px;
-      display:grid;
-      place-items:center;
-      background: rgba(255,255,255,.60);
-      border: 1px solid rgba(15,23,42,.12);
-      box-shadow: 0 12px 28px rgba(2,6,23,.08);
-      margin-bottom: 10px;
-    }
-    .ico svg{ width: 22px; height:22px; }
-
-    .card h3{
-      margin: 0 0 8px;
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      letter-spacing: -0.02em;
-      font-size: 16px;
-    }
-    .card p{
-      margin: 0 0 12px;
-      color: rgba(11,18,32,.70);
-      line-height: 1.65;
-      font-size: 14px;
-    }
-    .link{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      font-weight: 900;
-      font-size: 14px;
-      color: rgba(99,102,241,.98);
-    }
-    .link svg{ width:16px; height:16px; }
-
-    /* callout */
-    .callout{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      margin-top: 14px;
-      padding: 16px 16px;
-      border-radius: var(--r);
-      border: 1px dashed rgba(99,102,241,.38);
-      background: rgba(99,102,241,.08);
-    }
-    .callout b{
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      letter-spacing: -0.02em;
-    }
-    .callout p{ margin: 4px 0 0; color: rgba(11,18,32,.70); }
-
-    /* Why list */
-    .why{
-      display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 14px;
-      align-items:start;
-    }
-    .whyList{
-      display:grid;
-      gap: 10px;
-    }
-    .whyItem{
-      display:flex;
-      gap: 12px;
-      padding: 14px 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.60);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 10px 28px rgba(2,6,23,.08);
-    }
-    .num{
-      width: 40px; height: 40px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: rgba(255,255,255,.94);
-      background: linear-gradient(135deg, rgba(99,102,241,.95), rgba(6,182,212,.75));
-      flex: 0 0 auto;
-      box-shadow: 0 12px 26px rgba(2,6,23,.16);
-    }
-    .whyItem h4{
-      margin: 0 0 4px;
-      font-size: 14px;
-      letter-spacing: -0.01em;
-      font-weight: 900;
-      color: rgba(11,18,32,.90);
-    }
-    .whyItem .t{
-      margin:0;
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: rgba(11,18,32,.70);
-    }
-
-    /* Stats */
-    .stats{
-      display:grid;
-      gap: 12px;
-    }
-    .statRow{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .stat{
-      padding: 16px;
-      border-radius: var(--r);
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.62);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      position:relative;
-      overflow:hidden;
-    }
-    .stat::after{
-      content:"";
-      position:absolute;
-      inset:-60% -40%;
-      background:
-        radial-gradient(closest-side at 40% 40%, rgba(245,158,11,.16), transparent 70%),
-        radial-gradient(closest-side at 70% 40%, rgba(6,182,212,.14), transparent 72%);
-      filter: blur(26px);
-      opacity:.85;
-      pointer-events:none;
-    }
-    .stat .v{
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      font-weight: 900;
-      font-size: 26px;
-      letter-spacing: -0.03em;
-      position:relative;
-      z-index:1;
-    }
-    .stat .k{
-      color: rgba(11,18,32,.68);
-      font-weight: 700;
-      margin-top: 4px;
-      font-size: 13px;
-      position:relative;
-      z-index:1;
-    }
-    .note{
-      color: rgba(11,18,32,.58);
-      font-size: 12.5px;
-      line-height: 1.55;
-      margin-top: 10px;
-    }
-
-    /* Promo slider (simple) */
-    .promoWrap{
-      display:grid;
-      gap: 12px;
-    }
-    .promoBar{
-      display:flex;
-      gap: 12px;
-      overflow:auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 6px;
-    }
-    .promoBar::-webkit-scrollbar{ height: 8px; }
-    .promoBar::-webkit-scrollbar-thumb{
-      background: rgba(15,23,42,.16);
-      border-radius: 999px;
-    }
-    .promo{
-      min-width: min(420px, 92%);
-      scroll-snap-align: start;
-      padding: 16px;
-      border-radius: var(--r);
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.62);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      position:relative;
-      overflow:hidden;
-    }
-    .promo .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.60);
-      font-weight: 900;
-      font-size: 12px;
-      color: rgba(11,18,32,.78);
-    }
-    .promo h3{
-      margin: 10px 0 6px;
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      letter-spacing:-0.02em;
-      font-size: 16px;
-    }
-    .promo p{
-      margin: 0 0 10px;
-      color: rgba(11,18,32,.70);
-      line-height: 1.6;
-      font-size: 14px;
-      max-width: 52ch;
-    }
-    .promo .thumb{
-      height: 160px;
-      border-radius: 18px;
-      border: 1px solid rgba(15,23,42,.12);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.60), rgba(255,255,255,.30)),
-        var(--img);
-      background-size: cover;
-      background-position: center;
-      margin-top: 12px;
-      position:relative;
-      overflow:hidden;
-    }
-    .promo .thumb::after{
-      content:"images/" attr(data-fn);
-      position:absolute;
-      left: 12px;
-      bottom: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(15,23,42,.12);
-      font-weight: 900;
-      font-size: 12px;
-      color: rgba(11,18,32,.78);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* Before / After */
-    .baGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .ba{
-      padding: 14px;
-    }
-    .baTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .baTop .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.12);
-      background: rgba(255,255,255,.60);
-      font-weight: 900;
-      font-size: 12px;
-      color: rgba(11,18,32,.78);
-    }
-    .baPair{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .shot{
-      border-radius: 18px;
-      overflow:hidden;
-      border: 1px solid rgba(15,23,42,.12);
-      min-height: 160px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.30)),
-        var(--img);
-      background-size: cover;
-      background-position: center;
-      position:relative;
-    }
-    .shot::after{
-      content: attr(data-label);
-      position:absolute;
-      left: 10px;
-      bottom: 10px;
-      padding: 7px 9px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(15,23,42,.12);
-      font-weight: 900;
-      font-size: 12px;
-      color: rgba(11,18,32,.78);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* Contact */
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items:start;
-    }
-    label{
-      display:block;
-      font-weight: 900;
-      font-size: 13px;
-      color: rgba(11,18,32,.78);
-      margin: 0 0 8px;
-    }
-    input, select, textarea{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.68);
-      font: inherit;
-      color: rgba(11,18,32,.88);
-      outline: none;
-      transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(99,102,241,.36);
-      box-shadow: 0 0 0 3px rgba(99,102,241,.20);
-      background: rgba(255,255,255,.78);
-    }
-    textarea{ min-height: 112px; resize: vertical; }
-    .row2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .hint{
-      color: rgba(11,18,32,.60);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .ok{
-      display:none;
-      margin-top: 10px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(34,197,94,.26);
-      background: rgba(34,197,94,.10);
-      color: rgba(11,18,32,.78);
-      font-weight: 900;
-    }
-
-    /* Footer */
-    footer{
-      padding: 26px 0 30px;
-      border-top: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.38);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .footGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr .8fr;
-      gap: 14px;
-      align-items:start;
-    }
-    .fTitle{
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      font-weight: 900;
-      letter-spacing:-0.02em;
-      font-size: 14px;
-      margin: 0 0 10px;
-    }
-    .fLinks{
-      display:grid;
-      gap: 8px;
-      color: rgba(11,18,32,.72);
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .fLinks a:hover{ color: rgba(99,102,241,.98); }
-    .small{
-      color: rgba(11,18,32,.62);
-      font-size: 13px;
-      line-height: 1.65;
-      margin-top: 10px;
-    }
-
-    /* Reveal */
-    .reveal{
-      opacity:0;
-      transform: translateY(10px);
-      filter: blur(2px);
-      transition: opacity 560ms var(--ease), transform 560ms var(--ease), filter 560ms var(--ease);
-    }
-    .reveal.on{
-      opacity:1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
-
-    /* Modal */
-    .backdrop{
-      position: fixed;
-      inset: 0;
-      display:none;
-      place-items:center;
-      padding: 18px;
-      background: rgba(2,6,23,.58);
-      z-index: 1000;
-    }
-    .modal{
-      width: min(760px, 100%);
-      border-radius: 22px;
-      background: rgba(255,255,255,.86);
-      border: 1px solid rgba(255,255,255,.55);
-      box-shadow: 0 34px 120px rgba(2,6,23,.38);
-      overflow:hidden;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    .mHead{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.56);
-    }
-    .mHead strong{
-      font-family: "Plus Jakarta Sans", Inter, sans-serif;
-      letter-spacing:-0.02em;
-    }
-    .iconBtn{
-      width: 40px; height: 40px;
-      border-radius: 14px;
-      border: 1px solid rgba(15,23,42,.14);
-      background: rgba(255,255,255,.68);
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      transition: transform var(--dur) var(--ease);
-    }
-    .iconBtn:hover{ transform: translateY(-1px); }
-    .mBody{ padding: 16px; }
-
-    /* Mobile bottom bar (required) */
-    .bottomBar{
-      position: fixed;
-      left:0; right:0;
-      bottom:0;
-      z-index: 900;
-      display:none;
-      padding: 10px 12px calc(10px + var(--safe-bottom));
-      background: rgba(255,255,255,.70);
-      border-top: 1px solid rgba(15,23,42,.14);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    .bottomBar .wrap{
-      width: min(var(--max), 100% - 24px);
-      margin: 0 auto;
-      display:grid;
-      grid-template-columns: 1.35fr 1fr 1fr;
-      gap: 10px;
-    }
-    .bottomBar .btn{
-      padding: 13px 12px;
-      border-radius: 18px;
-      font-size: 14px;
-      box-shadow: 0 14px 36px rgba(2,6,23,.10);
-      white-space: nowrap;
-    }
-
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .grid.services{ grid-template-columns: repeat(2, 1fr); }
-      .grid.cards{ grid-template-columns: repeat(2, 1fr); }
-      .why{ grid-template-columns: 1fr; }
-      .footGrid{ grid-template-columns: 1fr 1fr; }
-      .contactGrid{ grid-template-columns: 1fr; }
-      .brand{ min-width: auto; }
-      .actions{ min-width: auto; }
-      .baGrid{ grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 820px){
-      .navlinks{ display:none; }
-      .menuBtn{ display:inline-flex; }
-      .actions .ghost.callDesk{ display:none; }
-    }
-    @media (max-width: 640px){
-      .grid.services{ grid-template-columns: 1fr; }
-      .grid.cards{ grid-template-columns: 1fr; }
-      .row2{ grid-template-columns: 1fr; }
-      .footGrid{ grid-template-columns: 1fr; }
-      .baGrid{ grid-template-columns: 1fr; }
-      .bottomBar{ display:block; }
-      body{ padding-bottom: 94px; }
-      .photo{ min-height: 200px; }
-      .photo.wide{ min-height: 240px; }
-      .stripRow{ border-radius: 18px; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .bg .mesh{ animation:none !important; }
-      .reveal{ opacity:1; transform:none; filter:none; transition:none; }
-      .btn, .card{ transition:none !important; }
-    }
-  </style>
 </head>
 
-<body>
-  <div class="bg" aria-hidden="true">
-    <div class="mesh"></div>
-    <div class="lines"></div>
-  </div>
+<body class="min-h-screen bg-brand-secondary text-slate-900 antialiased">
+  <!-- Skip link -->
+  <a href="#home" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-white focus:px-4 focus:py-3 focus:shadow-soft">
+    Skip to content
+  </a>
 
-  <!-- NOT sticky: this will scroll away -->
-  <div class="topStrip">
-    <div class="container">
-      <div class="stripRow reveal">
-        <div class="stripGroup">
-          <a class="chip" href="tel:+15551234567">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 3.5l2.5 2c.7.6.9 1.6.4 2.4l-1 1.8c.9 1.7 2.2 3.1 3.9 4l1.9-1c.8-.4 1.8-.3 2.4.4l2 2.4c.7.8.6 2-.2 2.7l-1.5 1.2c-.8.6-1.8.8-2.8.6-6.2-1.2-11-6-12.2-12.2-.2-1 .1-2 .7-2.8l1.2-1.5c.7-.8 1.9-.9 2.7-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>(555) 123-4567</span>
-          </a>
-          <a class="chip" href="#contact">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="1.6"/><path d="M12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="1.6"/></svg>
-            <span>Fairfax, VA • Get Directions</span>
-          </a>
-          <span class="chip" aria-label="Hours">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            <span>Mon–Thu 9–5 • Fri 9–3</span>
-          </span>
-        </div>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200/70">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between gap-4">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="grid h-10 w-10 place-items-center rounded-2xl bg-brand-primary text-white font-black">FDC</div>
+          <div class="leading-tight">
+            <div class="text-sm font-extrabold">Fairfax Dental Care</div>
+            <div class="text-xs font-semibold text-slate-500">Oakton / Fairfax, VA</div>
+          </div>
+        </a>
 
-        <div class="stripGroup">
-          <button class="btn ghost" id="formsTopBtn" type="button">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v4a2 2 0 0 0 2 2h4" stroke="currentColor" stroke-width="1.6"/></svg>
-            Patient Forms
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+          <a data-nav="home" href="#home" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">Home</a>
+          <a data-nav="services" href="#services" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">Services</a>
+          <a data-nav="about" href="#about" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">About Us</a>
+          <a data-nav="patients" href="#patients" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">For Patients</a>
+          <a data-nav="contact" href="#contact" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">Contacts</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a class="hidden sm:inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+             href="tel:+15715417977" aria-label="Call 571-541-7977">
+            Call 571-541-7977
+          </a>
+
+          <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+             href="#book">
+            Book Appointment
+          </a>
+
+          <button id="menuBtn"
+            class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-900/10 hover:bg-brand-secondary"
+            aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </button>
         </div>
       </div>
     </div>
-  </div>
 
-  <header>
-    <div class="container">
-      <nav class="nav" aria-label="Primary">
-        <a class="brand" href="#top" aria-label="Fairfax Dantist home">
-          <img src="images/logo.jpg" alt="Fairfax Dantist logo" />
-          <div>
-            <div class="name">Fairfax Dantist</div>
-            <div class="sub">Modern dentistry • comfort-first</div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-slate-200/70 bg-white">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-2">
+          <a href="#home" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">Home</a>
+          <a href="#services" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">Services</a>
+          <a href="#about" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">About Us</a>
+          <a href="#patients" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">For Patients</a>
+          <a href="#contact" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">Contacts</a>
+
+          <div class="mt-2 grid grid-cols-1 gap-2 p-2">
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="tel:+15715417977">
+              Call 571-541-7977
+            </a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+               href="#book">
+              Book Appointment
+            </a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
+               href="#emergency">
+              Emergency
+            </a>
           </div>
-        </a>
-
-        <div class="navlinks" aria-label="Site links">
-          <a href="#services">Services</a>
-          <a href="#why">Why Us</a>
-          <a href="#promos">Specials</a>
-          <a href="#gallery">Smile Gallery</a>
-          <a href="#cases">Cases</a>
-          <a href="#contact">Contacts</a>
         </div>
-
-        <div class="actions">
-          <button class="btn ghost menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel" type="button">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            Menu
-          </button>
-
-          <a class="btn ghost callDesk" href="tel:+15551234567" aria-label="Call Fairfax Dantist">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 3.5l2.5 2c.7.6.9 1.6.4 2.4l-1 1.8c.9 1.7 2.2 3.1 3.9 4l1.9-1c.8-.4 1.8-.3 2.4.4l2 2.4c.7.8.6 2-.2 2.7l-1.5 1.2c-.8.6-1.8.8-2.8.6-6.2-1.2-11-6-12.2-12.2-.2-1 .1-2 .7-2.8l1.2-1.5c.7-.8 1.9-.9 2.7-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Call
-          </a>
-
-          <button class="btn primary" id="bookTopBtn" type="button">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M6 6h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/></svg>
-            Book Online
-          </button>
-        </div>
-      </nav>
-
-      <div class="menuPanel" id="menuPanel" role="region" aria-label="Mobile menu">
-        <a href="#services">Services</a>
-        <a href="#why">Why Us</a>
-        <a href="#promos">Specials</a>
-        <a href="#gallery">Smile Gallery</a>
-        <a href="#cases">Cases</a>
-        <a href="#contact">Contacts</a>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="heroGrid">
-          <div class="panel reveal">
-            <div class="glow" aria-hidden="true"></div>
-            <div class="heroCard">
-              <div class="kicker"><b>Guaranteed clarity</b> • calm care • modern tools</div>
-              <h1>Premium dentistry that feels calm — and makes sense.</h1>
-              <p class="lead">
-                Fairfax Dantist delivers comfort-first care with transparent plans and modern technology.
-                Built for mobile: fast scanning, clear actions, fewer clicks.
-              </p>
-
-              <div class="heroActions">
-                <button class="btn primary" id="bookHeroBtn" type="button">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M6 6h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/></svg>
-                  Book Online
-                </button>
-                <button class="btn" id="formsHeroBtn" type="button">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v4a2 2 0 0 0 2 2h4" stroke="currentColor" stroke-width="1.6"/></svg>
-                  Patient Forms
-                </button>
-                <a class="btn ghost" href="tel:+15551234567">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 3.5l2.5 2c.7.6.9 1.6.4 2.4l-1 1.8c.9 1.7 2.2 3.1 3.9 4l1.9-1c.8-.4 1.8-.3 2.4.4l2 2.4c.7.8.6 2-.2 2.7l-1.5 1.2c-.8.6-1.8.8-2.8.6-6.2-1.2-11-6-12.2-12.2-.2-1 .1-2 .7-2.8l1.2-1.5c.7-.8 1.9-.9 2.7-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Call
-                </a>
-              </div>
-
-              <div class="subRow" aria-label="Highlights">
-                <span class="tag">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Safety-first protocols
-                </span>
-                <span class="tag">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-                  Clear treatment options
-                </span>
-                <span class="tag">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="1.6"/></svg>
-                  Flexible scheduling
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- PHOTO PLACEHOLDERS (add these to /images/) -->
-          <!-- images/hero-1.jpg, images/hero-2.jpg, images/hero-3.jpg -->
-          <div class="panel heroMedia reveal">
-            <div class="glow" aria-hidden="true"></div>
-            <div class="mediaGrid">
-              <div class="mediaTop">
-                <div class="photo" style="--img:url('images/hero-1.jpg');">
-                  <span class="label">images/hero-1.jpg</span>
-                </div>
-                <div class="photo" style="--img:url('images/hero-2.jpg');">
-                  <span class="label">images/hero-2.jpg</span>
-                </div>
-              </div>
-              <div class="photo wide" style="--img:url('images/hero-3.jpg');">
-                <span class="label">images/hero-3.jpg</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+  <main>
+    <!-- HOME -->
+    <section id="home" class="relative overflow-hidden scroll-mt-24">
+      <div class="absolute inset-0">
+        <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand-gold/20 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand-primary/15 blur-3xl"></div>
       </div>
-    </section>
 
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="container">
-        <div class="head reveal">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative py-14 sm:py-16">
+        <div class="grid items-center gap-10 lg:grid-cols-2">
           <div>
-            <h2>Dental services</h2>
-            <p>Fast scanning cards (UX): tap a service → jump to contact / booking.</p>
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+              <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
+              20+ years serving Fairfax, VA
+            </div>
+
+            <h1 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+              Modern dentistry with a calm, premium touch.
+            </h1>
+
+            <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+              From cleanings to implants and Invisalign — Fairfax Dental Care delivers precise, personalized treatment
+              and fast help when you need it most.
+            </p>
+
+            <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition" href="#book">
+                Book Appointment
+              </a>
+              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition" href="#services">
+                Explore Services
+              </a>
+              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition" href="#emergency">
+                Emergency
+              </a>
+            </div>
+
+            <div class="mt-8 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-4">
+                <div class="text-sm font-extrabold text-brand-primary">Under one roof</div>
+                <div class="mt-1 text-sm text-slate-600">Implants, veneers, Invisalign, emergency care</div>
+              </div>
+              <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-4">
+                <div class="text-sm font-extrabold text-brand-primary">Digital diagnostics</div>
+                <div class="mt-1 text-sm text-slate-600">Clear imaging for confident planning</div>
+              </div>
+              <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-4">
+                <div class="text-sm font-extrabold text-brand-primary">Comfort-first</div>
+                <div class="mt-1 text-sm text-slate-600">Gentle care, modern techniques</div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap items-center gap-3 text-sm text-slate-700">
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+                <strong>Phone:</strong> <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+                <strong>Address:</strong> 3275 History Drive, Oakton, VA 22124
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="grid services">
-          <article class="card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c3 0 5 2.2 5 5v4c0 3-2 5-5 5s-5-2-5-5V8c0-2.8 2-5 5-5Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 8c.7-1.2 1.8-2 3-2s2.3.8 3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            </div>
-            <h3>Cavity Treatment</h3>
-            <p>Modern fillings, gentle technique, clear next steps.</p>
-            <a class="link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M6 12c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            </div>
-            <h3>Implants</h3>
-            <p>Planning, placement, and restoration with a comfort-first approach.</p>
-            <a class="link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 7h10M6 12h12M7 17h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/></svg>
-            </div>
-            <h3>Braces / Aligners</h3>
-            <p>Orthodontic options designed around your lifestyle.</p>
-            <a class="link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 21h10a3 3 0 0 0 3-3V9l-6-6H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v6h6" stroke="currentColor" stroke-width="1.6"/></svg>
-            </div>
-            <h3>Prosthodontics</h3>
-            <p>Crowns, bridges, and full restorations with natural aesthetics.</p>
-            <a class="link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 10.5h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            </div>
-            <h3>Teeth in a Day</h3>
-            <p>When appropriate: accelerated solutions with careful planning.</p>
-            <a class="link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M8 12a4 4 0 1 1 8 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M6 21c1.4-4 4.4-6 6-6s4.6 2 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            </div>
-            <h3>Cleaning & Whitening</h3>
-            <p>Professional hygiene + brightness options that fit sensitivity.</p>
-            <a class="link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-        </div>
-
-        <div class="callout reveal">
-          <div>
-            <b>Didn’t find what you need?</b>
-            <p>Send a request — we’ll suggest the right service and next step.</p>
-          </div>
-          <button class="btn primary" id="bookServicesBtn" type="button">Get Consultation</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY US + STATS -->
-    <section id="why">
-      <div class="container">
-        <div class="head reveal">
-          <div>
-            <h2>Why Fairfax Dantist</h2>
-            <p>Numbered proof points (clean UX), plus a stats panel you can customize.</p>
-          </div>
-        </div>
-
-        <div class="why">
-          <div class="whyList">
-            <div class="whyItem reveal">
-              <div class="num">01</div>
+          <!-- Quick lead form -->
+          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-4">
               <div>
-                <h4>Experience you can feel</h4>
-                <p class="t">Consistent workflows, careful diagnostics, and a calm treatment pace.</p>
+                <div class="text-sm font-extrabold text-slate-900">Fast booking</div>
+                <div class="mt-1 text-sm text-slate-600">Request an appointment — we’ll confirm quickly.</div>
+              </div>
+              <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+                <span class="h-2 w-2 rounded-full bg-brand-primary"></span>
+                Same-day options
               </div>
             </div>
-            <div class="whyItem reveal">
-              <div class="num">02</div>
+
+            <form class="mt-6 grid gap-4" id="heroForm">
               <div>
-                <h4>Strong clinical team</h4>
-                <p class="t">A practice built around communication, not pressure.</p>
+                <label class="text-sm font-semibold text-slate-700" for="hName">Full name</label>
+                <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
+                       id="hName" name="name" autocomplete="name" required placeholder="Your name" />
               </div>
-            </div>
-            <div class="whyItem reveal">
-              <div class="num">03</div>
+
               <div>
-                <h4>Comfort-first treatment</h4>
-                <p class="t">Gentle technique + options for anxious patients.</p>
+                <label class="text-sm font-semibold text-slate-700" for="hPhone">Phone</label>
+                <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
+                       id="hPhone" name="phone" autocomplete="tel" required placeholder="(571) 541-7977" />
               </div>
-            </div>
-            <div class="whyItem reveal">
-              <div class="num">04</div>
-              <div>
-                <h4>Quality guarantee mindset</h4>
-                <p class="t">Materials + protocols selected for durability and safety.</p>
-              </div>
-            </div>
-            <div class="whyItem reveal">
-              <div class="num">05</div>
-              <div>
-                <h4>Modern approach</h4>
-                <p class="t">Updated methods, evidence-based planning, clear visuals.</p>
-              </div>
-            </div>
-            <div class="whyItem reveal">
-              <div class="num">06</div>
-              <div>
-                <h4>Up-to-date equipment</h4>
-                <p class="t">Technology that helps reduce guesswork and improves accuracy.</p>
-              </div>
-            </div>
-            <div class="whyItem reveal">
-              <div class="num">07</div>
-              <div>
-                <h4>Personal treatment plan</h4>
-                <p class="t">We build a plan around priorities, time, and budget.</p>
-              </div>
-            </div>
-            <div class="whyItem reveal">
-              <div class="num">08</div>
-              <div>
-                <h4>Convenient schedule</h4>
-                <p class="t">Mobile-first booking + tap-to-call when you need it.</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="stats">
-            <div class="statRow">
-              <div class="stat reveal">
-                <div class="v" data-count="20">20+</div>
-                <div class="k">Years serving patients (edit if needed)</div>
-              </div>
-              <div class="stat reveal">
-                <div class="v" data-count="10000">10k+</div>
-                <div class="k">Patients helped (placeholder)</div>
-              </div>
-            </div>
-
-            <div class="statRow">
-              <div class="stat reveal">
-                <div class="v" data-count="5000">5k+</div>
-                <div class="k">Successful restorations (placeholder)</div>
-              </div>
-              <div class="stat reveal">
-                <div class="v" data-count="98">98%</div>
-                <div class="k">Satisfaction (placeholder)</div>
-              </div>
-            </div>
-
-            <div class="panel reveal" style="padding:16px;">
-              <div class="glow" aria-hidden="true"></div>
-              <div style="position:relative; z-index:1;">
-                <h3 style="margin:0 0 8px; font-family:'Plus Jakarta Sans',Inter,sans-serif; letter-spacing:-.02em;">Flexible payments & insurance</h3>
-                <p style="margin:0; color:rgba(11,18,32,.70); line-height:1.65;">
-                  Add your exact billing / financing text here. Keep it short for mobile and link to a details page later.
-                </p>
-                <p class="note" style="margin-bottom:0;">
-                  Tip: don’t publish numbers you can’t prove. Replace placeholders with real clinic stats.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROMOS -->
-    <section id="promos">
-      <div class="container">
-        <div class="head reveal">
-          <div>
-            <h2>Special offers</h2>
-            <p>Horizontal scroll on mobile (like a slider), simple and fast.</p>
-          </div>
-        </div>
-
-        <!-- Add promo images to /images/ : promo-1.jpg promo-2.jpg promo-3.jpg -->
-        <div class="promoWrap">
-          <div class="promoBar">
-            <div class="promo reveal">
-              <span class="badge">New Patients</span>
-              <h3>Comprehensive exam package</h3>
-              <p>Short description here (replace price/details). Keep it transparent and specific.</p>
-              <button class="btn primary" type="button" onclick="openBookModal()">Get Consultation</button>
-              <div class="thumb" style="--img:url('images/promo-1.jpg');" data-fn="promo-1.jpg"></div>
-            </div>
-
-            <div class="promo reveal">
-              <span class="badge">Implants</span>
-              <h3>Implant planning + consultation</h3>
-              <p>Describe the offer without exaggeration. Add conditions if needed.</p>
-              <button class="btn primary" type="button" onclick="openBookModal()">Get Consultation</button>
-              <div class="thumb" style="--img:url('images/promo-2.jpg');" data-fn="promo-2.jpg"></div>
-            </div>
-
-            <div class="promo reveal">
-              <span class="badge">Whitening</span>
-              <h3>Professional whitening options</h3>
-              <p>Sensitivity-friendly options. Replace with your real terms and approach.</p>
-              <button class="btn primary" type="button" onclick="openBookModal()">Get Consultation</button>
-              <div class="thumb" style="--img:url('images/promo-3.jpg');" data-fn="promo-3.jpg"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BEFORE / AFTER -->
-    <section id="gallery">
-      <div class="container">
-        <div class="head reveal">
-          <div>
-            <h2>Smile gallery (Before / After)</h2>
-            <p>Add your images: <b>before-1.jpg</b> / <b>after-1.jpg</b> etc. (No reviews block.)</p>
-          </div>
-        </div>
-
-        <!-- Add to /images/: before-1.jpg after-1.jpg before-2.jpg after-2.jpg before-3.jpg after-3.jpg -->
-        <div class="baGrid">
-          <div class="card ba reveal">
-            <div class="baTop">
-              <span class="pill">Case #1</span>
-              <span class="pill">Veneers / Whitening</span>
-            </div>
-            <div class="baPair">
-              <div class="shot" style="--img:url('images/before-1.jpg');" data-label="images/before-1.jpg"></div>
-              <div class="shot" style="--img:url('images/after-1.jpg');" data-label="images/after-1.jpg"></div>
-            </div>
-          </div>
-
-          <div class="card ba reveal">
-            <div class="baTop">
-              <span class="pill">Case #2</span>
-              <span class="pill">Implants / Crown</span>
-            </div>
-            <div class="baPair">
-              <div class="shot" style="--img:url('images/before-2.jpg');" data-label="images/before-2.jpg"></div>
-              <div class="shot" style="--img:url('images/after-2.jpg');" data-label="images/after-2.jpg"></div>
-            </div>
-          </div>
-
-          <div class="card ba reveal">
-            <div class="baTop">
-              <span class="pill">Case #3</span>
-              <span class="pill">Orthodontics</span>
-            </div>
-            <div class="baPair">
-              <div class="shot" style="--img:url('images/before-3.jpg');" data-label="images/before-3.jpg"></div>
-              <div class="shot" style="--img:url('images/after-3.jpg');" data-label="images/after-3.jpg"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CASES -->
-    <section id="cases">
-      <div class="container">
-        <div class="head reveal">
-          <div>
-            <h2>Clinical cases</h2>
-            <p>Use this as “portfolio” without turning it into a noisy gallery.</p>
-          </div>
-        </div>
-
-        <!-- Add to /images/: case-1.jpg case-2.jpg case-3.jpg -->
-        <div class="grid cards">
-          <article class="card reveal">
-            <div class="photo wide" style="--img:url('images/case-1.jpg'); min-height:210px;">
-              <span class="label">images/case-1.jpg</span>
-            </div>
-            <h3 style="margin-top:12px;">Full restoration plan</h3>
-            <p>Short summary: what was done, timeframe, and key materials — keep factual.</p>
-            <a class="link" href="#contact">Ask about similar treatment <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="photo wide" style="--img:url('images/case-2.jpg'); min-height:210px;">
-              <span class="label">images/case-2.jpg</span>
-            </div>
-            <h3 style="margin-top:12px;">Aesthetic upgrade</h3>
-            <p>Describe the goal and result without overpromising. Add contraindications if needed.</p>
-            <a class="link" href="#contact">Ask about options <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-
-          <article class="card reveal">
-            <div class="photo wide" style="--img:url('images/case-3.jpg'); min-height:210px;">
-              <span class="label">images/case-3.jpg</span>
-            </div>
-            <h3 style="margin-top:12px;">Comfort-first visit</h3>
-            <p>Explain how you handle anxious patients (process + options) in a calm tone.</p>
-            <a class="link" href="#contact">Talk to our team <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="head reveal">
-          <div>
-            <h2>Contacts</h2>
-            <p>Booking request + map. Replace address and embed link when ready.</p>
-          </div>
-        </div>
-
-        <div class="contactGrid">
-          <div class="card reveal">
-            <h3 style="margin-top:0;">Request an appointment</h3>
-            <p class="hint">Demo form (shows success). Later connect to your backend/CRM.</p>
-
-            <form id="apptForm">
-              <div class="row2">
+              <div class="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label for="name">Full name *</label>
-                  <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+                  <label class="text-sm font-semibold text-slate-700" for="hService">Service</label>
+                  <select class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 focus:ring-2 focus:ring-brand-gold"
+                          id="hService" name="service">
+                    <option>General Checkup</option>
+                    <option>Dental Implants</option>
+                    <option>Veneers</option>
+                    <option>Invisalign</option>
+                    <option>Teeth Whitening</option>
+                    <option>Emergency</option>
+                  </select>
                 </div>
                 <div>
-                  <label for="phone">Phone *</label>
-                  <input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" inputmode="tel" required />
-                </div>
-              </div>
-
-              <div class="row2" style="margin-top:12px;">
-                <div>
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="jane@email.com" />
-                </div>
-                <div>
-                  <label for="reason">Reason</label>
-                  <select id="reason" name="reason">
-                    <option>Cleaning & exam</option>
-                    <option>Tooth pain / emergency</option>
-                    <option>Cosmetic consult</option>
-                    <option>Implants consult</option>
-                    <option>Other</option>
+                  <label class="text-sm font-semibold text-slate-700" for="hTime">Preferred time</label>
+                  <select class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 focus:ring-2 focus:ring-brand-gold"
+                          id="hTime" name="time">
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
                   </select>
                 </div>
               </div>
 
-              <div style="margin-top:12px;">
-                <label for="msg">Message</label>
-                <textarea id="msg" name="msg" placeholder="Tell us what you need (optional)"></textarea>
-              </div>
-
-              <!-- honeypot -->
-              <input type="text" id="company" name="company" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true"/>
-
-              <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 12px;">
-                <button class="btn primary" type="submit">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 2L11 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-                  Send request
-                </button>
-                <a class="btn" href="tel:+15551234567">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 3.5l2.5 2c.7.6.9 1.6.4 2.4l-1 1.8c.9 1.7 2.2 3.1 3.9 4l1.9-1c.8-.4 1.8-.3 2.4.4l2 2.4c.7.8.6 2-.2 2.7l-1.5 1.2c-.8.6-1.8.8-2.8.6-6.2-1.2-11-6-12.2-12.2-.2-1 .1-2 .7-2.8l1.2-1.5c.7-.8 1.9-.9 2.7-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Call instead
-                </a>
-              </div>
-
-              <div class="ok" id="okMsg" role="status" aria-live="polite">✅ Thanks! We’ll contact you shortly.</div>
+              <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition w-full"
+                      type="submit">
+                Request Appointment
+              </button>
+              <p class="text-xs text-slate-500">
+                Prefer calling? <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>
+              </p>
             </form>
           </div>
+        </div>
+      </div>
 
-          <div class="card reveal">
-            <h3 style="margin-top:0;">Clinic info</h3>
+      <!-- Experts preview -->
+      <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="text-2xl font-extrabold tracking-tight sm:text-3xl">Our Experts</h2>
+            <p class="mt-2 text-slate-600">Dr. Soyfer, Dr. Mansouri, Dr. Alex</p>
+          </div>
+          <a class="hidden sm:inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+             href="#about">
+            Meet the team
+          </a>
+        </div>
 
-            <div class="stripGroup" style="margin-top:10px;">
-              <span class="chip"><b>Phone:</b>&nbsp;(555) 123-4567</span>
-              <span class="chip"><b>Hours:</b>&nbsp;Mon–Thu 9–5 • Fri 9–3</span>
-              <span class="chip"><b>Address:</b>&nbsp;123 Main St, Fairfax, VA 22030</span>
+        <div class="mt-8 grid gap-5 lg:grid-cols-3">
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">VS</div>
+              <div>
+                <div class="text-lg font-extrabold">Dr. Vladimir Soyfer</div>
+                <div class="text-sm font-semibold text-slate-500">General • Cosmetic • Restorative</div>
+              </div>
             </div>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              Focused on precise planning and premium smile outcomes — cosmetic and restorative care.
+            </p>
+          </article>
 
-            <p class="hint" style="margin-top:10px;">
-              Replace the iframe <b>src</b> with your real Google Maps embed URL.
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">MM</div>
+              <div>
+                <div class="text-lg font-extrabold">Dr. Mazda Mansouri</div>
+                <div class="text-sm font-semibold text-slate-500">Family • Cosmetic • Preventive</div>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              Gentle approach and clear communication — making visits comfortable and predictable.
+            </p>
+          </article>
+
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">DA</div>
+              <div>
+                <div class="text-lg font-extrabold">Dr. Alex</div>
+                <div class="text-sm font-semibold text-slate-500">Modern Care • Patient Comfort</div>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              Dedicated to modern techniques and a calm experience for every patient.
+            </p>
+          </article>
+        </div>
+
+        <div class="mt-6 sm:hidden">
+          <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition w-full"
+             href="#about">
+            Meet the team
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <!-- SERVICES (full section replacing services.html) -->
+    <section id="services" class="scroll-mt-24">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
+          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
+            Modern Dentistry • Under one roof
+          </div>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Services</h2>
+          <p class="mt-3 text-slate-600">
+            Preventive, cosmetic, restorative, and urgent care — delivered with comfort-first precision.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+               href="#book">Book Appointment</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="tel:+15715417977">Call 571-541-7977</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
+               href="#emergency">Emergency</a>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <article id="implants" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
+            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Restorative</div>
+            <h3 class="mt-4 text-xl font-extrabold">Dental Implants</h3>
+            <p class="mt-2 text-sm text-slate-600">Permanent tooth replacement with modern planning and natural-feel outcomes.</p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li>• Single-tooth crowns</li>
+              <li>• Bridges / full-arch options</li>
+              <li>• Planning & sequencing</li>
+            </ul>
+          </article>
+
+          <article id="veneers" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
+            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Cosmetic</div>
+            <h3 class="mt-4 text-xl font-extrabold">Dental Veneers</h3>
+            <p class="mt-2 text-sm text-slate-600">Upgrade shape, color, and symmetry for a premium smile.</p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li>• Porcelain veneers</li>
+              <li>• Smile makeover planning</li>
+              <li>• Natural-looking match</li>
+            </ul>
+          </article>
+
+          <article id="invisalign" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
+            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Orthodontics</div>
+            <h3 class="mt-4 text-xl font-extrabold">Invisalign</h3>
+            <p class="mt-2 text-sm text-slate-600">Clear aligners for a straighter smile with minimal disruption.</p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li>• Clear aligner therapy</li>
+              <li>• Progress check-ins</li>
+              <li>• Bite alignment support</li>
+            </ul>
+          </article>
+
+          <article id="whitening" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
+            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Cosmetic</div>
+            <h3 class="mt-4 text-xl font-extrabold">Teeth Whitening</h3>
+            <p class="mt-2 text-sm text-slate-600">Professional whitening designed for fast, noticeable results.</p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li>• In-office whitening</li>
+              <li>• Sensitivity-aware approach</li>
+              <li>• Smile maintenance tips</li>
+            </ul>
+          </article>
+
+          <article id="root-canal" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
+            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Endodontics</div>
+            <h3 class="mt-4 text-xl font-extrabold">Root Canal Therapy</h3>
+            <p class="mt-2 text-sm text-slate-600">Accurate treatment to relieve pain and preserve teeth.</p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li>• Diagnosis and imaging</li>
+              <li>• Gentle endodontic care</li>
+              <li>• Restoration planning</li>
+            </ul>
+          </article>
+
+          <article id="emergency" class="rounded-2xl bg-white shadow-soft ring-2 ring-brand-emergency/30 p-6 scroll-mt-24">
+            <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-emergency ring-1 ring-red-200">Urgent</div>
+            <h3 class="mt-4 text-xl font-extrabold">Emergency Dentist</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Sudden tooth pain, broken teeth, swelling, bleeding, or injuries — call us for urgent support.
+            </p>
+            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
+                 href="tel:+15715417977">Call Now</a>
+              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                 href="#book">Request Same-Day Visit</a>
+            </div>
+            <p class="mt-3 text-xs text-slate-500">
+              If you have facial trauma or uncontrolled bleeding, seek ER/urgent care immediately.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="scroll-mt-24">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
+          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
+            General & Cosmetic Dentistry • Fairfax Area
+          </div>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">About Fairfax Dental Care</h2>
+          <p class="mt-3 text-slate-600">
+            A warm, caring environment with precise, personalized treatment planning — from checkups to cosmetic and restorative care.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-3">
+          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 lg:col-span-2">
+            <h3 class="text-xl font-extrabold">Our Philosophy</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Comfort-first care and clear explanations. You’ll always know what we recommend, why we recommend it,
+              and what outcomes to expect. Our goal is long-term oral health — and the confidence to smile.
+            </p>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+                <div class="text-sm font-extrabold text-brand-primary">Precise planning</div>
+                <div class="mt-1 text-sm text-slate-600">Modern diagnostics and thoughtful sequencing.</div>
+              </div>
+              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+                <div class="text-sm font-extrabold text-brand-primary">Patient comfort</div>
+                <div class="mt-1 text-sm text-slate-600">Gentle visits, reduced anxiety, supportive guidance.</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <h3 class="text-xl font-extrabold">Quick Facts</h3>
+            <dl class="mt-4 space-y-3 text-sm text-slate-700">
+              <div class="flex items-start justify-between gap-3">
+                <dt class="font-semibold">Phone</dt>
+                <dd><a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a></dd>
+              </div>
+              <div class="flex items-start justify-between gap-3">
+                <dt class="font-semibold">Address</dt>
+                <dd class="text-right">3275 History Drive<br/>Oakton, VA 22124</dd>
+              </div>
+              <div class="flex items-start justify-between gap-3">
+                <dt class="font-semibold">Hours</dt>
+                <dd class="text-right">Mon–Fri 8:00–17:00<br/>Sat 9:00–13:00</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+
+        <div class="mt-8 grid gap-5 lg:grid-cols-3">
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">VS</div>
+              <div>
+                <div class="text-lg font-extrabold">Dr. Vladimir Soyfer</div>
+                <div class="text-sm font-semibold text-slate-500">General • Cosmetic • Restorative</div>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              Leads comprehensive care plans — balancing aesthetics, function, and long-term stability.
+            </p>
+          </article>
+
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">MM</div>
+              <div>
+                <div class="text-lg font-extrabold">Dr. Mazda Mansouri</div>
+                <div class="text-sm font-semibold text-slate-500">Family • Cosmetic • Preventive</div>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              Focused on gentle dentistry and clear, empathetic patient communication.
+            </p>
+          </article>
+
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">DA</div>
+              <div>
+                <div class="text-lg font-extrabold">Dr. Alex</div>
+                <div class="text-sm font-semibold text-slate-500">Comfort • Modern Care</div>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              Dedicated to comfortable visits and modern techniques tailored to each patient.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section id="patients" class="scroll-mt-24">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
+          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
+            New patients welcome
+          </div>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">For Patients</h2>
+          <p class="mt-3 text-slate-600">
+            Everything you need before your visit: insurance guidance, flexible payments, and downloadable forms.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+               href="#book">Book Appointment</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="#forms">Patient Forms</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="#payments">Payment Options</a>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-3">
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6" id="insurances">
+            <h3 class="text-xl font-extrabold">Insurances</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              We accept claims from many insurance companies and help maximize benefits.
+            </p>
+            <div class="mt-5 rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+              <div class="text-sm font-extrabold text-brand-primary">Tip</div>
+              <p class="mt-2 text-sm text-slate-700">
+                Bring your insurance card and a photo ID — we’ll verify coverage and estimate out-of-pocket costs.
+              </p>
+            </div>
+          </article>
+
+          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 lg:col-span-2" id="payments">
+            <h3 class="text-xl font-extrabold">Payment Options</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Flexible financing is available, including major credit cards and monthly-term options.
             </p>
 
-            <div style="margin-top:12px; border-radius:18px; overflow:hidden; border:1px solid rgba(15,23,42,.14); background:rgba(255,255,255,.62);">
-              <iframe
-                title="Map to Fairfax Dantist"
-                src="about:blank"
-                style="width:100%; height: 260px; border:0;"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+                <div class="text-sm font-extrabold text-brand-primary">Cards accepted</div>
+                <p class="mt-2 text-sm text-slate-700">Visa, MasterCard, Discover, American Express.</p>
+              </div>
+              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+                <div class="text-sm font-extrabold text-brand-primary">Financing</div>
+                <p class="mt-2 text-sm text-slate-700">
+                  CareCredit and ChaseHealthAdvance. Options include no-interest up to 12 months or up to 60 months terms.
+                </p>
+              </div>
+              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5 sm:col-span-2">
+                <div class="text-sm font-extrabold text-brand-primary">Savings</div>
+                <p class="mt-2 text-sm text-slate-700">
+                  5% off for cash/check payments over $2,000 when paying in advance/on treatment day.
+                </p>
+              </div>
             </div>
 
-            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 12px;">
-              <button class="btn primary" type="button" onclick="openBookModal()">Book Online</button>
-              <button class="btn" type="button" onclick="openFormsModal()">Patient Forms</button>
-              <a class="btn ghost" href="tel:+15551234567">Call</a>
+            <div class="mt-6">
+              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                 href="tel:+15715417977">Questions? Call 571-541-7977</a>
+            </div>
+          </article>
+        </div>
+
+        <section class="mt-8 rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 sm:p-8" id="forms">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h3 class="text-xl font-extrabold">Patient Forms</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Download, print, and complete the appropriate questionnaire before your visit.
+              </p>
+            </div>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+               href="#book">Book Appointment</a>
+          </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-3">
+            <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+              <div class="text-sm font-extrabold">Young Patient Questionnaire</div>
+              <div class="mt-3 flex gap-2">
+                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Young_Patient_Questionnaire.pdf">PDF</a>
+                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Young_Patient_Questionnaire.doc">DOC</a>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+              <div class="text-sm font-extrabold">Adult Questionnaire</div>
+              <div class="mt-3 flex gap-2">
+                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Adult_Questionnaire.pdf">PDF</a>
+                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Adult_Questionnaire.doc">DOC</a>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+              <div class="text-sm font-extrabold">Universal Questionnaire</div>
+              <div class="mt-3 flex gap-2">
+                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Universal_Questionnaire.pdf">PDF</a>
+                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Universal_Questionnaire.doc">DOC</a>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-5 text-xs text-slate-500">
+            Bring completed forms to your appointment (or arrive early to complete them in-office).
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="scroll-mt-24">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
+          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
+            Oakton / Fairfax, VA
+          </div>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Contact Us</h2>
+          <p class="mt-3 text-slate-600">
+            Call, request an appointment, or send a message — we’ll respond as quickly as possible.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+               href="#book">Book Appointment</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="tel:+15715417977">Call 571-541-7977</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
+               href="#emergency">Emergency</a>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-2">
+          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 overflow-hidden">
+            <iframe
+              title="Map: 3275 History Drive Oakton VA 22124"
+              class="h-80 w-full"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=3275+History+Drive+Oakton+VA+22124&output=embed">
+            </iframe>
+
+            <div class="p-6">
+              <div class="text-lg font-extrabold">Fairfax Dental Care</div>
+              <div class="mt-2 text-sm text-slate-700">
+                3275 History Drive, Oakton, VA 22124<br/>
+                Phone: <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>
+              </div>
+
+              <div class="mt-5 rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
+                <div class="text-sm font-extrabold text-brand-primary">Hours</div>
+                <dl class="mt-3 space-y-2 text-sm text-slate-700">
+                  <div class="flex justify-between"><dt class="font-semibold">Mon–Fri</dt><dd>8:00 – 17:00</dd></div>
+                  <div class="flex justify-between"><dt class="font-semibold">Saturday</dt><dd>9:00 – 13:00</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking form -->
+          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 sm:p-8 scroll-mt-24" id="book">
+            <h3 class="text-xl font-extrabold">Request an Appointment</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Fill the form and we’ll confirm availability by phone. If urgent, call
+              <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>.
+            </p>
+
+            <form class="mt-6 grid gap-4" id="bookForm">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label class="text-sm font-semibold text-slate-700" for="cName">Full name</label>
+                  <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
+                         id="cName" name="name" autocomplete="name" required />
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-slate-700" for="cPhone">Phone</label>
+                  <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
+                         id="cPhone" name="phone" autocomplete="tel" required />
+                </div>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label class="text-sm font-semibold text-slate-700" for="cEmail">Email (optional)</label>
+                  <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
+                         id="cEmail" name="email" type="email" autocomplete="email" />
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-slate-700" for="cService">Service</label>
+                  <select class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 focus:ring-2 focus:ring-brand-gold"
+                          id="cService" name="service" required>
+                    <option>General Checkup</option>
+                    <option>Dental Implants</option>
+                    <option>Veneers</option>
+                    <option>Invisalign</option>
+                    <option>Teeth Whitening</option>
+                    <option>Root Canal Therapy</option>
+                    <option>Emergency</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-sm font-semibold text-slate-700" for="cMsg">Message</label>
+                <textarea class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold min-h-[120px]"
+                          id="cMsg" name="message" placeholder="Preferred day/time and any symptoms."></textarea>
+              </div>
+
+              <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
+                      type="submit">
+                Submit Request
+              </button>
+
+              <p class="mt-3 text-xs text-slate-500">
+                Note: This form is not a secure messaging system. Avoid sending sensitive medical information.
+              </p>
+            </form>
+
+            <div id="formToast" class="hidden mt-4 rounded-2xl bg-brand-secondary p-4 ring-1 ring-slate-900/5 text-sm text-slate-700">
+              ✅ Request prepared. Hook this form to your backend (or Netlify Forms) to receive submissions.
             </div>
           </div>
         </div>
@@ -1622,227 +759,132 @@
     </section>
   </main>
 
-  <footer role="contentinfo">
-    <div class="container">
-      <div class="footGrid">
+  <!-- Footer -->
+  <footer class="border-t border-slate-200/70 bg-white">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid gap-10 lg:grid-cols-4">
         <div>
-          <div class="brand">
-            <img src="images/logo.jpg" alt="Fairfax Dantist logo" />
+          <div class="flex items-center gap-3">
+            <div class="grid h-10 w-10 place-items-center rounded-2xl bg-brand-primary text-white font-black">FDC</div>
             <div>
-              <div class="name">Fairfax Dantist</div>
-              <div class="sub">Modern dentistry • comfort-first</div>
+              <div class="text-sm font-extrabold">Fairfax Dental Care</div>
+              <div class="text-xs font-semibold text-slate-500">Modern General & Cosmetic Dentistry</div>
             </div>
           </div>
-          <p class="small">
-            <strong>Fairfax Dantist</strong><br>
-            123 Main St, Fairfax, VA 22030<br>
-            <a href="tel:+15551234567">(555) 123-4567</a>
+          <p class="mt-4 text-sm text-slate-600">
+            Family-friendly care, cosmetic upgrades, implants, Invisalign, and fast support when you need it.
           </p>
-          <p class="small">© <span id="year"></span> Fairfax Dantist. All rights reserved.</p>
         </div>
 
         <div>
-          <p class="fTitle">Quick links</p>
-          <div class="fLinks">
-            <a href="#services">Services</a>
-            <a href="#why">Why Us</a>
-            <a href="#promos">Specials</a>
-            <a href="#contact">Contacts</a>
-          </div>
+          <div class="text-sm font-extrabold">Links</div>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#services">Services</a></li>
+            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#about">About Us</a></li>
+            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#patients">For Patients</a></li>
+            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#contact">Contacts</a></li>
+          </ul>
         </div>
 
         <div>
-          <p class="fTitle">Documents</p>
-          <div class="fLinks">
-            <a href="#" onclick="openFormsModal(); return false;">Patient Forms</a>
-            <a href="#" onclick="alert('Add your Privacy Policy page/link.'); return false;">Privacy Policy</a>
-            <a href="#" onclick="alert('Add Terms (optional).'); return false;">Terms</a>
+          <div class="text-sm font-extrabold">Contact</div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li><span class="font-semibold">Phone:</span> <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a></li>
+            <li><span class="font-semibold">Address:</span> 3275 History Drive, Oakton, VA 22124</li>
+            <li><span class="font-semibold">Hours:</span> Mon–Fri 8:00–17:00, Sat 9:00–13:00</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-sm font-extrabold">Actions</div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="#book">Book</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="#forms">Forms</a>
+            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
+               href="#emergency">Emergency</a>
           </div>
-          <p class="small">General information only — not medical advice.</p>
+
+          <p class="mt-4 text-xs text-slate-500">
+            © <span id="year"></span> Fairfax Dental Care. All rights reserved.
+          </p>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- REQUIRED: mobile fixed 3 buttons -->
-  <div class="bottomBar" role="navigation" aria-label="Quick actions">
-    <div class="wrap">
-      <button class="btn primary" type="button" onclick="openBookModal()">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M6 6h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/></svg>
-        Book Online
-      </button>
-
-      <button class="btn" type="button" onclick="openFormsModal()">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v4a2 2 0 0 0 2 2h4" stroke="currentColor" stroke-width="1.6"/></svg>
-        Patient Forms
-      </button>
-
-      <a class="btn" href="tel:+15551234567" aria-label="Call Fairfax Dantist">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 3.5l2.5 2c.7.6.9 1.6.4 2.4l-1 1.8c.9 1.7 2.2 3.1 3.9 4l1.9-1c.8-.4 1.8-.3 2.4.4l2 2.4c.7.8.6 2-.2 2.7l-1.5 1.2c-.8.6-1.8.8-2.8.6-6.2-1.2-11-6-12.2-12.2-.2-1 .1-2 .7-2.8l1.2-1.5c.7-.8 1.9-.9 2.7-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Call
-      </a>
-    </div>
-  </div>
-
-  <!-- MODAL -->
-  <div class="backdrop" id="backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-      <div class="mHead">
-        <strong id="mTitle">Modal</strong>
-        <button class="iconBtn" id="mClose" aria-label="Close modal" type="button">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-      <div class="mBody" id="mBody"></div>
-    </div>
-  </div>
-
   <script>
-    // year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Year
+    document.getElementById("year").textContent = String(new Date().getFullYear());
 
-    // reveal on scroll
-    const revealEls = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add("on");
-          io.unobserve(e.target);
-        }
+    // Mobile menu
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    const closeMenu = () => {
+      if (!btn || !menu) return;
+      menu.classList.add("hidden");
+      btn.setAttribute("aria-expanded", "false");
+    };
+    const toggleMenu = () => {
+      if (!btn || !menu) return;
+      const isOpen = !menu.classList.contains("hidden");
+      if (isOpen) closeMenu();
+      else {
+        menu.classList.remove("hidden");
+        btn.setAttribute("aria-expanded", "true");
       }
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => io.observe(el));
+    };
+    btn?.addEventListener("click", toggleMenu);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+    document.addEventListener("click", (e) => {
+      if (!menu || !btn) return;
+      const t = e.target;
+      if (menu.contains(t) || btn.contains(t)) return;
+      closeMenu();
+    });
+    // Close menu on link click
+    menu?.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) closeMenu();
+    });
 
-    // mobile menu
-    const menuBtn = document.getElementById("menuBtn");
-    const menuPanel = document.getElementById("menuPanel");
-    if (menuBtn && menuPanel) {
-      menuBtn.addEventListener("click", () => {
-        const open = menuBtn.getAttribute("aria-expanded") === "true";
-        menuBtn.setAttribute("aria-expanded", String(!open));
-        menuPanel.style.display = open ? "none" : "block";
-      });
-      menuPanel.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => {
-          menuBtn.setAttribute("aria-expanded", "false");
-          menuPanel.style.display = "none";
-        });
-      });
-    }
+    // Active nav highlight (IntersectionObserver)
+    const sections = ["home","services","about","patients","contact"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
 
-    // form demo submit
-    const form = document.getElementById("apptForm");
-    const ok = document.getElementById("okMsg");
-    if (form) {
-      form.addEventListener("submit", (ev) => {
-        ev.preventDefault();
-        const hp = document.getElementById("company");
-        if (hp && hp.value) return; // bot
-        ok.style.display = "block";
-        ok.scrollIntoView({behavior:"smooth", block:"nearest"});
+    const setActive = (id) => {
+      document.querySelectorAll(".navlink").forEach(a => {
+        const k = a.getAttribute("data-nav");
+        const isActive = k === id;
+        a.classList.toggle("bg-brand-secondary", isActive);
+        a.classList.toggle("text-brand-primary", isActive);
+        a.classList.toggle("text-slate-700", !isActive);
+      });
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(visible.target.id);
+    }, { root: null, threshold: [0.2, 0.35, 0.5] });
+
+    sections.forEach(s => io.observe(s));
+
+    // Demo submit handler (no backend). Replace with Netlify Forms / your backend.
+    const toast = document.getElementById("formToast");
+    const onFakeSubmit = (form) => {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        toast?.classList.remove("hidden");
+        setTimeout(() => toast?.classList.add("hidden"), 4500);
         form.reset();
       });
-    }
-
-    // simple phone formatting
-    const phone = document.getElementById("phone");
-    if (phone) {
-      phone.addEventListener("input", () => {
-        const d = phone.value.replace(/\D/g, "").slice(0, 10);
-        const a = d.slice(0,3), b = d.slice(3,6), c = d.slice(6,10);
-        phone.value = d.length > 6 ? `(${a}) ${b}-${c}` : d.length > 3 ? `(${a}) ${b}` : d.length ? `(${a}` : "";
-      });
-    }
-
-    // modal
-    const backdrop = document.getElementById("backdrop");
-    const mClose = document.getElementById("mClose");
-    const mTitle = document.getElementById("mTitle");
-    const mBody  = document.getElementById("mBody");
-    let lastFocus = null;
-
-    function openModal(title, html){
-      lastFocus = document.activeElement;
-      mTitle.textContent = title;
-      mBody.innerHTML = html;
-      backdrop.style.display = "grid";
-      backdrop.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      mClose.focus();
-    }
-    function closeModal(){
-      backdrop.style.display = "none";
-      backdrop.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      if (lastFocus) lastFocus.focus();
-    }
-    mClose.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", (e) => { if (e.target === backdrop) closeModal(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && backdrop.getAttribute("aria-hidden") === "false") closeModal(); });
-
-    // book modal content (replace external URL when ready)
-    function openBookModal(){
-      openModal("Book Online", `
-        <div style="display:grid; gap:12px;">
-          <div style="padding:12px 14px;border-radius:16px;border:1px solid rgba(15,23,42,.14);background:rgba(255,255,255,.68);">
-            <strong>Option A:</strong> Use the appointment request form on this page.
-          </div>
-          <a class="btn primary" href="#contact" onclick="window.__close();">
-            Go to appointment form
-          </a>
-
-          <div style="padding:12px 14px;border-radius:16px;border:1px solid rgba(15,23,42,.14);background:rgba(255,255,255,.68);">
-            <strong>Option B:</strong> Replace with your real online booking link (Calendly / practice system).
-          </div>
-          <a class="btn" href="#" onclick="alert('Replace this with your real booking URL.'); return false;">
-            Open online booking
-          </a>
-
-          <div style="padding:12px 14px;border-radius:16px;border:1px solid rgba(15,23,42,.14);background:rgba(255,255,255,.68);">
-            Prefer to call? <a href="tel:+15551234567" style="font-weight:900; color: rgba(99,102,241,.98);">Tap here</a>.
-          </div>
-        </div>
-      `);
-    }
-
-    // forms modal content (put PDFs in /forms/)
-    function openFormsModal(){
-      openModal("Patient Forms", `
-        <div style="display:grid; gap:12px;">
-          <p style="margin:0; color: rgba(11,18,32,.68); line-height:1.6;">
-            Put PDFs in <code>/forms</code> and replace names if needed.
-          </p>
-
-          <div style="padding:14px;border-radius:18px;border:1px solid rgba(15,23,42,.14);background:rgba(255,255,255,.68);">
-            <div style="display:grid; gap:10px; font-weight:900;">
-              <a href="forms/new-patient-form.pdf" download>New Patient Form (PDF)</a>
-              <a href="forms/medical-history.pdf" download>Medical History (PDF)</a>
-              <a href="forms/hipaa-privacy.pdf" download>HIPAA / Privacy (PDF)</a>
-            </div>
-            <p style="margin:10px 0 0; color: rgba(11,18,32,.58); font-size:13px; line-height:1.55;">
-              Keep files lightweight for fast mobile loading.
-            </p>
-          </div>
-
-          <a class="btn primary" href="#contact" onclick="window.__close();">Questions? Contact us</a>
-        </div>
-      `);
-    }
-
-    // expose for inline
-    window.__close = closeModal;
-    window.openBookModal = openBookModal;
-    window.openFormsModal = openFormsModal;
-
-    // wire buttons
-    ["bookTopBtn","bookHeroBtn","bookServicesBtn"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("click", openBookModal);
-    });
-    ["formsTopBtn","formsHeroBtn"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("click", openFormsModal);
-    });
+    };
+    onFakeSubmit(document.getElementById("heroForm"));
+    onFakeSubmit(document.getElementById("bookForm"));
   </script>
 </body>
 </html>
