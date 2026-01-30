@@ -1,757 +1,845 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0F4C81" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#0b1324" />
 
-  <title>Fairfax Dental Care | Dentist in Fairfax, VA</title>
-  <meta name="description" content="Fairfax Dental Care — modern general & cosmetic dentistry serving Fairfax, VA for over 20 years. Implants, veneers, Invisalign, whitening, emergency care." />
+  <title>Fairfax Dentist | Comprehensive Dental Care in Fairfax, VA</title>
+  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry. Implants, veneers, emergency, Invisalign, whitening, and more." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CDN (single-file friendly). For max performance later replace with compiled CSS file. -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              primary: "#0F4C81",
-              secondary: "#F0F9FF",
-              gold: "#D4AF37",
-              emergency: "#EF4444",
-            },
-          },
-          boxShadow: {
-            soft: "0 18px 50px rgba(2, 6, 23, 0.10)",
-          },
-          borderRadius: {
-            "2xl": "1.25rem",
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fairfax Dentist" />
+  <meta property="og:description" content="Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="images/logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-    :focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
-  </style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0b1324;
+      --muted:#4a5568;
+      --line:rgba(11,19,36,.18);
+      --soft:rgba(11,19,36,.06);
+      --accent:#1b56ff;
+      --accent2:#00a3ff;
 
-  <!-- LocalBusiness / Dentist JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Dentist",
-    "name":"Fairfax Dental Care",
-    "telephone":"+1-571-541-7977",
-    "address":{
-      "@type":"PostalAddress",
-      "streetAddress":"3275 History Drive",
-      "addressLocality":"Oakton",
-      "addressRegion":"VA",
-      "postalCode":"22124",
-      "addressCountry":"US"
-    },
-    "openingHours":["Mo-Fr 08:00-17:00","Sa 09:00-13:00"]
-  }
-  </script>
+      --max:1180px;
+      --pad:clamp(16px, 3.6vw, 28px);
+
+      --h1:clamp(34px, 6vw, 66px);
+      --h2:clamp(22px, 3.4vw, 34px);
+      --p:clamp(15px, 1.6vw, 18px);
+
+      /* HERO background (add images/hero.webp and optional images/hero.jpg) */
+      --hero-image-webp:url("images/hero.webp");
+      --hero-image-jpg:url("images/hero.jpg");
+
+      /* Strict sharp corners */
+      --radius:0px;
+      --radius2:0px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    button,input,textarea{font:inherit; color:inherit}
+
+    /* Accessibility */
+    .skip{
+      position:absolute; left:-999px; top:0;
+      background:#fff; border:1px solid var(--line);
+      padding:10px 12px; z-index:9999;
+    }
+    .skip:focus{left:12px; top:12px}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+    .section{padding:clamp(44px, 6vw, 84px) 0}
+    .kicker{letter-spacing:.12em; text-transform:uppercase; font-size:12px; color:var(--muted)}
+    .h2{font-size:var(--h2); margin:10px 0 12px}
+    .p{font-size:var(--p); color:var(--muted); margin:0}
+    .grid{display:grid; gap:16px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(140%) blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+    .head{
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:68px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 180px;
+    }
+    .brand img{
+      width:180px; height:auto; object-fit:contain;
+      /* no border / no rounding */
+    }
+    .right{
+      display:flex; align-items:center; gap:12px;
+    }
+    .phone{
+      display:none;
+      font-weight:600;
+      color:var(--ink);
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .phone:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .burger{
+      width:44px; height:44px;
+      display:grid; place-items:center;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .burger:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .burger .lines{width:18px; height:12px; position:relative}
+    .burger .lines span{
+      position:absolute; left:0; right:0; height:2px; background:var(--ink);
+      transition:transform .18s ease, top .18s ease, opacity .18s ease;
+    }
+    .burger .lines span:nth-child(1){top:0}
+    .burger .lines span:nth-child(2){top:5px}
+    .burger .lines span:nth-child(3){top:10px}
+    .burger[aria-expanded="true"] .lines span:nth-child(1){top:5px; transform:rotate(45deg)}
+    .burger[aria-expanded="true"] .lines span:nth-child(2){opacity:0}
+    .burger[aria-expanded="true"] .lines span:nth-child(3){top:5px; transform:rotate(-45deg)}
+
+    /* Drawer menu (hamburger) */
+    .drawerOverlay{
+      position:fixed; inset:0; z-index:80;
+      background:rgba(0,0,0,.45);
+      opacity:0; pointer-events:none;
+      transition:opacity .2s ease;
+    }
+    .drawer{
+      position:fixed; top:0; right:0; height:100vh; width:min(360px, 92vw);
+      background:#fff;
+      border-left:1px solid var(--line);
+      transform:translateX(102%);
+      transition:transform .22s ease;
+      z-index:90;
+      display:flex; flex-direction:column;
+    }
+    .drawerHead{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px;
+      border-bottom:1px solid var(--line);
+    }
+    .drawerTitle{font-weight:800}
+    .drawerClose{
+      width:44px; height:44px; display:grid; place-items:center;
+      border:1px solid var(--line); background:#fff; cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease;
+    }
+    .drawerClose:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .drawerBody{padding:16px; display:grid; gap:12px}
+    .navLink{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:650;
+      transition:transform .18s ease, border-color .18s ease;
+    }
+    .navLink:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .navMeta{
+      display:grid; gap:8px;
+      padding:12px;
+      border:1px solid var(--line);
+      background:rgba(11,19,36,.02);
+    }
+    .navMeta a{
+      color:var(--ink);
+      font-weight:650;
+      display:inline-flex; gap:10px; align-items:center;
+    }
+    .navMeta small{color:var(--muted)}
+    .isMenuOpen .drawerOverlay{opacity:1; pointer-events:auto}
+    .isMenuOpen .drawer{transform:translateX(0)}
+
+    /* Hero */
+    .hero{
+      min-height:calc(100vh - 68px);
+      display:grid;
+      align-items:stretch;
+      position:relative;
+      isolation:isolate;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.70) 55%, rgba(255,255,255,.35)),
+        /* Prefer WebP with image-set; fallback below if unsupported */
+        image-set(var(--hero-image-webp) type("image/webp"), var(--hero-image-jpg) type("image/jpeg"));
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+    @supports not (background: image-set(url("a.webp") type("image/webp"))){
+      .hero{
+        background:
+          linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.70) 55%, rgba(255,255,255,.35)),
+          var(--hero-image-jpg);
+        background-size:cover;
+        background-position:center;
+      }
+    }
+    .heroInner{
+      padding:clamp(40px, 7vw, 92px) 0;
+      display:grid; gap:18px;
+      align-content:center;
+    }
+    h1{
+      font-size:var(--h1);
+      line-height:1.02;
+      margin:0;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      font-size:clamp(16px, 1.9vw, 20px);
+      color:rgba(11,19,36,.78);
+      max-width:68ch;
+    }
+    .ctaRow{
+      display:flex; flex-wrap:wrap; gap:12px;
+      margin-top:10px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:750;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .btn:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .btnPrimary{
+      background:linear-gradient(90deg, rgba(27,86,255,.12), rgba(0,163,255,.10));
+      border-color:rgba(27,86,255,.35);
+    }
+
+    /* Services */
+    .servicesGrid{
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background:#fff;
+      overflow:hidden; /* sharp edges, no rounding */
+      display:grid;
+    }
+    .cardMedia{
+      aspect-ratio: 16 / 10;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:rgba(11,19,36,.03);
+    }
+    .cardMedia img{
+      width:100%; height:100%;
+      object-fit:cover;
+      /* no image frame */
+    }
+    .cardBody{padding:14px}
+    .cardTitle{margin:0 0 6px; font-weight:850; letter-spacing:-.01em}
+    .cardText{margin:0; color:var(--muted); font-size:15px}
+
+    /* About + Gallery */
+    .aboutGrid{
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
+    }
+    .aboutBox{
+      border:1px solid var(--line);
+      padding:16px;
+      background:#fff;
+    }
+    .aboutBox p{margin:0 0 12px; color:var(--muted); font-size:var(--p)}
+    .aboutBox p:last-child{margin-bottom:0}
+
+    .gallery{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .gItem{
+      border:1px solid var(--line);
+      background:#fff;
+      overflow:hidden;
+      cursor:zoom-in;
+      transition:transform .18s ease, border-color .18s ease;
+    }
+    .gItem:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .gItem img{
+      width:100%;
+      height:100%;
+      aspect-ratio: 4/3;
+      object-fit:cover;
+    }
+
+    /* Working hours + Contact */
+    .twoCol{display:grid; gap:16px}
+    .panel{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:16px;
+    }
+    .hours{
+      display:grid; gap:10px; margin-top:10px;
+    }
+    .row{
+      display:flex; justify-content:space-between; gap:12px;
+      border-top:1px solid var(--soft);
+      padding-top:10px;
+    }
+    .row:first-child{border-top:0; padding-top:0}
+    .row b{font-weight:850}
+    .row span{color:var(--muted)}
+    .contactLinks{display:grid; gap:10px; margin-top:10px}
+    .chip{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      transition:transform .18s ease, border-color .18s ease;
+    }
+    .chip:hover{transform:translateY(-1px); border-color:rgba(27,86,255,.35)}
+    .chip small{color:var(--muted)}
+    .map{
+      border:1px solid var(--line);
+      overflow:hidden;
+      background:#fff;
+      aspect-ratio: 16 / 10;
+    }
+    .map iframe{width:100%; height:100%; border:0}
+
+    /* Form */
+    form{display:grid; gap:10px; margin-top:12px}
+    .field{
+      display:grid; gap:6px;
+    }
+    label{font-size:13px; color:var(--muted)}
+    input,textarea{
+      padding:12px 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      outline:none;
+      transition:border-color .18s ease, box-shadow .18s ease;
+    }
+    input:focus,textarea:focus{
+      border-color:rgba(27,86,255,.45);
+      box-shadow:0 0 0 3px rgba(27,86,255,.12);
+    }
+    textarea{min-height:110px; resize:vertical}
+    .hint{font-size:12px; color:var(--muted); margin:0}
+    .errorText{
+      display:none;
+      font-size:12px;
+      color:#b00020;
+      margin:0;
+    }
+    .hasError .errorText{display:block}
+    .hasError input,.hasError textarea{border-color:rgba(176,0,32,.55)}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      padding:22px 0;
+      background:#fff;
+    }
+    .foot{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
+    }
+    .foot small{color:var(--muted)}
+    .foot a{font-weight:700}
+    .logoSmall{display:flex; align-items:center; gap:10px}
+    .logoSmall img{width:110px; height:auto; object-fit:contain}
+
+    /* Modal (full-view, no crop) */
+    .modalOverlay{
+      position:fixed; inset:0; z-index:120;
+      background:rgba(0,0,0,.72);
+      display:none;
+      padding:18px;
+    }
+    .modalOverlay[aria-hidden="false"]{display:grid}
+    .modal{
+      margin:auto;
+      width:min(1100px, 96vw);
+      height:min(86vh, 820px);
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(0,0,0,.25);
+      display:grid;
+      grid-template-rows:auto 1fr;
+    }
+    .modalBar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      gap:12px;
+    }
+    .modalBar b{font-weight:850}
+    .modalClose{
+      width:44px; height:44px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.22);
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .modalClose:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.45); background:rgba(255,255,255,.08)}
+    .modalBody{
+      display:grid;
+      place-items:center;
+      padding:10px;
+    }
+    .modalBody img{
+      width:100%;
+      height:100%;
+      object-fit:contain; /* IMPORTANT: full-view without crop */
+      background:transparent;
+    }
+
+    /* Reveal (lightweight) */
+    [data-reveal]{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
+    [data-reveal].is-visible{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (min-width:720px){
+      .phone{display:inline-flex}
+      .servicesGrid{grid-template-columns:repeat(2, 1fr)}
+      .aboutGrid{grid-template-columns:1.1fr .9fr}
+      .gallery{grid-template-columns:repeat(3, 1fr)}
+      .twoCol{grid-template-columns:1fr 1fr}
+    }
+    @media (min-width:1024px){
+      .servicesGrid{grid-template-columns:repeat(4, 1fr)}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none !important; scroll-behavior:auto !important}
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-brand-secondary text-slate-900 antialiased">
-  <!-- Skip link -->
-  <a href="#home" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-white focus:px-4 focus:py-3 focus:shadow-soft">
-    Skip to content
-  </a>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200/70">
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between gap-4">
-        <a href="#home" class="flex items-center gap-3">
-          <div class="grid h-10 w-10 place-items-center rounded-2xl bg-brand-primary text-white font-black">FDC</div>
-          <div class="leading-tight">
-            <div class="text-sm font-extrabold">Fairfax Dental Care</div>
-            <div class="text-xs font-semibold text-slate-500">Oakton / Fairfax, VA</div>
-          </div>
-        </a>
+  <header>
+    <div class="wrap head" id="home">
+      <a class="brand" href="#home" aria-label="Fairfax Dentist Home">
+        <img src="images/logo.jpg" alt="Fairfax Dentist logo" />
+      </a>
 
-        <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
-          <a data-nav="home" href="#home" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">Home</a>
-          <a data-nav="services" href="#services" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">Services</a>
-          <a data-nav="about" href="#about" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">About Us</a>
-          <a data-nav="patients" href="#patients" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">For Patients</a>
-          <a data-nav="contact" href="#contact" class="navlink rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-primary hover:bg-brand-secondary">Contacts</a>
-        </nav>
+      <div class="right">
+        <a class="phone" href="tel:5715417977" aria-label="Call 571-541-7977">571-541-7977</a>
 
-        <div class="flex items-center gap-2">
-          <a class="hidden sm:inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-             href="tel:+15715417977" aria-label="Call 571-541-7977">
-            Call 571-541-7977
-          </a>
-
-          <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-             href="#book">
-            Book Appointment
-          </a>
-
-          <button id="menuBtn"
-            class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-900/10 hover:bg-brand-secondary"
-            aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="lg:hidden hidden border-t border-slate-200/70 bg-white">
-      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
-        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-2">
-          <a href="#home" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">Home</a>
-          <a href="#services" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">Services</a>
-          <a href="#about" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">About Us</a>
-          <a href="#patients" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">For Patients</a>
-          <a href="#contact" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-brand-secondary">Contacts</a>
-
-          <div class="mt-2 grid grid-cols-1 gap-2 p-2">
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="tel:+15715417977">
-              Call 571-541-7977
-            </a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-               href="#book">
-              Book Appointment
-            </a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
-               href="#emergency">
-              Emergency
-            </a>
-          </div>
-        </div>
+        <button class="burger" id="burger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          <span class="lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- HOME -->
-    <section id="home" class="relative overflow-hidden scroll-mt-24">
-      <div class="absolute inset-0">
-        <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand-gold/20 blur-3xl"></div>
-        <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand-primary/15 blur-3xl"></div>
+  <!-- Drawer Menu -->
+  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Site menu" aria-hidden="true">
+    <div class="drawerHead">
+      <div class="drawerTitle">Menu</div>
+      <button class="drawerClose" id="drawerClose" aria-label="Close menu">✕</button>
+    </div>
+    <div class="drawerBody">
+      <a class="navLink" href="#home">Home <span aria-hidden="true">→</span></a>
+      <a class="navLink" href="#services">Services <span aria-hidden="true">→</span></a>
+      <a class="navLink" href="#about">About <span aria-hidden="true">→</span></a>
+      <a class="navLink" href="#contact">Contact <span aria-hidden="true">→</span></a>
+
+      <div class="navMeta" aria-label="Contact quick info">
+        <a href="tel:5715417977"><span aria-hidden="true">☎</span> 571-541-7977</a>
+        <a href="mailto:svvdmd@gmail.com"><span aria-hidden="true">✉</span> svvdmd@gmail.com</a>
+        <small>3275 History Drive Oakton VA 22124</small>
       </div>
+    </div>
+  </aside>
 
-      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative py-14 sm:py-16">
-        <div class="grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <div class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-              <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
-              20+ years serving Fairfax, VA
+  <!-- Hero -->
+  <section class="hero" aria-label="Hero">
+    <div class="wrap heroInner">
+      <div class="kicker">Comprehensive Care • Modern Technology • Family Dentistry</div>
+      <h1>Fairfax Dentist</h1>
+      <div class="sub">
+        Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.
+      </div>
+      <div class="ctaRow">
+        <a class="btn btnPrimary" href="#contact">Book an Appointment</a>
+        <a class="btn" href="#services">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- Services -->
+    <section class="section" id="services" aria-label="Services">
+      <div class="wrap" data-reveal>
+        <div class="kicker">Services</div>
+        <h2 class="h2">Advanced dental solutions under one roof</h2>
+        <p class="p">Tap any image to open a full-view preview without cropping.</p>
+
+        <div class="grid servicesGrid" style="margin-top:16px;">
+          <!-- Helper: WebP + JPG fallback (keep both, convert to WebP for best performance) -->
+
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/implants.webp" type="image/webp">
+                <img
+                  src="images/implants.jpg"
+                  alt="Dental Implants"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/implants.webp"
+                  data-full-jpg="images/implants.jpg"
+                />
+              </picture>
             </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Dental Implants</h3>
+              <p class="cardText">Permanent and natural-looking solutions to restore missing teeth and oral functionality.</p>
+            </div>
+          </article>
 
-            <h1 class="mt-5 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-              Modern dentistry with a calm, premium touch.
-            </h1>
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/veneers.webp" type="image/webp">
+                <img
+                  src="images/veneers.jpg"
+                  alt="Dental Veneers"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/veneers.webp"
+                  data-full-jpg="images/veneers.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Dental Veneers</h3>
+              <p class="cardText">Custom-crafted porcelain shells designed to enhance the color, shape, and overall aesthetics of your smile.</p>
+            </div>
+          </article>
 
-            <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-              From cleanings to implants and Invisalign — Fairfax Dental Care delivers precise, personalized treatment
-              and fast help when you need it most.
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/dendist.webp" type="image/webp">
+                <img
+                  src="images/dendist.jpg"
+                  alt="Emergency Dentist"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/dendist.webp"
+                  data-full-jpg="images/dendist.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Emergency Dentist</h3>
+              <p class="cardText">Urgent dental intervention for pain relief, trauma, and acute infections with same-day availability.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/invisalign.webp" type="image/webp">
+                <img
+                  src="images/invisalign.jpg"
+                  alt="Invisalign"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/invisalign.webp"
+                  data-full-jpg="images/invisalign.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Invisalign</h3>
+              <p class="cardText">Advanced orthodontic treatment using clear, removable aligners for a discreet and comfortable smile correction.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/teeth.webp" type="image/webp">
+                <img
+                  src="images/teeth.jpg"
+                  alt="Teeth Whitening"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/teeth.webp"
+                  data-full-jpg="images/teeth.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Teeth Whitening</h3>
+              <p class="cardText">Professional-grade brightening treatments to effectively remove deep stains and restore natural radiance.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/canal.webp" type="image/webp">
+                <img
+                  src="images/canal.jpg"
+                  alt="Root Canal"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/canal.webp"
+                  data-full-jpg="images/canal.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Root Canal</h3>
+              <p class="cardText">Specialized endodontic therapy focused on saving infected teeth and preventing further complications.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/aesthetic.webp" type="image/webp">
+                <img
+                  src="images/aesthetic.jpg"
+                  alt="Aesthetic Dentistry"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/aesthetic.webp"
+                  data-full-jpg="images/aesthetic.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Aesthetic Dentistry</h3>
+              <p class="cardText">A comprehensive approach to smile design, merging restorative techniques with artistic precision.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="cardMedia">
+              <picture>
+                <source srcset="images/xrays.webp" type="image/webp">
+                <img
+                  src="images/xrays.jpg"
+                  alt="Dental X-Rays"
+                  loading="lazy"
+                  decoding="async"
+                  data-full-webp="images/xrays.webp"
+                  data-full-jpg="images/xrays.jpg"
+                />
+              </picture>
+            </div>
+            <div class="cardBody">
+              <h3 class="cardTitle">Dental X-Rays</h3>
+              <p class="cardText">High-definition digital diagnostics for precise treatment planning and early detection of dental issues.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About + Gallery -->
+    <section class="section" id="about" aria-label="About">
+      <div class="wrap aboutGrid" data-reveal>
+        <div>
+          <div class="kicker">About</div>
+          <h2 class="h2">Fairfax Dental Care</h2>
+
+          <div class="aboutBox">
+            <p>
+              Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions. Led by Dr. Vladimir Soyfer, Dr. Mazda Mansouri, and Dr. Alex, our team combines clinical expertise with genuine compassion.
             </p>
-
-            <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition" href="#book">
-                Book Appointment
-              </a>
-              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition" href="#services">
-                Explore Services
-              </a>
-              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition" href="#emergency">
-                Emergency
-              </a>
-            </div>
-
-            <div class="mt-8 grid gap-3 sm:grid-cols-3">
-              <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-4">
-                <div class="text-sm font-extrabold text-brand-primary">Under one roof</div>
-                <div class="mt-1 text-sm text-slate-600">Implants, veneers, Invisalign, emergency care</div>
-              </div>
-              <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-4">
-                <div class="text-sm font-extrabold text-brand-primary">Digital diagnostics</div>
-                <div class="mt-1 text-sm text-slate-600">Clear imaging for confident planning</div>
-              </div>
-              <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-4">
-                <div class="text-sm font-extrabold text-brand-primary">Comfort-first</div>
-                <div class="mt-1 text-sm text-slate-600">Gentle care, modern techniques</div>
-              </div>
-            </div>
-
-            <div class="mt-8 flex flex-wrap items-center gap-3 text-sm text-slate-700">
-              <span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-                <strong>Phone:</strong> <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-                <strong>Address:</strong> 3275 History Drive, Oakton, VA 22124
-              </span>
-            </div>
+            <p>
+              We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience and healthy, lasting results for the entire family.
+            </p>
           </div>
+        </div>
 
-          <!-- Quick lead form -->
-          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 sm:p-8">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <div class="text-sm font-extrabold text-slate-900">Fast booking</div>
-                <div class="mt-1 text-sm text-slate-600">Request an appointment — we’ll confirm quickly.</div>
-              </div>
-              <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-                <span class="h-2 w-2 rounded-full bg-brand-primary"></span>
-                Same-day options
+        <div aria-label="Clinic photo gallery">
+          <div class="kicker">Gallery</div>
+          <h3 class="h2" style="margin-top:10px">Our clinic</h3>
+
+          <div class="gallery" style="margin-top:12px">
+            <figure class="gItem">
+              <picture>
+                <source srcset="images/clinic_exterior.webp" type="image/webp">
+                <img src="images/clinic_exterior.jpg" alt="Clinic exterior" loading="lazy" decoding="async" data-full-webp="images/clinic_exterior.webp" data-full-jpg="images/clinic_exterior.jpg">
+              </picture>
+            </figure>
+
+            <figure class="gItem">
+              <picture>
+                <source srcset="images/reception.webp" type="image/webp">
+                <img src="images/reception.jpg" alt="Reception area" loading="lazy" decoding="async" data-full-webp="images/reception.webp" data-full-jpg="images/reception.jpg">
+              </picture>
+            </figure>
+
+            <figure class="gItem">
+              <picture>
+                <source srcset="images/treatment_room.webp" type="image/webp">
+                <img src="images/treatment_room.jpg" alt="Treatment room" loading="lazy" decoding="async" data-full-webp="images/treatment_room.webp" data-full-jpg="images/treatment_room.jpg">
+              </picture>
+            </figure>
+
+            <figure class="gItem">
+              <picture>
+                <source srcset="images/medical_equipment.webp" type="image/webp">
+                <img src="images/medical_equipment.jpg" alt="Medical equipment" loading="lazy" decoding="async" data-full-webp="images/medical_equipment.webp" data-full-jpg="images/medical_equipment.jpg">
+              </picture>
+            </figure>
+
+            <figure class="gItem">
+              <picture>
+                <source srcset="images/doctors_team.webp" type="image/webp">
+                <img src="images/doctors_team.jpg" alt="Doctors team" loading="lazy" decoding="async" data-full-webp="images/doctors_team.webp" data-full-jpg="images/doctors_team.jpg">
+              </picture>
+            </figure>
+
+            <figure class="gItem">
+              <picture>
+                <source srcset="images/patient_care.webp" type="image/webp">
+                <img src="images/patient_care.jpg" alt="Patient care" loading="lazy" decoding="async" data-full-webp="images/patient_care.webp" data-full-jpg="images/patient_care.jpg">
+              </picture>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hours + Contact -->
+    <section class="section" id="contact" aria-label="Contact">
+      <div class="wrap" data-reveal>
+        <div class="kicker">Contact</div>
+        <h2 class="h2">Working hours & how to reach us</h2>
+
+        <div class="twoCol" style="margin-top:16px;">
+          <div class="panel" aria-label="Working hours">
+            <b style="font-weight:850;">Working Hours</b>
+            <div class="hours" role="list">
+              <div class="row" role="listitem"><b>Monday – Friday</b><span>8:00 – 17:00</span></div>
+              <div class="row" role="listitem"><b>Saturday</b><span>9:00 – 13:00</span></div>
+              <div class="row" role="listitem"><b>Sunday</b><span>Closed</span></div>
+            </div>
+
+            <div class="contactLinks" style="margin-top:16px;">
+              <a class="chip" href="tel:5715417977" aria-label="Call 571-541-7977">
+                <div>
+                  <div style="font-weight:850;">Phone</div>
+                  <small>571-541-7977</small>
+                </div>
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <a class="chip" href="mailto:svvdmd@gmail.com" aria-label="Email svvdmd@gmail.com">
+                <div>
+                  <div style="font-weight:850;">Email</div>
+                  <small>svvdmd@gmail.com</small>
+                </div>
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <div class="chip" aria-label="Address">
+                <div>
+                  <div style="font-weight:850;">Address</div>
+                  <small>3275 History Drive Oakton VA 22124</small>
+                </div>
+                <span aria-hidden="true">📍</span>
               </div>
             </div>
 
-            <form class="mt-6 grid gap-4" id="heroForm">
-              <div>
-                <label class="text-sm font-semibold text-slate-700" for="hName">Full name</label>
-                <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
-                       id="hName" name="name" autocomplete="name" required placeholder="Your name" />
+            <form id="contactForm" novalidate aria-label="Contact form">
+              <div class="field" id="fName">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Your name" />
+                <p class="errorText">Please enter your name (at least 2 characters).</p>
               </div>
 
-              <div>
-                <label class="text-sm font-semibold text-slate-700" for="hPhone">Phone</label>
-                <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
-                       id="hPhone" name="phone" autocomplete="tel" required placeholder="(571) 541-7977" />
+              <div class="field" id="fEmail">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+                <p class="errorText">Please enter a valid email address.</p>
               </div>
 
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label class="text-sm font-semibold text-slate-700" for="hService">Service</label>
-                  <select class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 focus:ring-2 focus:ring-brand-gold"
-                          id="hService" name="service">
-                    <option>General Checkup</option>
-                    <option>Dental Implants</option>
-                    <option>Veneers</option>
-                    <option>Invisalign</option>
-                    <option>Teeth Whitening</option>
-                    <option>Emergency</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-slate-700" for="hTime">Preferred time</label>
-                  <select class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 focus:ring-2 focus:ring-brand-gold"
-                          id="hTime" name="time">
-                    <option>Morning</option>
-                    <option>Afternoon</option>
-                    <option>Evening</option>
-                  </select>
-                </div>
+              <div class="field" id="fPhone">
+                <label for="phone">Phone</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  required
+                  inputmode="tel"
+                  placeholder="571-541-7977"
+                  pattern="^(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$"
+                />
+                <p class="hint">Format: 571-541-7977</p>
+                <p class="errorText">Please enter a valid US phone number.</p>
               </div>
 
-              <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition w-full"
-                      type="submit">
-                Request Appointment
-              </button>
-              <p class="text-xs text-slate-500">
-                Prefer calling? <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>
-              </p>
+              <div class="field" id="fMsg">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required minlength="10" placeholder="How can we help?"></textarea>
+                <p class="errorText">Please enter at least 10 characters.</p>
+              </div>
+
+              <button class="btn btnPrimary" type="submit">Send Message</button>
+              <p class="hint" id="formStatus" aria-live="polite"></p>
             </form>
           </div>
-        </div>
-      </div>
 
-      <!-- Experts preview -->
-      <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
-        <div class="flex items-end justify-between gap-6">
-          <div>
-            <h2 class="text-2xl font-extrabold tracking-tight sm:text-3xl">Our Experts</h2>
-            <p class="mt-2 text-slate-600">Dr. Soyfer, Dr. Mansouri, Dr. Alex</p>
-          </div>
-          <a class="hidden sm:inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-             href="#about">
-            Meet the team
-          </a>
-        </div>
+          <div class="panel" aria-label="Google map">
+            <b style="font-weight:850;">Map</b>
+            <p class="p" style="margin-top:8px;">Interactive Google Maps widget</p>
 
-        <div class="mt-8 grid gap-5 lg:grid-cols-3">
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <div class="flex items-center gap-4">
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">VS</div>
-              <div>
-                <div class="text-lg font-extrabold">Dr. Vladimir Soyfer</div>
-                <div class="text-sm font-semibold text-slate-500">General • Cosmetic • Restorative</div>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600">
-              Focused on precise planning and premium smile outcomes — cosmetic and restorative care.
-            </p>
-          </article>
-
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <div class="flex items-center gap-4">
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">MM</div>
-              <div>
-                <div class="text-lg font-extrabold">Dr. Mazda Mansouri</div>
-                <div class="text-sm font-semibold text-slate-500">Family • Cosmetic • Preventive</div>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600">
-              Gentle approach and clear communication — making visits comfortable and predictable.
-            </p>
-          </article>
-
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <div class="flex items-center gap-4">
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">DA</div>
-              <div>
-                <div class="text-lg font-extrabold">Dr. Alex</div>
-                <div class="text-sm font-semibold text-slate-500">Modern Care • Patient Comfort</div>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600">
-              Dedicated to modern techniques and a calm experience for every patient.
-            </p>
-          </article>
-        </div>
-
-        <div class="mt-6 sm:hidden">
-          <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition w-full"
-             href="#about">
-            Meet the team
-          </a>
-        </div>
-      </section>
-    </section>
-
-    <!-- SERVICES (full section replacing services.html) -->
-    <section id="services" class="scroll-mt-24">
-      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
-          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
-            Modern Dentistry • Under one roof
-          </div>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Services</h2>
-          <p class="mt-3 text-slate-600">
-            Preventive, cosmetic, restorative, and urgent care — delivered with comfort-first precision.
-          </p>
-
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-               href="#book">Book Appointment</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="tel:+15715417977">Call 571-541-7977</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
-               href="#emergency">Emergency</a>
-          </div>
-        </div>
-
-        <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <article id="implants" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
-            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Restorative</div>
-            <h3 class="mt-4 text-xl font-extrabold">Dental Implants</h3>
-            <p class="mt-2 text-sm text-slate-600">Permanent tooth replacement with modern planning and natural-feel outcomes.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>• Single-tooth crowns</li>
-              <li>• Bridges / full-arch options</li>
-              <li>• Planning & sequencing</li>
-            </ul>
-          </article>
-
-          <article id="veneers" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
-            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Cosmetic</div>
-            <h3 class="mt-4 text-xl font-extrabold">Dental Veneers</h3>
-            <p class="mt-2 text-sm text-slate-600">Upgrade shape, color, and symmetry for a premium smile.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>• Porcelain veneers</li>
-              <li>• Smile makeover planning</li>
-              <li>• Natural-looking match</li>
-            </ul>
-          </article>
-
-          <article id="invisalign" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
-            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Orthodontics</div>
-            <h3 class="mt-4 text-xl font-extrabold">Invisalign</h3>
-            <p class="mt-2 text-sm text-slate-600">Clear aligners for a straighter smile with minimal disruption.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>• Clear aligner therapy</li>
-              <li>• Progress check-ins</li>
-              <li>• Bite alignment support</li>
-            </ul>
-          </article>
-
-          <article id="whitening" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
-            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Cosmetic</div>
-            <h3 class="mt-4 text-xl font-extrabold">Teeth Whitening</h3>
-            <p class="mt-2 text-sm text-slate-600">Professional whitening designed for fast, noticeable results.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>• In-office whitening</li>
-              <li>• Sensitivity-aware approach</li>
-              <li>• Smile maintenance tips</li>
-            </ul>
-          </article>
-
-          <article id="root-canal" class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 scroll-mt-24">
-            <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">Endodontics</div>
-            <h3 class="mt-4 text-xl font-extrabold">Root Canal Therapy</h3>
-            <p class="mt-2 text-sm text-slate-600">Accurate treatment to relieve pain and preserve teeth.</p>
-            <ul class="mt-4 space-y-2 text-sm text-slate-700">
-              <li>• Diagnosis and imaging</li>
-              <li>• Gentle endodontic care</li>
-              <li>• Restoration planning</li>
-            </ul>
-          </article>
-
-          <article id="emergency" class="rounded-2xl bg-white shadow-soft ring-2 ring-brand-emergency/30 p-6 scroll-mt-24">
-            <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-brand-emergency ring-1 ring-red-200">Urgent</div>
-            <h3 class="mt-4 text-xl font-extrabold">Emergency Dentist</h3>
-            <p class="mt-2 text-sm text-slate-600">
-              Sudden tooth pain, broken teeth, swelling, bleeding, or injuries — call us for urgent support.
-            </p>
-            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
-                 href="tel:+15715417977">Call Now</a>
-              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                 href="#book">Request Same-Day Visit</a>
-            </div>
-            <p class="mt-3 text-xs text-slate-500">
-              If you have facial trauma or uncontrolled bleeding, seek ER/urgent care immediately.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="scroll-mt-24">
-      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
-          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
-            General & Cosmetic Dentistry • Fairfax Area
-          </div>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">About Fairfax Dental Care</h2>
-          <p class="mt-3 text-slate-600">
-            A warm, caring environment with precise, personalized treatment planning — from checkups to cosmetic and restorative care.
-          </p>
-        </div>
-
-        <div class="mt-8 grid gap-6 lg:grid-cols-3">
-          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 lg:col-span-2">
-            <h3 class="text-xl font-extrabold">Our Philosophy</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">
-              Comfort-first care and clear explanations. You’ll always know what we recommend, why we recommend it,
-              and what outcomes to expect. Our goal is long-term oral health — and the confidence to smile.
-            </p>
-            <div class="mt-6 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-                <div class="text-sm font-extrabold text-brand-primary">Precise planning</div>
-                <div class="mt-1 text-sm text-slate-600">Modern diagnostics and thoughtful sequencing.</div>
-              </div>
-              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-                <div class="text-sm font-extrabold text-brand-primary">Patient comfort</div>
-                <div class="mt-1 text-sm text-slate-600">Gentle visits, reduced anxiety, supportive guidance.</div>
-              </div>
-            </div>
-          </div>
-
-          <aside class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <h3 class="text-xl font-extrabold">Quick Facts</h3>
-            <dl class="mt-4 space-y-3 text-sm text-slate-700">
-              <div class="flex items-start justify-between gap-3">
-                <dt class="font-semibold">Phone</dt>
-                <dd><a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a></dd>
-              </div>
-              <div class="flex items-start justify-between gap-3">
-                <dt class="font-semibold">Address</dt>
-                <dd class="text-right">3275 History Drive<br/>Oakton, VA 22124</dd>
-              </div>
-              <div class="flex items-start justify-between gap-3">
-                <dt class="font-semibold">Hours</dt>
-                <dd class="text-right">Mon–Fri 8:00–17:00<br/>Sat 9:00–13:00</dd>
-              </div>
-            </dl>
-          </aside>
-        </div>
-
-        <div class="mt-8 grid gap-5 lg:grid-cols-3">
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <div class="flex items-center gap-4">
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">VS</div>
-              <div>
-                <div class="text-lg font-extrabold">Dr. Vladimir Soyfer</div>
-                <div class="text-sm font-semibold text-slate-500">General • Cosmetic • Restorative</div>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600">
-              Leads comprehensive care plans — balancing aesthetics, function, and long-term stability.
-            </p>
-          </article>
-
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <div class="flex items-center gap-4">
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">MM</div>
-              <div>
-                <div class="text-lg font-extrabold">Dr. Mazda Mansouri</div>
-                <div class="text-sm font-semibold text-slate-500">Family • Cosmetic • Preventive</div>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600">
-              Focused on gentle dentistry and clear, empathetic patient communication.
-            </p>
-          </article>
-
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6">
-            <div class="flex items-center gap-4">
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-primary/10 text-brand-primary font-extrabold">DA</div>
-              <div>
-                <div class="text-lg font-extrabold">Dr. Alex</div>
-                <div class="text-sm font-semibold text-slate-500">Comfort • Modern Care</div>
-              </div>
-            </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-600">
-              Dedicated to comfortable visits and modern techniques tailored to each patient.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PATIENTS -->
-    <section id="patients" class="scroll-mt-24">
-      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
-          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
-            New patients welcome
-          </div>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">For Patients</h2>
-          <p class="mt-3 text-slate-600">
-            Everything you need before your visit: insurance guidance, flexible payments, and downloadable forms.
-          </p>
-
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-               href="#book">Book Appointment</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="#forms">Patient Forms</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="#payments">Payment Options</a>
-          </div>
-        </div>
-
-        <div class="mt-8 grid gap-6 lg:grid-cols-3">
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6" id="insurances">
-            <h3 class="text-xl font-extrabold">Insurances</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">
-              We accept claims from many insurance companies and help maximize benefits.
-            </p>
-            <div class="mt-5 rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-              <div class="text-sm font-extrabold text-brand-primary">Tip</div>
-              <p class="mt-2 text-sm text-slate-700">
-                Bring your insurance card and a photo ID — we’ll verify coverage and estimate out-of-pocket costs.
-              </p>
-            </div>
-          </article>
-
-          <article class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 lg:col-span-2" id="payments">
-            <h3 class="text-xl font-extrabold">Payment Options</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">
-              Flexible financing is available, including major credit cards and monthly-term options.
-            </p>
-
-            <div class="mt-6 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-                <div class="text-sm font-extrabold text-brand-primary">Cards accepted</div>
-                <p class="mt-2 text-sm text-slate-700">Visa, MasterCard, Discover, American Express.</p>
-              </div>
-              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-                <div class="text-sm font-extrabold text-brand-primary">Financing</div>
-                <p class="mt-2 text-sm text-slate-700">
-                  CareCredit and ChaseHealthAdvance. Options include no-interest up to 12 months or up to 60 months terms.
-                </p>
-              </div>
-              <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5 sm:col-span-2">
-                <div class="text-sm font-extrabold text-brand-primary">Savings</div>
-                <p class="mt-2 text-sm text-slate-700">
-                  5% off for cash/check payments over $2,000 when paying in advance/on treatment day.
-                </p>
-              </div>
-            </div>
-
-            <div class="mt-6">
-              <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                 href="tel:+15715417977">Questions? Call 571-541-7977</a>
-            </div>
-          </article>
-        </div>
-
-        <section class="mt-8 rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 sm:p-8" id="forms">
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h3 class="text-xl font-extrabold">Patient Forms</h3>
-              <p class="mt-2 text-sm text-slate-600">
-                Download, print, and complete the appropriate questionnaire before your visit.
-              </p>
-            </div>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-               href="#book">Book Appointment</a>
-          </div>
-
-          <div class="mt-6 grid gap-4 lg:grid-cols-3">
-            <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-              <div class="text-sm font-extrabold">Young Patient Questionnaire</div>
-              <div class="mt-3 flex gap-2">
-                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Young_Patient_Questionnaire.pdf">PDF</a>
-                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Young_Patient_Questionnaire.doc">DOC</a>
-              </div>
-            </div>
-
-            <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-              <div class="text-sm font-extrabold">Adult Questionnaire</div>
-              <div class="mt-3 flex gap-2">
-                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Adult_Questionnaire.pdf">PDF</a>
-                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Adult_Questionnaire.doc">DOC</a>
-              </div>
-            </div>
-
-            <div class="rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-              <div class="text-sm font-extrabold">Universal Questionnaire</div>
-              <div class="mt-3 flex gap-2">
-                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Universal_Questionnaire.pdf">PDF</a>
-                <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-                   href="https://d13ldho5u946x8.cloudfront.net/patient_form/Universal_Questionnaire.doc">DOC</a>
-              </div>
-            </div>
-          </div>
-
-          <p class="mt-5 text-xs text-slate-500">
-            Bring completed forms to your appointment (or arrive early to complete them in-office).
-          </p>
-        </section>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="scroll-mt-24">
-      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-8 sm:p-10">
-          <div class="inline-flex items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
-            <span class="h-2 w-2 rounded-full bg-brand-gold"></span>
-            Oakton / Fairfax, VA
-          </div>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Contact Us</h2>
-          <p class="mt-3 text-slate-600">
-            Call, request an appointment, or send a message — we’ll respond as quickly as possible.
-          </p>
-
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-               href="#book">Book Appointment</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="tel:+15715417977">Call 571-541-7977</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-emergency text-white hover:brightness-110 transition"
-               href="#emergency">Emergency</a>
-          </div>
-        </div>
-
-        <div class="mt-8 grid gap-6 lg:grid-cols-2">
-          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 overflow-hidden">
-            <iframe
-              title="Map: 3275 History Drive Oakton VA 22124"
-              class="h-80 w-full"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=3275+History+Drive+Oakton+VA+22124&output=embed">
-            </iframe>
-
-            <div class="p-6">
-              <div class="text-lg font-extrabold">Fairfax Dental Care</div>
-              <div class="mt-2 text-sm text-slate-700">
-                3275 History Drive, Oakton, VA 22124<br/>
-                Phone: <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>
-              </div>
-
-              <div class="mt-5 rounded-2xl bg-brand-secondary p-5 ring-1 ring-slate-900/5">
-                <div class="text-sm font-extrabold text-brand-primary">Hours</div>
-                <dl class="mt-3 space-y-2 text-sm text-slate-700">
-                  <div class="flex justify-between"><dt class="font-semibold">Mon–Fri</dt><dd>8:00 – 17:00</dd></div>
-                  <div class="flex justify-between"><dt class="font-semibold">Saturday</dt><dd>9:00 – 13:00</dd></div>
-                </dl>
-              </div>
-            </div>
-          </div>
-
-          <!-- Booking form -->
-          <div class="rounded-2xl bg-white shadow-soft ring-1 ring-slate-900/5 p-6 sm:p-8 scroll-mt-24" id="book">
-            <h3 class="text-xl font-extrabold">Request an Appointment</h3>
-            <p class="mt-2 text-sm text-slate-600">
-              Fill the form and we’ll confirm availability by phone. If urgent, call
-              <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a>.
-            </p>
-
-            <form class="mt-6 grid gap-4" id="bookForm">
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label class="text-sm font-semibold text-slate-700" for="cName">Full name</label>
-                  <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
-                         id="cName" name="name" autocomplete="name" required />
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-slate-700" for="cPhone">Phone</label>
-                  <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
-                         id="cPhone" name="phone" autocomplete="tel" required />
-                </div>
-              </div>
-
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label class="text-sm font-semibold text-slate-700" for="cEmail">Email (optional)</label>
-                  <input class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold"
-                         id="cEmail" name="email" type="email" autocomplete="email" />
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-slate-700" for="cService">Service</label>
-                  <select class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 focus:ring-2 focus:ring-brand-gold"
-                          id="cService" name="service" required>
-                    <option>General Checkup</option>
-                    <option>Dental Implants</option>
-                    <option>Veneers</option>
-                    <option>Invisalign</option>
-                    <option>Teeth Whitening</option>
-                    <option>Root Canal Therapy</option>
-                    <option>Emergency</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label class="text-sm font-semibold text-slate-700" for="cMsg">Message</label>
-                <textarea class="mt-2 w-full rounded-2xl bg-white px-4 py-3 text-sm ring-1 ring-slate-900/10 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-gold min-h-[120px]"
-                          id="cMsg" name="message" placeholder="Preferred day/time and any symptoms."></textarea>
-              </div>
-
-              <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold bg-brand-primary text-white hover:brightness-110 transition"
-                      type="submit">
-                Submit Request
-              </button>
-
-              <p class="mt-3 text-xs text-slate-500">
-                Note: This form is not a secure messaging system. Avoid sending sensitive medical information.
-              </p>
-            </form>
-
-            <div id="formToast" class="hidden mt-4 rounded-2xl bg-brand-secondary p-4 ring-1 ring-slate-900/5 text-sm text-slate-700">
-              ✅ Request prepared. Hook this form to your backend (or Netlify Forms) to receive submissions.
+            <div class="map" style="margin-top:12px;">
+              <iframe
+                title="Google Maps - 3275 History Drive Oakton VA 22124"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed">
+              </iframe>
             </div>
           </div>
         </div>
@@ -760,131 +848,180 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-200/70 bg-white">
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-      <div class="grid gap-10 lg:grid-cols-4">
-        <div>
-          <div class="flex items-center gap-3">
-            <div class="grid h-10 w-10 place-items-center rounded-2xl bg-brand-primary text-white font-black">FDC</div>
-            <div>
-              <div class="text-sm font-extrabold">Fairfax Dental Care</div>
-              <div class="text-xs font-semibold text-slate-500">Modern General & Cosmetic Dentistry</div>
-            </div>
-          </div>
-          <p class="mt-4 text-sm text-slate-600">
-            Family-friendly care, cosmetic upgrades, implants, Invisalign, and fast support when you need it.
-          </p>
-        </div>
-
-        <div>
-          <div class="text-sm font-extrabold">Links</div>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#services">Services</a></li>
-            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#about">About Us</a></li>
-            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#patients">For Patients</a></li>
-            <li><a class="text-brand-primary hover:underline underline-offset-4" href="#contact">Contacts</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="text-sm font-extrabold">Contact</div>
-          <ul class="mt-4 space-y-2 text-sm text-slate-700">
-            <li><span class="font-semibold">Phone:</span> <a class="text-brand-primary hover:underline underline-offset-4" href="tel:+15715417977">571-541-7977</a></li>
-            <li><span class="font-semibold">Address:</span> 3275 History Drive, Oakton, VA 22124</li>
-            <li><span class="font-semibold">Hours:</span> Mon–Fri 8:00–17:00, Sat 9:00–13:00</li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="text-sm font-extrabold">Actions</div>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="#book">Book</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="#forms">Forms</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-brand-primary ring-1 ring-brand-primary/25 hover:bg-brand-secondary transition"
-               href="#emergency">Emergency</a>
-          </div>
-
-          <p class="mt-4 text-xs text-slate-500">
-            © <span id="year"></span> Fairfax Dental Care. All rights reserved.
-          </p>
-        </div>
+  <footer aria-label="Footer">
+    <div class="wrap foot">
+      <div class="logoSmall">
+        <img src="images/logo.jpg" alt="Fairfax Dentist logo" />
+        <small>© 2006-2026 Fairfax Dentist</small>
       </div>
+
+      <small>
+        <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a> •
+        <a href="tel:5715417977">571-541-7977</a>
+      </small>
     </div>
   </footer>
 
+  <!-- Image Modal (Full-view) -->
+  <div class="modalOverlay" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview modal">
+    <div class="modal" role="document">
+      <div class="modalBar">
+        <b id="modalTitle">Preview</b>
+        <button class="modalClose" id="modalClose" aria-label="Close preview">✕</button>
+      </div>
+      <div class="modalBody">
+        <img id="modalImg" alt="" />
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Year
-    document.getElementById("year").textContent = String(new Date().getFullYear());
+    (function(){
+      "use strict";
 
-    // Mobile menu
-    const btn = document.getElementById("menuBtn");
-    const menu = document.getElementById("mobileMenu");
-    const closeMenu = () => {
-      if (!btn || !menu) return;
-      menu.classList.add("hidden");
-      btn.setAttribute("aria-expanded", "false");
-    };
-    const toggleMenu = () => {
-      if (!btn || !menu) return;
-      const isOpen = !menu.classList.contains("hidden");
-      if (isOpen) closeMenu();
-      else {
-        menu.classList.remove("hidden");
-        btn.setAttribute("aria-expanded", "true");
+      // Menu
+      const root = document.documentElement;
+      const burger = document.getElementById("burger");
+      const drawer = document.getElementById("drawer");
+      const overlay = document.getElementById("drawerOverlay");
+      const closeBtn = document.getElementById("drawerClose");
+      const menuLinks = drawer.querySelectorAll('a[href^="#"]');
+
+      function openMenu(){
+        root.classList.add("isMenuOpen");
+        burger.setAttribute("aria-expanded","true");
+        drawer.setAttribute("aria-hidden","false");
+        overlay.setAttribute("aria-hidden","false");
       }
-    };
-    btn?.addEventListener("click", toggleMenu);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
-    document.addEventListener("click", (e) => {
-      if (!menu || !btn) return;
-      const t = e.target;
-      if (menu.contains(t) || btn.contains(t)) return;
-      closeMenu();
-    });
-    // Close menu on link click
-    menu?.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (a) closeMenu();
-    });
-
-    // Active nav highlight (IntersectionObserver)
-    const sections = ["home","services","about","patients","contact"]
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
-
-    const setActive = (id) => {
-      document.querySelectorAll(".navlink").forEach(a => {
-        const k = a.getAttribute("data-nav");
-        const isActive = k === id;
-        a.classList.toggle("bg-brand-secondary", isActive);
-        a.classList.toggle("text-brand-primary", isActive);
-        a.classList.toggle("text-slate-700", !isActive);
+      function closeMenu(){
+        root.classList.remove("isMenuOpen");
+        burger.setAttribute("aria-expanded","false");
+        drawer.setAttribute("aria-hidden","true");
+        overlay.setAttribute("aria-hidden","true");
+      }
+      burger.addEventListener("click", () => {
+        const expanded = burger.getAttribute("aria-expanded")==="true";
+        expanded ? closeMenu() : openMenu();
       });
-    };
+      overlay.addEventListener("click", closeMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      menuLinks.forEach(a => a.addEventListener("click", closeMenu));
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") closeMenu();
+      });
 
-    const io = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible?.target?.id) setActive(visible.target.id);
-    }, { root: null, threshold: [0.2, 0.35, 0.5] });
+      // Reveal (lightweight)
+      const revealEls = document.querySelectorAll("[data-reveal]");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if(en.isIntersecting){
+            en.target.classList.add("is-visible");
+            io.unobserve(en.target);
+          }
+        });
+      }, {threshold: 0.12});
+      revealEls.forEach(el => io.observe(el));
 
-    sections.forEach(s => io.observe(s));
+      // Image modal (full-view, no crop)
+      const imgModal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalClose = document.getElementById("modalClose");
+      const modalTitle = document.getElementById("modalTitle");
 
-    // Demo submit handler (no backend). Replace with Netlify Forms / your backend.
-    const toast = document.getElementById("formToast");
-    const onFakeSubmit = (form) => {
+      function supportsWebP(){
+        // cheap feature check (if browser can parse webp in image-set, it can usually load webp)
+        return true;
+      }
+
+      function openImage(img){
+        const webp = img.getAttribute("data-full-webp");
+        const jpg = img.getAttribute("data-full-jpg") || img.currentSrc || img.src;
+
+        const src = (supportsWebP() && webp) ? webp : jpg;
+        modalImg.src = src;
+        modalImg.alt = img.alt || "Image preview";
+        modalTitle.textContent = img.alt || "Preview";
+
+        imgModal.setAttribute("aria-hidden","false");
+        document.body.style.overflow = "hidden";
+        modalClose.focus();
+      }
+      function closeImage(){
+        imgModal.setAttribute("aria-hidden","true");
+        modalImg.src = "";
+        document.body.style.overflow = "";
+      }
+
+      // Make all images clickable (except logo), as per spec
+      const clickableImgs = Array.from(document.querySelectorAll("img"))
+        .filter(im => !im.closest(".brand") && !im.closest(".logoSmall"));
+
+      clickableImgs.forEach(im => {
+        im.style.cursor = "zoom-in";
+        im.addEventListener("click", () => openImage(im));
+      });
+
+      imgModal.addEventListener("click", (e) => {
+        if(e.target === imgModal) closeImage();
+      });
+      modalClose.addEventListener("click", closeImage);
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape" && imgModal.getAttribute("aria-hidden") === "false") closeImage();
+      });
+
+      // Form validation + confirmation
+      const form = document.getElementById("contactForm");
+      const status = document.getElementById("formStatus");
+
+      function setError(fieldId, on){
+        const el = document.getElementById(fieldId);
+        if(!el) return;
+        on ? el.classList.add("hasError") : el.classList.remove("hasError");
+      }
+
+      function validate(){
+        let ok = true;
+
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const phone = document.getElementById("phone");
+        const msg = document.getElementById("message");
+
+        // Name
+        const nameOk = name.value.trim().length >= 2;
+        setError("fName", !nameOk); ok = ok && nameOk;
+
+        // Email
+        const emailOk = email.checkValidity();
+        setError("fEmail", !emailOk); ok = ok && emailOk;
+
+        // Phone pattern
+        const phoneOk = phone.checkValidity();
+        setError("fPhone", !phoneOk); ok = ok && phoneOk;
+
+        // Message
+        const msgOk = msg.value.trim().length >= 10;
+        setError("fMsg", !msgOk); ok = ok && msgOk;
+
+        return ok;
+      }
+
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-        toast?.classList.remove("hidden");
-        setTimeout(() => toast?.classList.add("hidden"), 4500);
+        status.textContent = "";
+
+        const ok = validate();
+        if(!ok){
+          status.textContent = "Please fix the highlighted fields and try again.";
+          return;
+        }
+
+        // Demo send (no backend): confirm sent
+        status.textContent = "Message sent successfully. We’ll contact you shortly.";
         form.reset();
       });
-    };
-    onFakeSubmit(document.getElementById("heroForm"));
-    onFakeSubmit(document.getElementById("bookForm"));
+
+    })();
   </script>
 </body>
 </html>
