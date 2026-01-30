@@ -388,8 +388,10 @@
     .modalOverlay[aria-hidden="false"]{display:grid}
     .modal{
       margin:auto;
-      width:min(1100px, 96vw);
-      height:min(86vh, 820px);
+      width:min(1100px, 95vw);
+      height:min(90vh, 820px);
+      max-width:95vw;
+      max-height:90vh;
       border:1px solid rgba(255,255,255,.22);
       background:rgba(0,0,0,.25);
       display:grid;
@@ -421,7 +423,10 @@
     .modalBody img{
       width:100%;
       height:100%;
+      max-width:95%;
+      max-height:90vh;
       object-fit:contain; /* IMPORTANT: full-view without crop */
+      object-position:center;
       background:transparent;
     }
 
@@ -439,6 +444,31 @@
     }
     @media (min-width:1024px){
       .servicesGrid{grid-template-columns:repeat(4, 1fr)}
+    }
+
+    /* Mobile fixes (<768px): safe side padding + footer stack */
+    @media (max-width: 767.98px){
+      /* Safe Areas: минимум 20px по бокам (включая Hero) */
+      .wrap{
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+      }
+
+      /* Footer: mobile stack in required order */
+      .foot{
+        flex-direction: column;
+        align-items: center; /* можно заменить на flex-start */
+        text-align: center;  /* можно заменить на left */
+        gap: 10px;
+      }
+      .footAddress{ order:1; display:block; }
+      .footEmail{ order:2; display:block; }
+      .logoSmall{ order:3; flex-direction:column; justify-content:center; }
+
+      /* На мобиле строго: Address -> Email -> Copyright */
+      .footPhone,
+      .footSep,
+      .logoSmall img{ display:none; }
     }
 
     /* Reduced motion */
@@ -850,15 +880,18 @@
   <!-- Footer -->
   <footer aria-label="Footer">
     <div class="wrap foot">
+      <small class="footAddress">3275 History Drive Oakton VA 22124</small>
+
+      <small class="footEmail">
+        <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a>
+        <span class="footSep" aria-hidden="true"> • </span>
+        <a class="footPhone" href="tel:5715417977">571-541-7977</a>
+      </small>
+
       <div class="logoSmall">
         <img src="images/logo.jpg" alt="Fairfax Dentist logo" />
-        <small>© 2006-2026 Fairfax Dentist</small>
+        <small class="footCopy">© 2006-2026 Fairfax Dentist</small>
       </div>
-
-      <small>
-        <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a> •
-        <a href="tel:5715417977">571-541-7977</a>
-      </small>
     </div>
   </footer>
 
