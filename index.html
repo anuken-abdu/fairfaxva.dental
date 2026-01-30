@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#ffffff" />
 
   <title>Fairfax Dentist | Comprehensive Dental Care in Fairfax, VA</title>
-  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry. Implants, veneers, emergency, Invisalign, whitening, and more." />
+  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Implants, veneers, emergency, Invisalign, whitening, and more." />
 
   <meta property="og:title" content="Fairfax Dentist" />
   <meta property="og:description" content="Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry." />
@@ -45,11 +45,14 @@
       /* Hero Backgrounds */
       --hero-image-webp: url("images/hero.webp");
       --hero-image-jpg: url("images/hero.jpg");
+
+      /* Fixed UI */
+      --bottomBarH: 72px;
+      --shadow: 0 18px 45px rgba(17,24,39,0.14);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; height: 100%; }
-
     body {
       margin: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -57,6 +60,7 @@
       color: var(--ink);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(var(--bottomBarH) + env(safe-area-inset-bottom)); /* reserve for fixed bottom bar */
     }
 
     img { max-width: 100%; height: auto; display: block; }
@@ -72,9 +76,7 @@
       padding-right: max(var(--pad), env(safe-area-inset-right));
     }
 
-    .section {
-      padding: clamp(60px, 8vw, 100px) 0;
-    }
+    .section { padding: clamp(60px, 8vw, 100px) 0; }
 
     .bg-ice { background-color: var(--bg-ice); }
     .bg-white { background-color: var(--bg-white); }
@@ -87,6 +89,14 @@
       padding: 12px 20px; z-index: 9999;
     }
     .skip:focus { left: 20px; top: 20px; }
+
+    /* Unified icon style */
+    .icon{
+      width: 20px; height: 20px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
 
     header {
       position: sticky; top: 0; z-index: 100;
@@ -101,13 +111,21 @@
     .brand img { height: 40px; width: auto; }
 
     .right { display: flex; align-items: center; gap: 20px; }
-
     .phone {
       display: none;
       font-weight: 600;
       font-size: 15px;
       letter-spacing: -0.01em;
+      position: relative;
     }
+    .phone::after{
+      content:"";
+      position:absolute; left:0; bottom:-6px; width:100%; height:2px;
+      background: linear-gradient(90deg, transparent, rgba(37,99,235,.55), transparent);
+      opacity:.0; transform: scaleX(.85);
+      transition: .25s ease;
+    }
+    .phone:hover::after{ opacity:1; transform: scaleX(1); }
 
     .burger {
       width: 48px; height: 48px;
@@ -124,23 +142,29 @@
     .burger span:nth-child(3) { width: 18px; }
     .burger:hover span { width: 32px; background: var(--accent); }
 
+    /* Hero */
     .hero {
       position: relative;
       min-height: 85vh;
       display: flex; align-items: center;
       background: var(--bg-ice);
       overflow: hidden;
+      --heroScale: 1;
     }
     .hero::before {
       content: ""; position: absolute; inset: 0;
       background-image: var(--hero-image-jpg);
       background-size: cover; background-position: center;
-      opacity: 0.5;
+      opacity: 1; /* ✅ removed transparency as requested */
       z-index: 0;
+      transform: scale(var(--heroScale));
+      transform-origin: center;
+      will-change: transform;
     }
     .hero::after {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%);
+      /* keep soft overlay for readability, not an image transparency */
+      background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 42%, rgba(255,255,255,0.15) 100%);
       z-index: 1;
     }
 
@@ -156,6 +180,8 @@
       font-weight: 700;
       font-size: 13px;
       color: var(--accent);
+      display: inline-flex; align-items: center; gap: 10px;
+      animation: slideIn .7s ease both;
     }
 
     h1 {
@@ -165,52 +191,82 @@
       letter-spacing: -0.03em;
       margin: 0;
       color: var(--ink);
+      animation: fadeUp .85s ease .05s both;
     }
 
     .sub {
       font-size: var(--p);
       color: var(--muted);
       max-width: 90%;
+      animation: fadeUp .85s ease .12s both;
     }
 
     .ctaRow {
       display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;
+      animation: fadeUp .85s ease .18s both;
     }
 
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: 16px 32px;
       font-weight: 600;
       font-size: 16px;
       border: 1px solid transparent;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease, box-shadow .2s ease;
+      position: relative;
+      will-change: transform;
     }
+    .btn:active{ transform: translateY(1px) scale(0.99); }
 
     .btnPrimary {
       background: var(--btn-bg);
       color: var(--btn-text);
+      box-shadow: var(--shadow);
     }
     .btnPrimary:hover {
       background: var(--accent);
       border-color: var(--accent);
+      transform: translateY(-2px);
     }
 
     .btnSecondary {
       background: transparent;
-      border: 1px solid var(--ink);
+      border: 1px solid rgba(17,24,39,.28);
       color: var(--ink);
     }
-    .btnSecondary:hover { background: var(--bg-ice); }
+    .btnSecondary:hover {
+      background: rgba(245,247,250,.75);
+      transform: translateY(-2px);
+      border-color: rgba(37,99,235,.35);
+    }
 
+    /* Titles + soft glow behind all section headers */
     .h2 {
       font-size: var(--h2);
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
       line-height: 1.2;
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+    }
+    .h2::before{
+      content:"";
+      position:absolute;
+      left:-14px; right:-14px;
+      top: 62%;
+      height: 1.05em;
+      transform: translateY(-50%);
+      background: radial-gradient(60% 120% at 40% 50%, rgba(37,99,235,.18), rgba(37,99,235,0) 70%),
+                  radial-gradient(60% 120% at 70% 40%, rgba(99,102,241,.12), rgba(99,102,241,0) 70%);
+      filter: blur(10px);
+      z-index: -1;
+      animation: glowPulse 6s ease-in-out infinite;
     }
 
+    /* Services */
     .servicesGrid {
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
@@ -223,7 +279,6 @@
       cursor: pointer;
     }
     .card:hover { transform: translateY(-4px); }
-
     .card:focus-visible{
       outline: 2px solid var(--accent);
       outline-offset: 6px;
@@ -233,31 +288,51 @@
       aspect-ratio: 4/3;
       overflow: hidden;
       background: var(--bg-ice);
+      box-shadow: 0 10px 28px rgba(17,24,39,0.10);
+      transform: translateZ(0);
     }
     .cardMedia img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.55s ease, filter .55s ease;
+      filter: saturate(1.02) contrast(1.02);
     }
-    .card:hover .cardMedia img { transform: scale(1.05); }
+    .card:hover .cardMedia img { transform: scale(1.06); }
 
     .cardBody { padding: 0; }
-    .cardTitle { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+    .cardHead{ display:flex; align-items:center; gap: 12px; margin-bottom: 6px; }
+    .svcIcon{
+      width: 38px; height: 38px;
+      display: grid; place-items: center;
+      color: var(--accent);
+      background: rgba(37,99,235,.10);
+      box-shadow: inset 0 0 0 1px rgba(37,99,235,.12);
+      border-radius: 14px;
+      transition: transform .25s ease, background .25s ease;
+      animation: floaty 5.5s ease-in-out infinite;
+    }
+    .card:hover .svcIcon{ transform: translateY(-1px) rotate(-2deg); background: rgba(37,99,235,.14); }
+    .svcIcon .icon{ width: 20px; height: 20px; }
+
+    .cardTitle { margin: 0; font-size: 20px; font-weight: 700; }
     .cardText { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; }
 
+    /* About */
     .aboutBox {
       background: var(--bg-white);
       padding: 40px;
       border-left: 4px solid var(--accent);
+      box-shadow: 0 10px 28px rgba(17,24,39,0.06);
+      transform: translateZ(0);
     }
     .aboutBox p { margin-bottom: 20px; font-size: 17px; }
 
-    .contactGrid {
-      display: grid; grid-template-columns: 1fr; gap: 40px;
-    }
+    /* Contact */
+    .contactGrid { display: grid; grid-template-columns: 1fr; gap: 40px; }
     .panel {
       background: var(--bg-white);
       padding: 30px;
       height: 100%;
+      box-shadow: 0 10px 28px rgba(17,24,39,0.06);
     }
 
     .hoursRow {
@@ -275,12 +350,13 @@
       border: 1px solid #e2e8f0;
       background: #f8fafc;
       font-size: 16px;
-      transition: 0.2s;
+      transition: border-color .2s ease, background .2s ease, transform .12s ease;
       outline: none;
     }
     input:focus, textarea:focus {
       border-color: var(--accent);
       background: #fff;
+      transform: translateY(-1px);
     }
     label {
       display: block;
@@ -297,6 +373,7 @@
 
     .mapFrame { width: 100%; height: 300px; border: none; background: #eee; }
 
+    /* Footer */
     footer {
       background: var(--bg-dark);
       color: #fff;
@@ -311,16 +388,14 @@
     .footAddress { opacity: 0.6; }
 
     @media (max-width: 767.98px) {
-      .foot {
-        flex-direction: column;
-        text-align: center;
-      }
+      .foot { flex-direction: column; text-align: center; }
       .footAddress { order: 1; margin-bottom: 8px; }
       .footEmail { order: 2; margin-bottom: 20px; font-size: 18px; }
       .logoSmall { order: 3; opacity: 0.5; font-size: 12px; }
       .footPhone, .footSep, .logoSmall img { display: none; }
     }
 
+    /* Drawer */
     .drawer {
       position: fixed; top: 0; right: 0; height: 100%; width: 300px;
       background: #fff; z-index: 200;
@@ -348,13 +423,7 @@
       padding: 0;
     }
     .modalOverlay[aria-hidden="false"] { display: flex; }
-
-    .modal {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      background: transparent; box-shadow: none;
-    }
-
+    .modal { width: 100%; height: 100%; display: flex; flex-direction: column; background: transparent; box-shadow: none; }
     .modalBar {
       position: absolute; top: 0; left: 0; right: 0;
       padding: 20px; z-index: 10;
@@ -362,35 +431,113 @@
       color: #fff;
       background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
     }
-    .modalClose {
-      font-size: 32px; color: #fff; background: none; border: none; cursor: pointer;
-    }
+    .modalClose { font-size: 32px; color: #fff; background: none; border: none; cursor: pointer; }
+    .modalBody { flex: 1; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 0; }
+    .modalBody img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; }
 
-    .modalBody {
-      flex: 1;
-      width: 100%; height: 100%;
-      display: flex; justify-content: center; align-items: center;
-      padding: 0;
+    /* Fixed bottom bar (3 buttons) */
+    .bottomBar{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 140;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
     }
-    .modalBody img {
-      width: 100%; height: 100%;
-      max-width: 100%; max-height: 100%;
-      object-fit: contain;
+    .bottomBarInner{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      align-items: center;
     }
+    .bBtn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(17,24,39,0.08);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      user-select: none;
+    }
+    .bBtn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(17,24,39,0.12); }
+    .bBtn:active{ transform: translateY(0px) scale(.99); }
+    .bBtnPrimary{
+      background: linear-gradient(180deg, rgba(37,99,235,.14), rgba(37,99,235,.07));
+      color: var(--ink);
+    }
+    .bBtn .icon{ width: 18px; height: 18px; }
+
+    /* Back to top */
+    .toTop{
+      position: fixed;
+      right: 16px;
+      bottom: calc(var(--bottomBarH) + 18px + env(safe-area-inset-bottom));
+      width: 52px; height: 52px;
+      border: none;
+      background: var(--btn-bg);
+      color: #fff;
+      box-shadow: var(--shadow);
+      display: grid; place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease, background .2s ease;
+      z-index: 160;
+    }
+    .toTop:hover{ background: var(--accent); transform: translateY(0px) scale(1); }
+    .toTop.is-visible{
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+      pointer-events: auto;
+    }
+    .toTop .icon{ width: 22px; height: 22px; }
 
     @media (min-width: 768px) {
       .phone { display: block; }
       .contactGrid { grid-template-columns: 1fr 1fr; }
       .servicesGrid { grid-template-columns: repeat(2, 1fr); }
       .burger { display: none; }
+      .bottomBarInner{ grid-template-columns: repeat(3, 220px); justify-content: center; }
     }
     @media (min-width: 1024px) {
       .servicesGrid { grid-template-columns: repeat(4, 1fr); }
       .burger { display: none; }
     }
 
-    [data-reveal] { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
+    /* Reveal */
+    [data-reveal] { opacity: 0; transform: translateY(20px); transition: 0.75s cubic-bezier(0.2, 0.8, 0.2, 1); }
     [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Animations */
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(16px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+    @keyframes slideIn{
+      from{ opacity:0; transform: translateX(-10px); }
+      to{ opacity:1; transform: translateX(0); }
+    }
+    @keyframes glowPulse{
+      0%,100%{ opacity:.85; transform: translateY(-50%) scale(1); }
+      50%{ opacity:1; transform: translateY(-50%) scale(1.03); }
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-2px); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *, *::before, *::after{ animation: none !important; transition: none !important; }
+      .hero{ --heroScale: 1 !important; }
+    }
   </style>
 </head>
 
@@ -415,7 +562,7 @@
   <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawerHead">
-      <button class="drawerClose" id="drawerClose">✕</button>
+      <button class="drawerClose" id="drawerClose" aria-label="Close menu">✕</button>
     </div>
     <div class="drawerBody">
       <a class="navLink" href="#home">Home</a>
@@ -431,14 +578,39 @@
 
   <section class="hero" aria-label="Hero">
     <div class="wrap heroInner">
-      <div class="kicker">Comprehensive • Modern • Family</div>
+      <div class="kicker">
+        <!-- Dentist icon -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 3h8"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+        </svg>
+        Comprehensive • Modern • Family
+      </div>
+
       <h1>Fairfax Dentist</h1>
       <div class="sub">
         Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.
       </div>
       <div class="ctaRow">
-        <a class="btn btnPrimary" href="#contact">Book an Appointment</a>
-        <a class="btn btnSecondary" href="#services">View Services</a>
+        <a class="btn btnPrimary" href="#contact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 6h13"></path>
+            <path d="M8 12h13"></path>
+            <path d="M8 18h13"></path>
+            <path d="M3 6h.01"></path>
+            <path d="M3 12h.01"></path>
+            <path d="M3 18h.01"></path>
+          </svg>
+          Book an Appointment
+        </a>
+        <a class="btn btnSecondary" href="#services">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5v14"></path>
+            <path d="M5 12h14"></path>
+          </svg>
+          View Services
+        </a>
       </div>
     </div>
   </section>
@@ -450,8 +622,7 @@
         <h2 class="h2" style="max-width:600px;">Advanced dental solutions under one roof</h2>
 
         <div class="grid servicesGrid" style="margin-top:40px;">
-          <!-- NOTE: Cards now open service.html in a NEW TAB (as requested) -->
-
+          <!-- Cards open service.html in a NEW TAB -->
           <a class="card" href="service.html?service=implants" target="_blank" rel="noopener" aria-label="Dental Implants — open details page">
             <div class="cardMedia">
               <picture>
@@ -460,7 +631,18 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Dental Implants</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M8 3h8"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                    <path d="M12 12v5"></path>
+                    <path d="M9.5 14.5h5"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Dental Implants</h3>
+              </div>
               <p class="cardText">Permanent and natural-looking solutions to restore missing teeth and oral functionality.</p>
             </div>
           </a>
@@ -473,7 +655,19 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Dental Veneers</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M8 3h8"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                    <path d="M19 6l1 1"></path>
+                    <path d="M18 8l2 2"></path>
+                    <path d="M17 10l1 1"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Dental Veneers</h3>
+              </div>
               <p class="cardText">Custom-crafted porcelain shells designed to enhance the color, shape, and overall aesthetics of your smile.</p>
             </div>
           </a>
@@ -486,7 +680,18 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Emergency Dentist</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 9v4"></path>
+                    <path d="M12 17h.01"></path>
+                    <path d="M10 3h4"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Emergency Dentist</h3>
+              </div>
               <p class="cardText">Urgent dental intervention for pain relief, trauma, and acute infections with same-day availability.</p>
             </div>
           </a>
@@ -499,7 +704,18 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Invisalign</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M7 7h10"></path>
+                    <path d="M6 10h12"></path>
+                    <path d="M7 13h10"></path>
+                    <path d="M8 16h8"></path>
+                    <path d="M9 19h6"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Invisalign</h3>
+              </div>
               <p class="cardText">Advanced orthodontic treatment using clear, removable aligners for a discreet and comfortable smile correction.</p>
             </div>
           </a>
@@ -512,7 +728,18 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Teeth Whitening</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 3l.7 2.1L15 6l-2.3.9L12 9l-.7-2.1L9 6l2.3-.9L12 3z"></path>
+                    <path d="M19 9l.6 1.8L21 12l-1.4.7L19 15l-.6-2.3L17 12l1.4-.7L19 9z"></path>
+                    <path d="M8 3h8"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Teeth Whitening</h3>
+              </div>
               <p class="cardText">Professional-grade brightening treatments to effectively remove deep stains and restore natural radiance.</p>
             </div>
           </a>
@@ -525,7 +752,20 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Root Canal</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M14 4l6 6"></path>
+                    <path d="M16 2l6 6"></path>
+                    <path d="M4 20l8-8"></path>
+                    <path d="M8 21l-5-5"></path>
+                    <path d="M10 3h4"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Root Canal</h3>
+              </div>
               <p class="cardText">Specialized endodontic therapy focused on saving infected teeth and preventing further complications.</p>
             </div>
           </a>
@@ -538,7 +778,14 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Aesthetic Dentistry</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 2l2.4 6.5L21 9l-5 4 1.8 7L12 16.8 6.2 20 8 13 3 9l6.6-.5L12 2z"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Aesthetic Dentistry</h3>
+              </div>
               <p class="cardText">A comprehensive approach to smile design, merging restorative techniques with artistic precision.</p>
             </div>
           </a>
@@ -551,7 +798,19 @@
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Dental X-Rays</h3>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M4 6h16"></path>
+                    <path d="M6 4v16"></path>
+                    <path d="M18 4v16"></path>
+                    <path d="M4 18h16"></path>
+                    <path d="M9 9l6 6"></path>
+                    <path d="M15 9l-6 6"></path>
+                  </svg>
+                </span>
+                <h3 class="cardTitle">Dental X-Rays</h3>
+              </div>
               <p class="cardText">High-definition digital diagnostics for precise treatment planning and early detection of dental issues.</p>
             </div>
           </a>
@@ -588,7 +847,8 @@
               <h3 style="margin-top:40px; font-size:20px;">Find Us</h3>
               <p class="sub" style="margin-bottom:20px;">3275 History Drive Oakton VA 22124</p>
               <div class="mapFrame">
-                 <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
+                 <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen
+                  src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
               </div>
             </div>
           </div>
@@ -617,7 +877,13 @@
                   <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
                   <p class="errorText">Please write at least 10 characters.</p>
                 </div>
-                <button class="btn btnPrimary" style="width:100%;" type="submit">Send Message</button>
+                <button class="btn btnPrimary" style="width:100%;" type="submit">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M22 2L11 13"></path>
+                    <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
+                  </svg>
+                  Send Message
+                </button>
                 <p class="hint" id="formStatus" aria-live="polite" style="margin-top:10px; font-size:14px; color:green;"></p>
               </form>
             </div>
@@ -643,17 +909,58 @@
     </div>
   </footer>
 
+  <!-- Modal (still available for non-services images if you add any later) -->
   <div class="modalOverlay" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal" role="document">
       <div class="modalBar">
         <b id="modalTitle"></b>
-        <button class="modalClose" id="modalClose">✕</button>
+        <button class="modalClose" id="modalClose" aria-label="Close preview">✕</button>
       </div>
       <div class="modalBody">
         <img id="modalImg" alt="" />
       </div>
     </div>
   </div>
+
+  <!-- Fixed bottom 3 buttons (main page) -->
+  <nav class="bottomBar" aria-label="Quick actions">
+    <div class="wrap bottomBarInner">
+      <a class="bBtn" href="tel:5715417977" aria-label="Call">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.9v3a2 2 0 0 1-2.2 2c-3.4-.4-6.6-2-9.2-4.6S6.4 11.6 6 8.2A2 2 0 0 1 8 6h3l1.1 4-2.1 1.1a15 15 0 0 0 5.9 5.9l1.1-2.1 4 1z"></path>
+        </svg>
+        Call
+      </a>
+
+      <a class="bBtn bBtnPrimary" href="#contact" aria-label="Book appointment">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 2v4"></path>
+          <path d="M16 2v4"></path>
+          <path d="M3 10h18"></path>
+          <path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+          <path d="M8 14h4"></path>
+          <path d="M8 18h6"></path>
+        </svg>
+        Book
+      </a>
+
+      <a class="bBtn" href="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124" target="_blank" rel="noopener" aria-label="Get directions">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s7-4.5 7-11a7 7 0 0 0-14 0c0 6.5 7 11 7 11z"></path>
+          <path d="M12 10a2 2 0 1 0 0.001 0z"></path>
+        </svg>
+        Directions
+      </a>
+    </div>
+  </nav>
+
+  <!-- Back to top button -->
+  <button class="toTop" id="toTop" aria-label="Back to top">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5"></path>
+      <path d="M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
 
   <script>
     (function(){
@@ -696,10 +1003,18 @@
         drawer.setAttribute("aria-hidden","true");
         overlay.setAttribute("aria-hidden","true");
       }
-      burger.addEventListener("click", openMenu);
+      if(burger){
+        burger.addEventListener("click", () => {
+          const isOpen = root.classList.contains("isMenuOpen");
+          isOpen ? closeMenu() : openMenu();
+        });
+      }
       overlay.addEventListener("click", closeMenu);
       closeBtn.addEventListener("click", closeMenu);
       menuLinks.forEach(a => a.addEventListener("click", closeMenu));
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") closeMenu();
+      });
 
       /* Reveal */
       const revealEls = document.querySelectorAll("[data-reveal]");
@@ -713,7 +1028,7 @@
       }, {threshold: 0.1});
       revealEls.forEach(el => io.observe(el));
 
-      /* Modal (Full View) */
+      /* Modal (kept). IMPORTANT: exclude services images so cards open pages normally */
       const imgModal = document.getElementById("imgModal");
       const modalImg = document.getElementById("modalImg");
       const modalClose = document.getElementById("modalClose");
@@ -734,7 +1049,6 @@
         document.body.style.overflow = "";
       }
 
-      /* IMPORTANT: exclude services images so cards open pages normally */
       const clickableImgs = Array.from(document.querySelectorAll("img"))
         .filter(im =>
           !im.closest(".brand") &&
@@ -747,10 +1061,47 @@
         im.addEventListener("click", () => openImage(im));
       });
 
-      imgModal.addEventListener("click", (e) => {
-        if(e.target === imgModal) closeImage();
+      if(imgModal){
+        imgModal.addEventListener("click", (e) => {
+          if(e.target === imgModal) closeImage();
+        });
+      }
+      if(modalClose){
+        modalClose.addEventListener("click", closeImage);
+      }
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape" && imgModal && imgModal.getAttribute("aria-hidden") === "false") closeImage();
       });
-      modalClose.addEventListener("click", closeImage);
+
+      /* Back-to-top button */
+      const toTop = document.getElementById("toTop");
+      function updateToTop(){
+        const show = window.scrollY > 420;
+        if(show) toTop.classList.add("is-visible");
+        else toTop.classList.remove("is-visible");
+      }
+      updateToTop();
+      window.addEventListener("scroll", updateToTop, {passive:true});
+      toTop.addEventListener("click", () => {
+        window.scrollTo({top: 0, behavior: "smooth"});
+      });
+
+      /* Hero micro-parallax (gentle) */
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const hero = document.querySelector(".hero");
+      if(hero && !prefersReduced){
+        let ticking = false;
+        window.addEventListener("scroll", () => {
+          if(ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = Math.min(window.scrollY, 800);
+            const scale = 1 + (y / 8000); // very subtle
+            hero.style.setProperty("--heroScale", scale.toFixed(4));
+            ticking = false;
+          });
+        }, {passive:true});
+      }
 
       /* Form */
       const form = document.getElementById("contactForm");
