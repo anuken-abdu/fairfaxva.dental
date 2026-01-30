@@ -3,20 +3,406 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Fairfax Dentist | Comprehensive Dental Care</title>
-  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry." />
-  
-  <link rel="stylesheet" href="style.css">
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <title>Fairfax Dentist | Comprehensive Dental Care in Fairfax, VA</title>
+  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry. Implants, veneers, emergency, Invisalign, whitening, and more." />
+
+  <meta property="og:title" content="Fairfax Dentist" />
+  <meta property="og:description" content="Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="images/logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      /* Premium Clinical Palette */
+      --bg-white: #ffffff;
+      --bg-ice: #F5F7FA;
+      --bg-dark: #111827;
+
+      --ink: #111827;
+      --muted: #64748B;
+
+      --accent: #2563EB;
+      --btn-bg: #111827;
+      --btn-text: #ffffff;
+
+      /* Layout */
+      --max: 1200px;
+      --pad: max(24px, 5vw);
+
+      /* Typography */
+      --h1: clamp(36px, 5vw, 64px);
+      --h2: clamp(24px, 3.5vw, 36px);
+      --p: clamp(16px, 1.1vw, 18px);
+
+      /* Radius: Sharp as requested */
+      --radius: 0px;
+
+      /* Hero Backgrounds */
+      --hero-image-webp: url("images/hero.webp");
+      --hero-image-jpg: url("images/hero.jpg");
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+    button, input, textarea { font: inherit; color: inherit; border-radius: var(--radius); }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+      padding-left: max(var(--pad), env(safe-area-inset-left));
+      padding-right: max(var(--pad), env(safe-area-inset-right));
+    }
+
+    .section {
+      padding: clamp(60px, 8vw, 100px) 0;
+    }
+
+    .bg-ice { background-color: var(--bg-ice); }
+    .bg-white { background-color: var(--bg-white); }
+
+    .grid { display: grid; gap: 24px; }
+
+    .skip {
+      position: absolute; left: -999px; top: 0;
+      background: var(--btn-bg); color: #fff;
+      padding: 12px 20px; z-index: 9999;
+    }
+    .skip:focus { left: 20px; top: 20px; }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .head {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px;
+    }
+    .brand img { height: 40px; width: auto; }
+
+    .right { display: flex; align-items: center; gap: 20px; }
+
+    .phone {
+      display: none;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .burger {
+      width: 48px; height: 48px;
+      background: transparent; border: none;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+      gap: 6px; cursor: pointer; padding: 0;
+    }
+    .burger span {
+      display: block; height: 2px; background: var(--ink);
+      transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .burger span:nth-child(1) { width: 24px; }
+    .burger span:nth-child(2) { width: 32px; }
+    .burger span:nth-child(3) { width: 18px; }
+    .burger:hover span { width: 32px; background: var(--accent); }
+
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex; align-items: center;
+      background: var(--bg-ice);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: var(--hero-image-jpg);
+      background-size: cover; background-position: center;
+      opacity: 0.5;
+      z-index: 0;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0) 100%);
+      z-index: 1;
+    }
+
+    .heroInner {
+      position: relative; z-index: 2;
+      max-width: 650px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    h1 {
+      font-size: var(--h1);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .sub {
+      font-size: var(--p);
+      color: var(--muted);
+      max-width: 90%;
+    }
+
+    .ctaRow {
+      display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 16px 32px;
+      font-weight: 600;
+      font-size: 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btnPrimary {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+    }
+    .btnPrimary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btnSecondary {
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+    .btnSecondary:hover { background: var(--bg-ice); }
+
+    .h2 {
+      font-size: var(--h2);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .servicesGrid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: transparent;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); }
+
+    .card:focus-visible{
+      outline: 2px solid var(--accent);
+      outline-offset: 6px;
+    }
+
+    .cardMedia {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--bg-ice);
+    }
+    .cardMedia img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .card:hover .cardMedia img { transform: scale(1.05); }
+
+    .cardBody { padding: 0; }
+    .cardTitle { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+    .cardText { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    .aboutBox {
+      background: var(--bg-white);
+      padding: 40px;
+      border-left: 4px solid var(--accent);
+    }
+    .aboutBox p { margin-bottom: 20px; font-size: 17px; }
+
+    .contactGrid {
+      display: grid; grid-template-columns: 1fr; gap: 40px;
+    }
+    .panel {
+      background: var(--bg-white);
+      padding: 30px;
+      height: 100%;
+    }
+
+    .hoursRow {
+      display: flex; justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+    .hoursRow:last-child { border: none; }
+    .hoursRow b { font-weight: 600; }
+
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-size: 16px;
+      transition: 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      background: #fff;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field { margin-bottom: 20px; }
+    .errorText { color: #dc2626; font-size: 13px; margin-top: 6px; display: none; }
+    .hasError input, .hasError textarea { border-color: #dc2626; background: #fef2f2; }
+    .hasError .errorText { display: block; }
+
+    .mapFrame { width: 100%; height: 300px; border: none; background: #eee; }
+
+    footer {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 60px 0 30px;
+    }
+    .foot {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .foot a { color: #fff; opacity: 0.8; }
+    .foot a:hover { opacity: 1; text-decoration: underline; }
+    .footAddress { opacity: 0.6; }
+
+    @media (max-width: 767.98px) {
+      .foot {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footAddress { order: 1; margin-bottom: 8px; }
+      .footEmail { order: 2; margin-bottom: 20px; font-size: 18px; }
+      .logoSmall { order: 3; opacity: 0.5; font-size: 12px; }
+      .footPhone, .footSep, .logoSmall img { display: none; }
+    }
+
+    .drawer {
+      position: fixed; top: 0; right: 0; height: 100%; width: 300px;
+      background: #fff; z-index: 200;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      display: flex; flex-direction: column;
+    }
+    .isMenuOpen .drawer { transform: translateX(0); }
+    .drawerOverlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 150;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .isMenuOpen .drawerOverlay { opacity: 1; pointer-events: auto; }
+
+    .drawerHead { padding: 24px; display: flex; justify-content: flex-end; }
+    .drawerClose { font-size: 24px; background: none; border: none; cursor: pointer; padding: 10px; }
+    .drawerBody { padding: 0 24px; display: flex; flex-direction: column; gap: 16px; }
+    .navLink { font-size: 20px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #f1f1f1; }
+
+    /* Modal (kept, but services images are excluded from click handler) */
+    .modalOverlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.95);
+      display: none; justify-content: center; align-items: center;
+      padding: 0;
+    }
+    .modalOverlay[aria-hidden="false"] { display: flex; }
+
+    .modal {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      background: transparent; box-shadow: none;
+    }
+
+    .modalBar {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px; z-index: 10;
+      display: flex; justify-content: space-between;
+      color: #fff;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    }
+    .modalClose {
+      font-size: 32px; color: #fff; background: none; border: none; cursor: pointer;
+    }
+
+    .modalBody {
+      flex: 1;
+      width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      padding: 0;
+    }
+    .modalBody img {
+      width: 100%; height: 100%;
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+    }
+
+    @media (min-width: 768px) {
+      .phone { display: block; }
+      .contactGrid { grid-template-columns: 1fr 1fr; }
+      .servicesGrid { grid-template-columns: repeat(2, 1fr); }
+      .burger { display: none; }
+    }
+    @media (min-width: 1024px) {
+      .servicesGrid { grid-template-columns: repeat(4, 1fr); }
+      .burger { display: none; }
+    }
+
+    [data-reveal] { opacity: 0; transform: translateY(20px); transition: 0.6s ease; }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
 
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
   <header>
-    <div class="wrap head">
-      <a class="brand" href="index.html">
+    <div class="wrap head" id="home">
+      <a class="brand" href="#home" aria-label="Fairfax Dentist Home">
         <img src="images/logo.jpg" alt="Fairfax Dentist logo" />
       </a>
+
       <div class="right">
         <a class="phone" href="tel:5715417977">571-541-7977</a>
         <button class="burger" id="burger" aria-label="Menu">
@@ -32,14 +418,18 @@
       <button class="drawerClose" id="drawerClose">✕</button>
     </div>
     <div class="drawerBody">
-      <a class="navLink" href="index.html">Home</a>
-      <a class="navLink" href="index.html#services">Services</a>
-      <a class="navLink" href="index.html#about">About</a>
-      <a class="navLink" href="index.html#contact">Contact</a>
+      <a class="navLink" href="#home">Home</a>
+      <a class="navLink" href="#services">Services</a>
+      <a class="navLink" href="#about">About</a>
+      <a class="navLink" href="#contact">Contact</a>
+      <div style="margin-top:20px; color:var(--muted); font-size:14px;">
+        <p>571-541-7977</p>
+        <p>svvdmd@gmail.com</p>
+      </div>
     </div>
   </aside>
 
-  <section class="hero">
+  <section class="hero" aria-label="Hero">
     <div class="wrap heroInner">
       <div class="kicker">Comprehensive • Modern • Family</div>
       <h1>Fairfax Dentist</h1>
@@ -54,188 +444,190 @@
   </section>
 
   <main id="main">
-    <section class="section bg-white" id="services">
+    <section class="section bg-white" id="services" aria-label="Services">
       <div class="wrap" data-reveal>
         <div class="kicker" style="margin-bottom:10px;">Our Expertise</div>
-        <h2 class="h2" style="max-width:600px;">Advanced dental solutions</h2>
-        
+        <h2 class="h2" style="max-width:600px;">Advanced dental solutions under one roof</h2>
+
         <div class="grid servicesGrid" style="margin-top:40px;">
-          
-          <a href="implants.html" class="card">
+          <!-- NOTE: Cards now open service.html in a NEW TAB (as requested) -->
+
+          <a class="card" href="service.html?service=implants" target="_blank" rel="noopener" aria-label="Dental Implants — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/implants.webp" type="image/webp">
-                <img src="images/implants.jpg" alt="Dental Implants" loading="lazy">
+                <img src="images/implants.jpg" alt="Dental Implants" loading="lazy" decoding="async" data-full-webp="images/implants.webp" data-full-jpg="images/implants.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Dental Implants →</h3>
-              <p class="cardText">Permanent solutions to restore missing teeth.</p>
+              <h3 class="cardTitle">Dental Implants</h3>
+              <p class="cardText">Permanent and natural-looking solutions to restore missing teeth and oral functionality.</p>
             </div>
           </a>
 
-          <a href="veneers.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=veneers" target="_blank" rel="noopener" aria-label="Dental Veneers — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/veneers.webp" type="image/webp">
-                <img src="images/veneers.jpg" alt="Dental Veneers" loading="lazy">
+                <img src="images/veneers.jpg" alt="Dental Veneers" loading="lazy" decoding="async" data-full-webp="images/veneers.webp" data-full-jpg="images/veneers.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Dental Veneers →</h3>
-              <p class="cardText">Custom-crafted porcelain shells for aesthetic smiles.</p>
+              <h3 class="cardTitle">Dental Veneers</h3>
+              <p class="cardText">Custom-crafted porcelain shells designed to enhance the color, shape, and overall aesthetics of your smile.</p>
             </div>
           </a>
 
-          <a href="emergency.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=emergency" target="_blank" rel="noopener" aria-label="Emergency Dentist — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/dendist.webp" type="image/webp">
-                <img src="images/dendist.jpg" alt="Emergency Dentist" loading="lazy">
+                <img src="images/dendist.jpg" alt="Emergency Dentist" loading="lazy" decoding="async" data-full-webp="images/dendist.webp" data-full-jpg="images/dendist.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Emergency Dentist →</h3>
-              <p class="cardText">Urgent intervention for pain and trauma.</p>
+              <h3 class="cardTitle">Emergency Dentist</h3>
+              <p class="cardText">Urgent dental intervention for pain relief, trauma, and acute infections with same-day availability.</p>
             </div>
           </a>
 
-          <a href="invisalign.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=invisalign" target="_blank" rel="noopener" aria-label="Invisalign — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/invisalign.webp" type="image/webp">
-                <img src="images/invisalign.jpg" alt="Invisalign" loading="lazy">
+                <img src="images/invisalign.jpg" alt="Invisalign" loading="lazy" decoding="async" data-full-webp="images/invisalign.webp" data-full-jpg="images/invisalign.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Invisalign →</h3>
-              <p class="cardText">Clear aligners for straight teeth.</p>
+              <h3 class="cardTitle">Invisalign</h3>
+              <p class="cardText">Advanced orthodontic treatment using clear, removable aligners for a discreet and comfortable smile correction.</p>
             </div>
           </a>
 
-          <a href="teeth.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=whitening" target="_blank" rel="noopener" aria-label="Teeth Whitening — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/teeth.webp" type="image/webp">
-                <img src="images/teeth.jpg" alt="Teeth Whitening" loading="lazy">
+                <img src="images/teeth.jpg" alt="Teeth Whitening" loading="lazy" decoding="async" data-full-webp="images/teeth.webp" data-full-jpg="images/teeth.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Teeth Whitening →</h3>
-              <p class="cardText">Professional brightening for a radiant smile.</p>
+              <h3 class="cardTitle">Teeth Whitening</h3>
+              <p class="cardText">Professional-grade brightening treatments to effectively remove deep stains and restore natural radiance.</p>
             </div>
           </a>
 
-          <a href="rootcanal.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=rootcanal" target="_blank" rel="noopener" aria-label="Root Canal — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/canal.webp" type="image/webp">
-                <img src="images/canal.jpg" alt="Root Canal" loading="lazy">
+                <img src="images/canal.jpg" alt="Root Canal" loading="lazy" decoding="async" data-full-webp="images/canal.webp" data-full-jpg="images/canal.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Root Canal →</h3>
-              <p class="cardText">Save infected teeth and eliminate pain.</p>
+              <h3 class="cardTitle">Root Canal</h3>
+              <p class="cardText">Specialized endodontic therapy focused on saving infected teeth and preventing further complications.</p>
             </div>
           </a>
 
-          <a href="aesthetic.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=aesthetic" target="_blank" rel="noopener" aria-label="Aesthetic Dentistry — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/aesthetic.webp" type="image/webp">
-                <img src="images/aesthetic.jpg" alt="Aesthetic Dentistry" loading="lazy">
+                <img src="images/aesthetic.jpg" alt="Aesthetic Dentistry" loading="lazy" decoding="async" data-full-webp="images/aesthetic.webp" data-full-jpg="images/aesthetic.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Aesthetic Dentistry →</h3>
-              <p class="cardText">Comprehensive smile makeovers.</p>
+              <h3 class="cardTitle">Aesthetic Dentistry</h3>
+              <p class="cardText">A comprehensive approach to smile design, merging restorative techniques with artistic precision.</p>
             </div>
           </a>
 
-          <a href="xrays.html" class="card">
-             <div class="cardMedia">
+          <a class="card" href="service.html?service=xrays" target="_blank" rel="noopener" aria-label="Dental X-Rays — open details page">
+            <div class="cardMedia">
               <picture>
                 <source srcset="images/xrays.webp" type="image/webp">
-                <img src="images/xrays.jpg" alt="Dental X-Rays" loading="lazy">
+                <img src="images/xrays.jpg" alt="Dental X-Rays" loading="lazy" decoding="async" data-full-webp="images/xrays.webp" data-full-jpg="images/xrays.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <h3 class="cardTitle">Dental X-Rays →</h3>
-              <p class="cardText">High-definition digital diagnostics.</p>
+              <h3 class="cardTitle">Dental X-Rays</h3>
+              <p class="cardText">High-definition digital diagnostics for precise treatment planning and early detection of dental issues.</p>
             </div>
           </a>
-
         </div>
       </div>
     </section>
 
-    <section class="section bg-ice" id="about">
-      <div class="wrap aboutGrid" data-reveal>
-        <div>
-          <div class="kicker">About</div>
-          <h2 class="h2">Fairfax Dental Care</h2>
-          <div class="aboutBox" style="margin-top:24px;">
-            <p>Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions.</p>
-            <p>We specialize in everything from routine preventive exams to complex restorative procedures. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience for the entire family.</p>
-          </div>
+    <section class="section bg-ice" id="about" aria-label="About">
+      <div class="wrap" data-reveal>
+        <div class="kicker">The Clinic</div>
+        <h2 class="h2">Fairfax Dental Care</h2>
+        <div class="aboutBox" style="margin-top:24px;">
+          <p>Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions. Led by Dr. Vladimir Soyfer, Dr. Mazda Mansouri, and Dr. Alex, our team combines clinical expertise with genuine compassion.</p>
+          <p style="margin-bottom:0;">We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience and healthy, lasting results for the entire family.</p>
         </div>
       </div>
     </section>
 
-    <section class="section bg-white" id="contact">
+    <section class="section bg-white" id="contact" aria-label="Contact">
       <div class="wrap" data-reveal>
         <div class="kicker">Contact Us</div>
         <h2 class="h2">Working hours & Location</h2>
 
         <div class="contactGrid" style="margin-top:40px;">
-          <div class="panel">
-            <h3 style="margin-top:0; font-size:20px;">Opening Hours</h3>
-            <div class="hours" role="list">
-              <div class="hoursRow"><span>Monday – Friday</span><b>8:00 – 17:00</b></div>
-              <div class="hoursRow"><span>Saturday</span><b>9:00 – 13:00</b></div>
-              <div class="hoursRow"><span>Sunday</span><span style="color:#dc2626;">Closed</span></div>
-            </div>
+          <div>
+            <div class="panel">
+              <h3 style="margin-top:0; font-size:20px;">Opening Hours</h3>
+              <div class="hours" role="list">
+                <div class="hoursRow"><span>Monday – Friday</span><b>8:00 – 17:00</b></div>
+                <div class="hoursRow"><span>Saturday</span><b>9:00 – 13:00</b></div>
+                <div class="hoursRow"><span>Sunday</span><span style="color:#dc2626;">Closed</span></div>
+              </div>
 
-            <h3 style="margin-top:40px; font-size:20px;">Find Us</h3>
-            <p class="sub" style="margin-bottom:20px;">3275 History Drive Oakton VA 22124</p>
-            <div class="mapFrame">
-               <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
+              <h3 style="margin-top:40px; font-size:20px;">Find Us</h3>
+              <p class="sub" style="margin-bottom:20px;">3275 History Drive Oakton VA 22124</p>
+              <div class="mapFrame">
+                 <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
+              </div>
             </div>
           </div>
 
-          <div class="panel">
-            <h3 style="margin-top:0; font-size:20px; margin-bottom:20px;">Send a Message</h3>
-            <form id="contactForm" novalidate>
-              <div class="field" id="fName">
-                <label for="name">Full Name</label>
-                <input id="name" name="name" type="text" required minlength="2" placeholder="Your name" />
-                <p class="errorText">Enter your name.</p>
-              </div>
-              <div class="field" id="fEmail">
-                <label for="email">Email Address</label>
-                <input id="email" name="email" type="email" required placeholder="you@example.com" />
-                <p class="errorText">Enter a valid email.</p>
-              </div>
-              <div class="field" id="fPhone">
-                <label for="phone">Phone Number</label>
-                <input id="phone" name="phone" type="tel" required placeholder="571-541-7977" />
-                <p class="errorText">Enter a valid phone number.</p>
-              </div>
-              <div class="field" id="fMsg">
-                <label for="message">How can we help?</label>
-                <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
-                <p class="errorText">Please write at least 10 characters.</p>
-              </div>
-              <button class="btn btnPrimary" style="width:100%;" type="submit">Send Message</button>
-              <p class="hint" id="formStatus" aria-live="polite" style="margin-top:10px; font-size:14px; color:green;"></p>
-            </form>
+          <div>
+            <div class="panel">
+              <h3 style="margin-top:0; font-size:20px; margin-bottom:20px;">Send a Message</h3>
+              <form id="contactForm" novalidate>
+                <div class="field" id="fName">
+                  <label for="name">Full Name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="John Doe" />
+                  <p class="errorText">Enter your name.</p>
+                </div>
+                <div class="field" id="fEmail">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+                  <p class="errorText">Enter a valid email.</p>
+                </div>
+                <div class="field" id="fPhone">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="571-541-7977" />
+                  <p class="errorText">Enter a valid phone number.</p>
+                </div>
+                <div class="field" id="fMsg">
+                  <label for="message">How can we help?</label>
+                  <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
+                  <p class="errorText">Please write at least 10 characters.</p>
+                </div>
+                <button class="btn btnPrimary" style="width:100%;" type="submit">Send Message</button>
+                <p class="hint" id="formStatus" aria-live="polite" style="margin-top:10px; font-size:14px; color:green;"></p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer aria-label="Footer">
     <div class="wrap foot">
       <small class="footAddress">3275 History Drive Oakton VA 22124</small>
 
@@ -251,6 +643,146 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <div class="modalOverlay" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <div class="modalBar">
+        <b id="modalTitle"></b>
+        <button class="modalClose" id="modalClose">✕</button>
+      </div>
+      <div class="modalBody">
+        <img id="modalImg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      /* WebP Logic */
+      function canLoadImage(url){
+        return new Promise((resolve) => {
+          const im = new Image();
+          im.onload = () => resolve(true);
+          im.onerror = () => resolve(false);
+          const sep = url.includes("?") ? "&" : "?";
+          im.src = url + sep + "probe=" + Date.now();
+        });
+      }
+      async function hardenPictureWebp(){
+        const probe = await canLoadImage("images/implants.webp");
+        if(!probe){
+          document.querySelectorAll('source[type="image/webp"]').forEach(s => s.remove());
+          document.querySelectorAll('[data-full-webp]').forEach(el => el.removeAttribute("data-full-webp"));
+        }
+      }
+      hardenPictureWebp();
+
+      /* Menu */
+      const root = document.documentElement;
+      const burger = document.getElementById("burger");
+      const drawer = document.getElementById("drawer");
+      const overlay = document.getElementById("drawerOverlay");
+      const closeBtn = document.getElementById("drawerClose");
+      const menuLinks = drawer.querySelectorAll('a[href^="#"]');
+
+      function openMenu(){
+        root.classList.add("isMenuOpen");
+        drawer.setAttribute("aria-hidden","false");
+        overlay.setAttribute("aria-hidden","false");
+      }
+      function closeMenu(){
+        root.classList.remove("isMenuOpen");
+        drawer.setAttribute("aria-hidden","true");
+        overlay.setAttribute("aria-hidden","true");
+      }
+      burger.addEventListener("click", openMenu);
+      overlay.addEventListener("click", closeMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      menuLinks.forEach(a => a.addEventListener("click", closeMenu));
+
+      /* Reveal */
+      const revealEls = document.querySelectorAll("[data-reveal]");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if(en.isIntersecting){
+            en.target.classList.add("is-visible");
+            io.unobserve(en.target);
+          }
+        });
+      }, {threshold: 0.1});
+      revealEls.forEach(el => io.observe(el));
+
+      /* Modal (Full View) */
+      const imgModal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalClose = document.getElementById("modalClose");
+      const modalTitle = document.getElementById("modalTitle");
+
+      function openImage(img){
+        const webp = img.getAttribute("data-full-webp");
+        const jpg = img.getAttribute("data-full-jpg") || img.currentSrc || img.src;
+        modalImg.src = webp || jpg;
+        modalImg.alt = img.alt || "";
+        modalTitle.textContent = img.alt || "";
+        imgModal.setAttribute("aria-hidden","false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeImage(){
+        imgModal.setAttribute("aria-hidden","true");
+        modalImg.src = "";
+        document.body.style.overflow = "";
+      }
+
+      /* IMPORTANT: exclude services images so cards open pages normally */
+      const clickableImgs = Array.from(document.querySelectorAll("img"))
+        .filter(im =>
+          !im.closest(".brand") &&
+          !im.closest(".logoSmall") &&
+          !im.closest(".servicesGrid")
+        );
+
+      clickableImgs.forEach(im => {
+        im.style.cursor = "zoom-in";
+        im.addEventListener("click", () => openImage(im));
+      });
+
+      imgModal.addEventListener("click", (e) => {
+        if(e.target === imgModal) closeImage();
+      });
+      modalClose.addEventListener("click", closeImage);
+
+      /* Form */
+      const form = document.getElementById("contactForm");
+      const status = document.getElementById("formStatus");
+
+      function setError(fieldId, on){
+        const el = document.getElementById(fieldId);
+        if(el) on ? el.classList.add("hasError") : el.classList.remove("hasError");
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let ok = true;
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const phone = document.getElementById("phone");
+        const msg = document.getElementById("message");
+
+        if(name.value.trim().length < 2) { setError("fName", true); ok=false; } else setError("fName", false);
+        if(!email.checkValidity()) { setError("fEmail", true); ok=false; } else setError("fEmail", false);
+        if(!phone.value) { setError("fPhone", true); ok=false; } else setError("fPhone", false);
+        if(msg.value.trim().length < 10) { setError("fMsg", true); ok=false; } else setError("fMsg", false);
+
+        if(ok){
+          status.textContent = "Message sent successfully!";
+          form.reset();
+        } else {
+          status.textContent = "";
+        }
+      });
+
+    })();
+  </script>
 </body>
 </html>
